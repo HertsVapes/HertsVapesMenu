@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#050505" />
+  <meta name="description" content="Herts Vapes live menu. Browse products, flavours and deals, then order through WhatsApp or Snapchat." />
+  <title>Herts Vapes Menu</title>
+  <link rel="preload" href="hero.jpg" as="image" />
+  <link rel="preload" href="menu.jpg" as="image" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="site-shell">
+    <section class="hero" id="top" aria-label="Herts Vapes hero">
+      <img src="hero.jpg" alt="Herts Vapes - Fast. Reliable. Local." class="hero-art" />
+      <button class="hotspot hero-shop" data-scroll="#menu" aria-label="Shop now"></button>
+      <a class="hotspot hero-whatsapp" href="https://wa.me/447000000000?text=Hi%20Herts%20Vapes%2C%20I%27d%20like%20to%20place%20an%20order." aria-label="Order through WhatsApp"></a>
+      <a class="hotspot hero-snapchat" href="https://www.snapchat.com/add/YOUR_SNAPCHAT_USERNAME" aria-label="Order through Snapchat"></a>
+    </section>
+
+    <div class="section-blend" aria-hidden="true"></div>
+
+    <section class="menu-visual" id="menu" aria-label="Herts Vapes menu categories">
+      <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art" />
+      <button class="hotspot category-hit special" data-category="special" aria-label="Open special deals"></button>
+      <button class="hotspot category-hit disposable" data-category="disposable" aria-label="Open disposable vapes"></button>
+      <button class="hotspot category-hit podkits" data-category="podkits" aria-label="Open pod kits"></button>
+      <button class="hotspot category-hit salts" data-category="salts" aria-label="Open nic salts"></button>
+      <button class="hotspot category-hit pods" data-category="pods" aria-label="Open replacement pods"></button>
+      <button class="hotspot category-hit pouches" data-category="pouches" aria-label="Open nicotine pouches"></button>
+      <a class="hotspot menu-whatsapp" href="https://wa.me/447000000000?text=Hi%20Herts%20Vapes%2C%20I%27d%20like%20to%20place%20an%20order." aria-label="Order through WhatsApp"></a>
+      <a class="hotspot menu-snapchat" href="https://www.snapchat.com/add/YOUR_SNAPCHAT_USERNAME" aria-label="Order through Snapchat"></a>
+    </section>
+
+    <section class="inventory-panel" id="inventoryPanel" aria-live="polite">
+      <div class="panel-inner">
+        <div class="panel-header">
+          <button class="back-button" id="closePanel" aria-label="Close category">‹</button>
+          <div class="panel-heading">
+            <p class="panel-eyebrow">LIVE MENU</p>
+            <h2 id="panelTitle">Menu</h2>
+          </div>
+        </div>
+        <div id="panelContent" class="panel-content"></div>
+      </div>
+    </section>
+
+    <section class="ready-order" id="order">
+      <div class="ready-card">
+        <p class="panel-eyebrow">READY TO ORDER?</p>
+        <h2>Message Herts Vapes</h2>
+        <p class="order-copy">Found what you want? Send your order through WhatsApp or Snapchat.</p>
+        <div class="order-actions">
+          <a href="https://wa.me/447000000000?text=Hi%20Herts%20Vapes%2C%20I%27d%20like%20to%20place%20an%20order." class="order-button whatsapp">WhatsApp</a>
+          <a href="https://www.snapchat.com/add/YOUR_SNAPCHAT_USERNAME" class="order-button snapchat">Snapchat</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
