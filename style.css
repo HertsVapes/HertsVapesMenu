@@ -1,0 +1,57 @@
+:root{
+  --bg:#020202;
+  --card:#080808;
+  --card2:#101010;
+  --red:#ff1d25;
+  --red2:#a30008;
+  --white:#ffffff;
+  --muted:#a9a9a9;
+  --line:rgba(255,255,255,.12);
+  --glow:0 0 28px rgba(255,0,20,.34);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Arial, Helvetica, sans-serif;-webkit-font-smoothing:antialiased}
+button,a{-webkit-tap-highlight-color:transparent}
+.page-shell{width:100%;max-width:430px;margin:0 auto;background:#000;min-height:100vh;overflow:hidden}
+.art-section{position:relative;width:100%;background:#000}
+.art-img{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
+.hotspot{position:absolute;display:block;border:0;background:rgba(255,255,255,0);padding:0;margin:0;cursor:pointer;border-radius:18px;text-decoration:none}
+.hotspot:active{background:rgba(255,255,255,.06)}
+/* HERO clickable overlay positions based on the Canva artwork */
+.hero-shop{left:27%;top:58.8%;width:46%;height:8.3%}
+.hero-whatsapp{left:2%;top:68.8%;width:48%;height:8.5%}
+.hero-snapchat{left:50%;top:68.8%;width:48%;height:8.5%}
+/* MENU card overlay positions */
+.card-specials{left:3%;top:22.3%;width:94%;height:12.7%}
+.card-disposables{left:3%;top:36.0%;width:94%;height:12.1%}
+.card-podkits{left:3%;top:49.2%;width:94%;height:10.4%}
+.card-nicsalts{left:3%;top:60.7%;width:94%;height:10.3%}
+.card-pods{left:3%;top:72.2%;width:94%;height:10.2%}
+.card-pouches{left:3%;top:83.8%;width:94%;height:10.4%}
+.menu-whatsapp{left:3%;top:95.2%;width:43%;height:3.7%}
+.menu-snapchat{left:54%;top:95.2%;width:43%;height:3.7%}
+.products-panel{padding:28px 16px 46px;background:radial-gradient(circle at top,rgba(255,0,18,.10),transparent 42%),#000;border-top:1px solid rgba(255,0,20,.22)}
+.panel-header{padding:8px 4px 18px;text-align:left}
+.eyebrow{margin:0 0 6px;color:var(--red);letter-spacing:.22em;font-weight:800;font-size:12px}
+h1{font-size:30px;line-height:1.02;margin:0;text-transform:uppercase;letter-spacing:-.02em}
+.panel-note{margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.45}
+.category-content{display:grid;gap:12px}
+.deal-card,.product-card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid rgba(255,29,37,.42);border-radius:18px;box-shadow:0 0 18px rgba(255,0,18,.08);overflow:hidden}
+.deal-row,.product-toggle{width:100%;background:transparent;border:0;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;text-align:left;cursor:pointer}
+.deal-main,.product-main{display:flex;flex-direction:column;gap:5px;min-width:0}
+.item-title{font-size:17px;font-weight:900;line-height:1.15;text-transform:uppercase;letter-spacing:.01em}
+.item-sub{font-size:13px;color:var(--muted);line-height:1.35}
+.price-pill{flex:0 0 auto;background:linear-gradient(180deg,#ff2a31,#a9000a);border:1px solid rgba(255,255,255,.18);box-shadow:var(--glow);border-radius:13px;padding:9px 12px;font-size:22px;font-weight:950;letter-spacing:-.04em;min-width:75px;text-align:center}
+.chev{color:var(--red);font-size:25px;line-height:1;transition:transform .22s ease}.product-card.open .chev{transform:rotate(90deg)}
+.product-details{max-height:0;overflow:hidden;border-top:1px solid transparent;transition:max-height .28s ease,border-color .28s ease}
+.product-card.open .product-details{max-height:900px;border-top-color:rgba(255,255,255,.08)}
+.flavour-list{list-style:none;margin:0;padding:14px 16px 16px;display:grid;grid-template-columns:1fr;gap:9px}
+.flavour-list li{display:flex;justify-content:space-between;gap:12px;align-items:center;color:#f4f4f4;font-size:14px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055);border-radius:12px;padding:10px 11px}
+.stock{font-size:10px;font-weight:800;color:#0bdc6e;text-transform:uppercase;letter-spacing:.08em}.stock.out{color:#ff5252}
+.order-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 16px}
+.order-btn{border:1px solid rgba(255,29,37,.55);background:rgba(255,0,18,.08);color:#fff;text-decoration:none;text-align:center;border-radius:13px;padding:12px 10px;font-weight:900;text-transform:uppercase;font-size:13px;letter-spacing:.04em}
+.order-btn:active{transform:scale(.98)}
+.locked-note{font-size:12px;color:var(--muted);text-align:center;margin:18px 0 0;line-height:1.4}
+@media (max-width:360px){.page-shell{max-width:none}.item-title{font-size:15px}.price-pill{font-size:19px;min-width:66px}.panel-note{font-size:13px}h1{font-size:26px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.product-details,.chev{transition:none}}
