@@ -3,11 +3,11 @@ const inventory = {
     title: "Special Deals",
     type: "deals",
     items: [
-      { name: "Vaporesso XROS Pro 2 + 4 Nic Salts", price: "£30", meta: "Kit bundle", included: ["Vaporesso body kit", "4 Elux Legend Nic Salt liquids"] },
-      { name: "2 XROS Pods + 6 Nic Salts", price: "£20", meta: "Pods and liquids bundle", included: ["2 Vaporesso Corex XROS Pods", "6 Elux Legend Nic Salt liquids"] },
-      { name: "2 Hayati Dual Flavour 25000", price: "£25", meta: "25K disposable bundle", included: ["2 Hayati Dual Flavour 25000 devices"] },
-      { name: "3 Elux Legend 3500", price: "£10", meta: "3.5K disposable bundle", included: ["3 Elux Legend 3500 devices"] },
-      { name: "2 Lost Mary BM6000 + 1 Hayati 25K", price: "£30", meta: "Mixed disposable bundle", included: ["2 Lost Mary BM6000 devices", "1 Hayati Dual Flavour 25000"] }
+      { name: "Vaporesso XROS Pro 2 + 4 Nic Salts", price: "£30", meta: "Kit bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["Vaporesso body kit", "4 Elux Legend Nic Salt liquids"], prompts: ["Kit colour", "Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4"] },
+      { name: "2 XROS Pods + 6 Nic Salts", price: "£20", meta: "Pods and liquids bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["2 Vaporesso Corex XROS Pods", "6 Elux Legend Nic Salt liquids"], prompts: ["Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4", "Nic Salt 5", "Nic Salt 6"] },
+      { name: "2 Hayati Dual Flavour 25000", price: "£25", meta: "25K disposable bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["2 Hayati Dual Flavour 25000 devices"], prompts: ["Device 1", "Device 2"] },
+      { name: "3 Elux Legend 3500", price: "£10", meta: "3.5K disposable bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["3 Elux Legend 3500 devices"], prompts: ["Flavour 1", "Flavour 2", "Flavour 3"] },
+      { name: "2 Lost Mary BM6000 + 1 Hayati 25K", price: "£30", meta: "Mixed disposable bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["2 Lost Mary BM6000 devices", "1 Hayati Dual Flavour 25000"], prompts: ["Lost Mary 1", "Lost Mary 2", "Hayati 25K"] }
     ]
   },
 
@@ -153,6 +153,7 @@ function renderCategory(category) {
 }
 
 function renderDeal(deal) {
+  const promptData = deal.prompts ? escapeHtml(deal.prompts.join("||")) : "";
   return `
     <article class="deal-card">
       <div class="deal-main">
@@ -160,11 +161,13 @@ function renderDeal(deal) {
           <div class="deal-name">${escapeHtml(deal.name)}</div>
           <div class="deal-meta">${escapeHtml(deal.meta)}</div>
           <div class="included-list">${deal.included.map(item => `<span>${escapeHtml(item)}</span>`).join("")}</div>
+          ${deal.saving ? `<div class="saving deal-saving">${escapeHtml(deal.saving)}</div>` : ""}
+          ${deal.confirm ? `<div class="confirm-note">${escapeHtml(deal.confirm)}</div>` : ""}
         </div>
         <div class="price-pill">${escapeHtml(deal.price)}</div>
       </div>
       <div class="card-actions">
-        <button class="add-cart-button" type="button" data-add="${escapeHtml(deal.name)}" data-price="${escapeHtml(deal.price)}">ADD</button>
+        <button class="add-cart-button" type="button" data-add="${escapeHtml(deal.name)}" data-price="${escapeHtml(deal.price)}" data-prompts="${promptData}">ADD</button>
       </div>
     </article>
   `;
@@ -222,9 +225,9 @@ function renderPricing(product) {
             <div class="option-prices">
               ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(detail + " - " + row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
             </div>
+            ${product.saving ? `<div class="saving option-saving">${escapeHtml(product.saving)}</div>` : ""}
           </div>
         `).join("")}
-        ${product.saving ? `<div class="saving">${escapeHtml(product.saving)}</div>` : ""}
       </div>
     `;
   }
@@ -262,7 +265,8 @@ panelContent.addEventListener("click", (event) => {
   addToCart({
     name: addButton.dataset.add,
     option: addButton.dataset.option || "",
-    price: addButton.dataset.price || ""
+    price: addButton.dataset.price || "",
+    prompts: addButton.dataset.prompts ? addButton.dataset.prompts.split("||") : []
   });
 });
 
@@ -271,8 +275,9 @@ function addToCart(item) {
   const existing = cart.find(cartItem => cartItem.key === key);
   if (existing) {
     existing.qty += 1;
+    if ((!existing.prompts || !existing.prompts.length) && item.prompts && item.prompts.length) existing.prompts = item.prompts;
   } else {
-    cart.push({ ...item, key, qty: 1 });
+    cart.push({ ...item, key, qty: 1, prompts: item.prompts || [] });
   }
   saveCart();
   showToast("✓ Added");
@@ -330,19 +335,37 @@ function buildOrderMessage() {
   }
 
   const lines = cart.map(item => {
-    const option = item.option ? ` - ${item.option}` : "";
-    const price = item.price ? ` (${item.price})` : "";
-    return `• ${item.name}${option}${price} ×${item.qty}`;
-  }).join("\n");
+    const optionLine = item.option ? `\n  ${item.option}` : "";
+    const priceLine = item.price ? ` (${item.price})` : "";
+    return `• ${item.name}${priceLine}${optionLine} ×${item.qty}`;
+  }).join("\n\n");
 
-  return `Hi Herts Vapes,\n\nI'd like to order:\n\n${lines}\n\nCollection or delivery?`;
+  const promptSections = cart
+    .filter(item => item.prompts && item.prompts.length)
+    .map(item => {
+      const header = `• ${item.name} ×${item.qty}`;
+      const promptLines = [];
+      for (let i = 1; i <= item.qty; i += 1) {
+        if (item.qty > 1) promptLines.push(`  Bundle ${i}:`);
+        item.prompts.forEach(prompt => {
+          promptLines.push(`${item.qty > 1 ? "    " : "  "}${prompt}:`);
+        });
+      }
+      return `${header}\n${promptLines.join("\n")}`;
+    });
+
+  const flavourSection = promptSections.length
+    ? `\n\nFlavours to be confirmed:\n\n${promptSections.join("\n\n")}`
+    : "";
+
+  return `Hi Herts Vapes,\n\nI'd like to order:\n\n${lines}${flavourSection}\n\nCollection or Delivery:`;
 }
 
 async function copyOrderMessage() {
   const message = buildOrderMessage();
   try {
     await navigator.clipboard.writeText(message);
-    showToast("Order copied");
+    showToast("✓ Order copied");
   } catch (error) {
     showToast("Order ready to copy");
   }
@@ -413,5 +436,6 @@ cartWhatsapp.addEventListener("click", async () => {
 cartSnapchat.addEventListener("click", async () => {
   softTap();
   await copyOrderMessage();
-  window.open("https://www.snapchat.com/add/herts.vps", "_blank");
+  showToast("✓ Order copied. Paste it into Snapchat.");
+  setTimeout(() => window.open("https://www.snapchat.com/add/herts.vps", "_blank"), 350);
 });

@@ -1359,3 +1359,102 @@ button, a {
     gap: 9px;
   }
 }
+
+
+/* ==============================
+   Herts Vapes Version 3.1
+   Order flow clarity + cleaner hero/menu blend
+   ============================== */
+
+.hero {
+  min-height: 84svh;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(226,21,33,.22), transparent 34%),
+    radial-gradient(circle at 50% 86%, rgba(255,37,49,.10), transparent 38%),
+    linear-gradient(180deg, #020202 0%, #050000 46%, #020202 100%);
+  border-bottom: 0;
+}
+
+.hero-art {
+  display: none;
+}
+
+.hero::before {
+  background:
+    radial-gradient(circle at 50% 44%, rgba(226,21,33,.18), transparent 34%),
+    linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.38) 52%, rgba(0,0,0,.90) 100%);
+}
+
+.section-blend {
+  height: 5svh;
+  margin-top: -5svh;
+  margin-bottom: -5svh;
+  background: linear-gradient(180deg, rgba(2,2,2,0), rgba(2,2,2,.55) 45%, #020202 100%);
+}
+
+.menu-visual {
+  margin-top: -2svh;
+}
+
+.menu-visual:not(.reveal) {
+  opacity: .42;
+  filter: brightness(.64) saturate(.86) blur(.35px);
+}
+
+.deal-saving,
+.option-saving {
+  margin-top: 10px;
+  text-align: left;
+  color: rgba(255,255,255,.70);
+}
+
+.confirm-note {
+  margin-top: 9px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255,37,49,.28);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: rgba(226,21,33,.09);
+  color: rgba(255,255,255,.82);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 850;
+}
+
+.send-ready {
+  text-align: center;
+  margin-bottom: 13px;
+}
+
+.send-ready h3 {
+  margin: 0 0 5px;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+
+.send-ready p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.send-actions .order-button {
+  min-height: 52px;
+  display: grid;
+  place-items: center;
+}
+
+.cart-clear {
+  padding: 12px 0 2px;
+}
+
+@media (max-height: 700px) {
+  .hero { min-height: 86svh; }
+  .menu-visual { margin-top: -1svh; }
+}
