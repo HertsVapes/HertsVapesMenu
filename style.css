@@ -1194,3 +1194,136 @@ button, a {
     height: 56vh;
   }
 }
+
+
+/* ===== Final first-screen clean-up =====
+   Keep the original Herts Vapes artwork, but remove the cluttered contact row
+   from the hero visually and make Shop Now the only action above the menu. */
+.hero-clean {
+  height: clamp(430px, 64vh, 545px);
+  min-height: 430px;
+  max-height: 545px;
+  overflow: hidden;
+  border-bottom: 0;
+  background: #020202;
+}
+
+.hero-clean .hero-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: brightness(1.08) contrast(1.04);
+}
+
+/* Stronger lower mask hides the old WhatsApp/Snapchat row embedded in hero.jpg. */
+.hero-clean::after {
+  height: 42%;
+  z-index: 4;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(226,21,33,.13), transparent 42%),
+    linear-gradient(180deg,
+      rgba(2,2,2,0) 0%,
+      rgba(2,2,2,.78) 38%,
+      #020202 66%,
+      #020202 100%);
+}
+
+.hero-action {
+  bottom: clamp(24px, 4.8vh, 36px);
+  z-index: 7;
+}
+
+.hero-primary {
+  min-width: min(236px, 62vw);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-size: 14px;
+  letter-spacing: .13em;
+  background: linear-gradient(180deg, #f52330, #b8000d);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 0 20px rgba(226,21,33,.34), 0 12px 26px rgba(0,0,0,.34);
+}
+
+.hero-primary::before {
+  content: "";
+  margin: 0;
+}
+
+.section-blend {
+  height: 18px;
+  margin-top: -6px;
+  margin-bottom: 0;
+  background: linear-gradient(180deg, rgba(2,2,2,0), #020202 80%);
+}
+
+.menu-visual {
+  margin-top: 0;
+  transform: translateY(6px) scale(1);
+  transition-duration: 520ms;
+}
+
+/* Keep the floating cart useful but less intrusive near the first product. */
+.cart-float {
+  width: 52px;
+  height: 52px;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  box-shadow: 0 14px 30px rgba(0,0,0,.48), 0 0 18px rgba(226,21,33,.16);
+}
+
+.cart-icon { font-size: 22px; }
+
+.ready-order {
+  padding-top: 26px;
+}
+
+@media (max-width: 520px) {
+  .hero-clean {
+    height: 455px;
+    min-height: 455px;
+    max-height: 455px;
+  }
+
+  .hero-clean .hero-art {
+    object-position: top center;
+  }
+
+  .hero-clean::after {
+    height: 44%;
+    background:
+      radial-gradient(circle at 50% 16%, rgba(226,21,33,.13), transparent 42%),
+      linear-gradient(180deg,
+        rgba(2,2,2,0) 0%,
+        rgba(2,2,2,.80) 36%,
+        #020202 64%,
+        #020202 100%);
+  }
+
+  .hero-action {
+    bottom: 28px;
+  }
+
+  .hero-primary {
+    min-width: 224px;
+    padding: 12px 22px;
+    font-size: 14px;
+  }
+
+  .section-blend {
+    height: 16px;
+    margin-top: -6px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero-clean {
+    height: 430px;
+    min-height: 430px;
+    max-height: 430px;
+  }
+
+  .hero-action {
+    bottom: 24px;
+  }
+}
