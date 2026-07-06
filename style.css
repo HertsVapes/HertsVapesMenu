@@ -1777,3 +1777,11 @@ button, a {
     transform: none;
   }
 }
+.hero-logo-image {
+    width: 340px;
+    max-width: 82vw;
+    height: auto;
+    display: block;
+    margin: 0 auto 22px;
+    filter: drop-shadow(0 0 22px rgba(226, 21, 33, .30));
+}
