@@ -57,11 +57,11 @@ button, a {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 34%;
+  height: 28%;
   z-index: 2;
   background:
-    radial-gradient(circle at 50% 8%, rgba(226,21,33,.14), transparent 46%),
-    linear-gradient(180deg, rgba(2,2,2,0) 0%, rgba(2,2,2,.82) 42%, #020202 78%);
+    radial-gradient(circle at 50% 10%, rgba(226,21,33,.10), transparent 46%),
+    linear-gradient(180deg, rgba(2,2,2,0) 0%, rgba(2,2,2,.70) 50%, #020202 90%);
   pointer-events: none;
 }
 
@@ -80,14 +80,14 @@ button, a {
 }
 
 .section-blend {
-  height: clamp(46px, 9vw, 72px);
-  margin-top: clamp(-42px, -5vw, -24px);
-  margin-bottom: clamp(-26px, -3vw, -14px);
+  height: clamp(32px, 7vw, 54px);
+  margin-top: clamp(-28px, -4vw, -16px);
+  margin-bottom: 0;
   position: relative;
   z-index: 4;
   background:
-    radial-gradient(circle at 50% 8%, rgba(226,21,33,.16), transparent 48%),
-    linear-gradient(180deg, rgba(2,2,2,0), rgba(2,2,2,.62) 40%, #020202 82%);
+    radial-gradient(circle at 50% 10%, rgba(226,21,33,.12), transparent 50%),
+    linear-gradient(180deg, rgba(2,2,2,0), rgba(2,2,2,.52) 48%, #020202 92%);
   pointer-events: none;
 }
 
@@ -155,11 +155,11 @@ button, a {
 
 .menu-visual {
   opacity: 0;
-  transform: translateY(16px) scale(.998);
-  filter: brightness(.94);
+  transform: translateY(14px) scale(.998);
+  filter: brightness(.96);
   margin-top: 0;
   z-index: 1;
-  transition: opacity 760ms cubic-bezier(.2,.8,.2,1), transform 760ms cubic-bezier(.2,.8,.2,1), filter 760ms ease;
+  transition: opacity 680ms cubic-bezier(.2,.8,.2,1), transform 680ms cubic-bezier(.2,.8,.2,1), filter 680ms ease;
 }
 
 
@@ -403,23 +403,23 @@ button, a {
 
 .ready-order {
   background:
-    radial-gradient(circle at 50% 0%, rgba(226,21,33,.18), transparent 36%),
-    linear-gradient(180deg, #020202, #070707);
-  padding: 34px 16px 24px;
+    radial-gradient(circle at 50% 0%, rgba(226,21,33,.14), transparent 34%),
+    linear-gradient(180deg, #020202, #060606);
+  padding: 30px 16px 18px;
 }
 
 .ready-card {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 720ms cubic-bezier(.2,.8,.2,1), transform 720ms cubic-bezier(.2,.8,.2,1);
-  border: 1px solid rgba(226,21,33,.50);
-  border-radius: 28px;
-  padding: 24px 18px 20px;
+  transform: translateY(22px);
+  transition: opacity 620ms cubic-bezier(.2,.8,.2,1), transform 620ms cubic-bezier(.2,.8,.2,1);
+  border: 1px solid rgba(226,21,33,.42);
+  border-radius: 24px;
+  padding: 22px 18px 18px;
   background:
-    radial-gradient(circle at 85% 0%, rgba(226,21,33,.20), transparent 38%),
-    linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.018));
+    radial-gradient(circle at 85% 0%, rgba(226,21,33,.16), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.052), rgba(255,255,255,.016));
   text-align: center;
-  box-shadow: 0 18px 45px rgba(0,0,0,.42);
+  box-shadow: 0 14px 36px rgba(0,0,0,.38);
 }
 
 .ready-card.reveal {
@@ -468,24 +468,24 @@ button, a {
 /* Bulk order section */
 .bulk-order {
   background:
-    radial-gradient(circle at 50% 0%, rgba(226,21,33,.14), transparent 34%),
-    linear-gradient(180deg, #070707, #020202);
-  padding: 18px 16px calc(46px + env(safe-area-inset-bottom));
+    radial-gradient(circle at 50% 0%, rgba(226,21,33,.12), transparent 34%),
+    linear-gradient(180deg, #060606, #020202);
+  padding: 14px 16px calc(42px + env(safe-area-inset-bottom));
 }
 
 .bulk-card {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 760ms cubic-bezier(.2,.8,.2,1), transform 760ms cubic-bezier(.2,.8,.2,1);
-  border: 1px solid rgba(255,37,49,.62);
-  border-radius: 30px;
-  padding: 26px 18px 22px;
+  transform: translateY(24px);
+  transition: opacity 680ms cubic-bezier(.2,.8,.2,1), transform 680ms cubic-bezier(.2,.8,.2,1);
+  border: 1px solid rgba(255,37,49,.56);
+  border-radius: 26px;
+  padding: 24px 18px 20px;
   background:
-    radial-gradient(circle at 82% 0%, rgba(255,37,49,.26), transparent 38%),
-    radial-gradient(circle at 8% 100%, rgba(226,21,33,.14), transparent 42%),
-    linear-gradient(180deg, rgba(255,255,255,.072), rgba(255,255,255,.020));
+    radial-gradient(circle at 82% 0%, rgba(255,37,49,.21), transparent 38%),
+    radial-gradient(circle at 8% 100%, rgba(226,21,33,.10), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,.062), rgba(255,255,255,.018));
   text-align: center;
-  box-shadow: 0 22px 54px rgba(0,0,0,.48), 0 0 24px rgba(226,21,33,.10);
+  box-shadow: 0 18px 44px rgba(0,0,0,.44), 0 0 20px rgba(226,21,33,.08);
 }
 
 .bulk-card.reveal {
@@ -651,11 +651,11 @@ button, a {
 
 .cart-float {
   position: fixed;
-  right: max(16px, env(safe-area-inset-right));
-  bottom: calc(18px + env(safe-area-inset-bottom));
+  right: max(14px, env(safe-area-inset-right));
+  bottom: calc(14px + env(safe-area-inset-bottom));
   z-index: 40;
-  width: 58px;
-  height: 58px;
+  width: 56px;
+  height: 56px;
   border: 1px solid rgba(226,21,33,.55);
   border-radius: 50%;
   background:
@@ -958,16 +958,16 @@ button, a {
 
 @media (max-width: 520px) {
   .hero::after {
-    height: 35%;
+    height: 30%;
     background:
-      radial-gradient(circle at 50% 8%, rgba(226,21,33,.13), transparent 46%),
-      linear-gradient(180deg, rgba(2,2,2,0) 0%, rgba(2,2,2,.86) 42%, #020202 78%);
+      radial-gradient(circle at 50% 10%, rgba(226,21,33,.11), transparent 48%),
+      linear-gradient(180deg, rgba(2,2,2,0) 0%, rgba(2,2,2,.72) 50%, #020202 90%);
   }
 
   .section-blend {
-    height: 54px;
-    margin-top: -34px;
-    margin-bottom: -12px;
+    height: 42px;
+    margin-top: -24px;
+    margin-bottom: 0;
   }
 
   .menu-visual {
@@ -975,7 +975,7 @@ button, a {
   }
 
   .ready-order {
-    padding-top: 28px;
+    padding-top: 26px;
   }
 
   .ready-card h2,
@@ -984,11 +984,11 @@ button, a {
   }
 
   .order-copy {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   .bulk-card h3 {
-    margin: 10px 0 15px;
+    margin: 10px 0 14px;
   }
 
   .cart-float {
@@ -1025,5 +1025,46 @@ button, a {
 
   .card-actions {
     padding: 0 16px 16px;
+  }
+}
+
+
+/* Clean professional polish: tighter flow, no cropped artwork, less visual noise. */
+.menu-visual,
+.hero {
+  transform-origin: top center;
+}
+
+.order-actions .order-button,
+.cart-actions .order-button,
+.bulk-button {
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+}
+
+.product-card,
+.deal-card,
+.ready-card,
+.bulk-card,
+.cart-drawer {
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 390px) {
+  .product-name,
+  .deal-name {
+    font-size: 18px;
+  }
+
+  .price-pill {
+    min-width: 70px;
+    font-size: 20px;
+    padding: 10px 11px;
+  }
+
+  .cart-item {
+    gap: 9px;
+    padding: 12px 10px;
   }
 }
