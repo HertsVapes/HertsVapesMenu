@@ -157,16 +157,22 @@ function saveCart() {
   renderCart();
 }
 
+function engageMenu() {
+  if (menu) menu.classList.add("reveal");
+}
+
 document.querySelectorAll("[data-scroll]").forEach((button) => {
   button.addEventListener("click", () => {
     softTap();
+    engageMenu();
     document.querySelector(button.dataset.scroll).scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
 function revealOnScroll() {
   const vh = window.innerHeight;
-  if (menu && menu.getBoundingClientRect().top < vh * 0.9) menu.classList.add("reveal");
+  const hasStartedScrolling = window.scrollY > 24;
+  if (menu && hasStartedScrolling && menu.getBoundingClientRect().top < vh * 0.88) menu.classList.add("reveal");
   if (readyCard && readyCard.getBoundingClientRect().top < vh * 0.86) readyCard.classList.add("reveal");
   if (bulkCard && bulkCard.getBoundingClientRect().top < vh * 0.88) bulkCard.classList.add("reveal");
 }
