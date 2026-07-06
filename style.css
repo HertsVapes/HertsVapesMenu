@@ -1069,96 +1069,128 @@ button, a {
   }
 }
 
-
-/* Focused first-screen tidy: one clear action at the top, faster path to products. */
-.hero {
-  background: #020202;
+/* First-screen rebuild: one clear action, less clutter, faster path to the menu. */
+.hero-clean {
+  min-height: 440px;
+  height: min(62vh, 560px);
+  max-height: 620px;
+  display: grid;
+  place-items: stretch;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.06);
 }
 
-.hero-art {
-  /* The original hero artwork includes contact buttons near the bottom.
-     Cropping that lower strip keeps the hero premium and avoids repeating
-     WhatsApp/Snapchat before the customer has chosen products. */
-  clip-path: inset(0 0 29% 0);
-  margin-bottom: -29%;
+.hero-clean .hero-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
-.hero::after {
-  height: 22%;
+.hero-clean::after {
+  height: 42%;
   background:
-    radial-gradient(circle at 50% 0%, rgba(226,21,33,.12), transparent 48%),
-    linear-gradient(180deg, rgba(2,2,2,0) 0%, rgba(2,2,2,.66) 52%, #020202 94%);
+    radial-gradient(circle at 50% 18%, rgba(226,21,33,.16), transparent 48%),
+    linear-gradient(180deg, rgba(2,2,2,0) 0%, rgba(2,2,2,.62) 38%, #020202 88%);
+}
+
+.hero-action {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: clamp(22px, 5.5vw, 42px);
+  z-index: 6;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hero-primary {
+  pointer-events: auto;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  min-width: min(280px, 68vw);
+  padding: 15px 30px;
+  background: linear-gradient(180deg, rgba(255,37,49,.95), rgba(162,0,10,.96));
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 950;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  box-shadow: 0 0 28px rgba(226,21,33,.42), 0 18px 36px rgba(0,0,0,.36);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-primary::before {
+  content: "▾";
+  margin-right: 10px;
+  font-size: 15px;
+  opacity: .9;
+}
+
+.hero-primary:active {
+  transform: scale(.985);
+}
+
+/* The contact buttons now live in the Ready to Order / cart area, not the hero. */
+.hero-whatsapp,
+.hero-snapchat,
+.menu-whatsapp,
+.menu-snapchat {
+  display: none !important;
 }
 
 .section-blend {
-  height: 34px;
-  margin-top: -10px;
-  margin-bottom: -2px;
+  height: 28px;
+  margin-top: -12px;
+  margin-bottom: 0;
   background:
-    radial-gradient(circle at 50% 10%, rgba(226,21,33,.10), transparent 54%),
-    linear-gradient(180deg, rgba(2,2,2,0), rgba(2,2,2,.42) 46%, #020202 94%);
-}
-
-.menu-art {
-  /* Removes a little of the repeated menu poster header so users reach
-     categories sooner, without cutting into the product cards. */
-  clip-path: inset(8% 0 0 0);
-  margin-top: -8%;
-}
-
-/* Category hotspots recalibrated for the slightly cropped menu artwork. */
-.category-hit {
-  height: 11.35%;
-}
-.category-hit.special { top: 15.45%; }
-.category-hit.disposable { top: 28.65%; }
-.category-hit.podkits { top: 41.85%; }
-.category-hit.salts { top: 55.05%; }
-.category-hit.pods { top: 68.25%; }
-.category-hit.pouches { top: 81.45%; }
-
-.menu-whatsapp {
-  top: 93.7%;
-  height: 5.1%;
-}
-
-.menu-snapchat {
-  top: 93.7%;
-  height: 5.1%;
+    radial-gradient(circle at 50% 0%, rgba(226,21,33,.12), transparent 46%),
+    linear-gradient(180deg, rgba(2,2,2,0), #020202 78%);
 }
 
 .menu-visual {
-  transform: translateY(10px) scale(.999);
-  transition-duration: 620ms;
+  margin-top: 0;
+  transform: translateY(8px) scale(.999);
+  transition-duration: 560ms;
 }
 
 .ready-order {
-  padding-top: 26px;
+  padding-top: 28px;
 }
 
 @media (max-width: 520px) {
-  .hero-art {
-    clip-path: inset(0 0 30% 0);
-    margin-bottom: -30%;
+  .hero-clean {
+    min-height: 390px;
+    height: 58vh;
+    max-height: 500px;
+  }
+
+  .hero-clean .hero-art {
+    object-position: top center;
+  }
+
+  .hero-action {
+    bottom: 22px;
+  }
+
+  .hero-primary {
+    min-width: min(255px, 72vw);
+    padding: 14px 24px;
+    font-size: 15px;
   }
 
   .section-blend {
-    height: 30px;
-    margin-top: -8px;
-    margin-bottom: -2px;
+    height: 24px;
+    margin-top: -10px;
   }
+}
 
-  .menu-art {
-    clip-path: inset(8.5% 0 0 0);
-    margin-top: -8.5%;
+@media (max-width: 380px) {
+  .hero-clean {
+    min-height: 370px;
+    height: 56vh;
   }
-
-  .category-hit { height: 11.42%; }
-  .category-hit.special { top: 14.98%; }
-  .category-hit.disposable { top: 28.26%; }
-  .category-hit.podkits { top: 41.53%; }
-  .category-hit.salts { top: 54.81%; }
-  .category-hit.pods { top: 68.09%; }
-  .category-hit.pouches { top: 81.37%; }
-  .menu-whatsapp, .menu-snapchat { top: 93.66%; height: 5.14%; }
 }
