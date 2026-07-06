@@ -53,106 +53,10 @@ button, a {
   -webkit-user-drag: none;
 }
 
-.hero {
-  min-height: 78svh;
-  overflow: hidden;
-  isolation: isolate;
-  background:
-    radial-gradient(circle at 7% 62%, rgba(226,21,33,.32), transparent 28%),
-    radial-gradient(circle at 94% 48%, rgba(255,255,255,.13), transparent 24%),
-    linear-gradient(180deg, #050505 0%, #020202 78%);
-}
-
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: auto auto 8% -18%;
-  width: 58%;
-  height: 34%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(226,21,33,.42), rgba(226,21,33,.13) 34%, transparent 70%);
-  filter: blur(24px);
-  opacity: .78;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hero::after {
-  left: auto;
-  right: -20%;
-  bottom: 15%;
-  background: radial-gradient(circle, rgba(255,255,255,.23), rgba(226,21,33,.10) 38%, transparent 70%);
-  opacity: .62;
-}
-
-.hero-art {
-  position: relative;
-  z-index: 2;
-  filter: contrast(1.06) brightness(.95);
-}
-
-.trust-strip {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(8px + env(safe-area-inset-top));
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(10px, 3vw, 24px);
-  padding: 13px 10px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  border-bottom: 1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.34);
-  backdrop-filter: blur(8px);
-  color: #f7f7f7;
-  font-size: clamp(9px, 2.55vw, 13px);
-  font-weight: 950;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-}
-
-.trust-strip span:not(:last-child)::after {
-  content: "";
-  display: inline-block;
-  width: 1px;
-  height: 12px;
-  margin-left: clamp(10px, 3vw, 24px);
-  vertical-align: -2px;
-  background: rgba(255,255,255,.38);
-}
-
-.trust-strip span:first-child,
-.trust-strip span:last-child {
-  color: var(--red-bright);
-}
-
-.scroll-cue {
-  position: absolute;
-  left: 50%;
-  bottom: 6.7%;
-  z-index: 5;
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: clamp(26px, 6vw, 42px);
-  line-height: .55;
-  letter-spacing: -.18em;
-  text-shadow: 0 0 20px rgba(255,255,255,.24);
-  animation: cueBounce 1.7s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes cueBounce {
-  0%, 100% { transform: translate(-50%, 0); opacity: .58; }
-  50% { transform: translate(-50%, 8px); opacity: 1; }
-}
-
 .section-blend {
-  height: 86px;
-  margin-top: -70px;
-  margin-bottom: -16px;
+  height: 52px;
+  margin-top: -26px;
+  margin-bottom: -10px;
   position: relative;
   z-index: 1;
   background:
@@ -181,28 +85,7 @@ button, a {
   top: 60.2%;
   width: 43%;
   height: 7.9%;
-  min-height: 48px;
   border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid rgba(255,37,49,.95);
-  background: rgba(0,0,0,.38);
-  color: #fff;
-  font-size: clamp(16px, 4.4vw, 28px);
-  font-weight: 950;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  box-shadow: 0 0 30px rgba(226,21,33,.35), inset 0 0 0 1px rgba(255,255,255,.06);
-  backdrop-filter: blur(6px);
-  z-index: 6;
-}
-
-.shop-icon {
-  font-size: .86em;
-  color: #fff;
-  text-shadow: 0 0 12px rgba(255,255,255,.24);
 }
 
 .hero-whatsapp {
@@ -253,34 +136,16 @@ button, a {
 }
 
 .menu-visual {
-  margin-top: -18svh;
-  opacity: .42;
-  transform: translateY(26px) scale(.992);
-  filter: brightness(.48) blur(.7px);
+  opacity: 0;
+  transform: translateY(24px) scale(.996);
+  filter: brightness(.9);
   transition: opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1), filter 900ms ease;
-  position: relative;
-  z-index: 2;
-}
-
-.menu-visual::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(2,2,2,.78), rgba(2,2,2,.25) 28%, rgba(2,2,2,0) 58%);
-  opacity: 1;
-  transition: opacity 700ms ease;
 }
 
 .menu-visual.reveal {
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: brightness(1) blur(0);
-}
-
-.menu-visual.reveal::before {
-  opacity: 0;
+  filter: brightness(1);
 }
 
 /* Inventory panel */
