@@ -933,3 +933,171 @@ button, a {
     font-size: 15px;
   }
 }
+
+
+/* Clean landing view update: visual only. Menu/category/cart functionality is unchanged. */
+.hero {
+  min-height: 92svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.hero-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: .34;
+  filter: saturate(1.05) contrast(1.08) brightness(.72);
+  z-index: 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(226,21,33,.18), transparent 34%),
+    linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.46) 36%, rgba(0,0,0,.86) 100%);
+  pointer-events: none;
+}
+
+.hero-focus {
+  position: relative;
+  z-index: 2;
+  width: min(92%, 520px);
+  margin: 0 auto;
+  text-align: center;
+  padding: 28px 16px 0;
+  animation: heroCleanIn 780ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes heroCleanIn {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.hero-logo-mark {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0;
+  font-weight: 950;
+  font-size: clamp(74px, 20vw, 150px);
+  line-height: .72;
+  letter-spacing: -.12em;
+  transform: skew(-10deg);
+  text-shadow: 0 0 34px rgba(226,21,33,.16), 0 12px 30px rgba(0,0,0,.55);
+}
+
+.hero-logo-mark span:first-child { color: #fff; }
+.hero-logo-mark span:last-child { color: var(--red-bright); margin-left: .03em; }
+
+.hero-brand {
+  margin-top: 12px;
+  color: #fff;
+  font-size: clamp(32px, 9vw, 70px);
+  line-height: .9;
+  font-weight: 950;
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+  transform: skew(-8deg);
+  text-shadow: 0 0 26px rgba(0,0,0,.46);
+}
+
+.hero-brand strong {
+  color: var(--red-bright);
+  font-weight: 950;
+}
+
+.hero-tagline {
+  margin: 14px 0 30px;
+  color: rgba(255,255,255,.78);
+  font-size: clamp(12px, 3.2vw, 18px);
+  font-weight: 900;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+}
+
+.hero-cta {
+  position: relative;
+  z-index: 3;
+  border: 1px solid rgba(255,37,49,.92);
+  border-radius: 999px;
+  padding: 18px 34px;
+  background: rgba(0,0,0,.42);
+  color: #fff;
+  font: inherit;
+  font-size: clamp(18px, 5.4vw, 30px);
+  font-weight: 950;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    0 0 26px rgba(226,21,33,.32),
+    0 18px 42px rgba(0,0,0,.48);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.hero-cta:active {
+  transform: scale(.975);
+  background: rgba(226,21,33,.16);
+  box-shadow: 0 0 34px rgba(226,21,33,.42), 0 14px 34px rgba(0,0,0,.54);
+}
+
+.scroll-cue {
+  margin-top: 24px;
+  color: rgba(255,255,255,.72);
+  font-size: 36px;
+  line-height: 1;
+  animation: cueFloat 1.7s ease-in-out infinite;
+}
+
+@keyframes cueFloat {
+  0%, 100% { opacity: .45; transform: translateY(-2px); }
+  50% { opacity: 1; transform: translateY(6px); }
+}
+
+/* The old invisible hero hotspots stay in the HTML, but the visible CTA above is the only hero action shown. */
+.hero-shop,
+.hero-whatsapp,
+.hero-snapchat {
+  display: none;
+}
+
+.section-blend {
+  height: 8svh;
+  margin-top: -3svh;
+  margin-bottom: -3svh;
+  z-index: 2;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(226,21,33,.12), transparent 45%),
+    linear-gradient(180deg, rgba(2,2,2,0), rgba(2,2,2,.72) 50%, #020202 100%);
+}
+
+.menu-visual {
+  opacity: .38;
+  transform: translateY(10px) scale(.992);
+  filter: brightness(.72) saturate(.9);
+  transition: opacity 850ms cubic-bezier(.2,.8,.2,1), transform 850ms cubic-bezier(.2,.8,.2,1), filter 850ms ease;
+}
+
+.menu-visual.reveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: brightness(1) saturate(1);
+}
+
+@media (max-height: 700px) {
+  .hero { min-height: 94svh; }
+  .hero-tagline { margin-bottom: 22px; }
+  .scroll-cue { margin-top: 16px; }
+}
