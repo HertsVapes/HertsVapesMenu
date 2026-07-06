@@ -1141,3 +1141,221 @@ button, a {
   margin-left: auto;
   padding-right: 10px;
 }
+
+/* ==============================
+   Herts Vapes Version 3 polish
+   Customer-first ordering system
+   ============================== */
+
+.hero-focus {
+  padding-top: 10px;
+}
+
+.hero-subcopy {
+  margin: -16px auto 28px;
+  max-width: 300px;
+  color: rgba(255,255,255,.74);
+  font-size: clamp(13px, 3.5vw, 18px);
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.hero-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.00) 36%, rgba(255,255,255,.26) 48%, rgba(255,255,255,.00) 60%, transparent 100%);
+  transform: translateX(-120%);
+  animation: buttonShine 4.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes buttonShine {
+  0%, 58% { transform: translateX(-120%); opacity: 0; }
+  70% { opacity: 1; }
+  86%, 100% { transform: translateX(120%); opacity: 0; }
+}
+
+.category-guide {
+  color: rgba(255,255,255,.80);
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.30);
+  border-radius: 18px;
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
+  font-weight: 800;
+  box-shadow: inset 0 0 0 1px rgba(226,21,33,.09);
+  animation: cardRise 360ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.category-guide strong,
+.empty-cart b {
+  color: var(--red-bright);
+  letter-spacing: .08em;
+}
+
+.single-option-list {
+  padding: 0 18px 18px;
+}
+
+.option-add-row,
+.add-price.price-row,
+.price-row.add-price {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  background: rgba(0,0,0,.34);
+  color: #fff;
+  padding: 13px 13px;
+  margin-top: 0;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: inset 0 0 0 1px rgba(226,21,33,.16), 0 0 12px rgba(226,21,33,.06);
+}
+
+.add-price.price-row::after,
+.price-row.add-price::after {
+  content: none;
+}
+
+.option-add-row span,
+.add-price.price-row span,
+.price-row.add-price span {
+  min-width: 0;
+  color: #f2f2f2;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 850;
+  text-align: left;
+}
+
+.option-add-row strong,
+.add-price.price-row strong,
+.price-row.add-price strong {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 950;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+}
+
+.option-add-row em,
+.add-price.price-row em,
+.price-row.add-price em,
+.add-flavour span {
+  color: var(--red-bright);
+  font-size: 11px;
+  line-height: 1;
+  font-style: normal;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.option-add-row:active,
+.add-price.price-row:active,
+.price-row.add-price:active,
+.add-flavour:active,
+.add-cart-button:active {
+  transform: scale(.985);
+  background: rgba(226,21,33,.12);
+  border-color: rgba(255,37,49,.38);
+}
+
+.price-pair.priced-options {
+  gap: 12px;
+}
+
+.option-group {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 14px;
+}
+
+.option-title {
+  margin-bottom: 9px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.option-prices {
+  gap: 8px;
+}
+
+.saving {
+  text-align: center;
+  color: rgba(255,255,255,.58);
+  font-weight: 850;
+}
+
+.add-cart-button {
+  padding: 15px 12px;
+  font-size: 13px;
+  background: rgba(0,0,0,.42);
+}
+
+.flavour-list {
+  gap: 8px;
+}
+
+.add-flavour {
+  min-height: 42px;
+  padding: 10px 0;
+}
+
+.empty-cart strong {
+  color: #fff;
+  font-size: 15px;
+}
+
+.cart-float.cart-pop {
+  animation: cartPop 420ms cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes cartPop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.12); box-shadow: 0 20px 44px rgba(0,0,0,.50), 0 0 30px rgba(226,21,33,.28); }
+  100% { transform: scale(1); }
+}
+
+.cart-count {
+  transition: transform 180ms ease;
+}
+
+.cart-float.has-items .cart-count {
+  transform: scale(1);
+}
+
+.toast {
+  font-size: 13px;
+  padding: 11px 18px;
+}
+
+.product-card,
+.deal-card {
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+@media (max-width: 420px) {
+  .flavour-list.two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .option-add-row,
+  .add-price.price-row,
+  .price-row.add-price {
+    grid-template-columns: 1fr auto auto;
+    gap: 9px;
+  }
+}

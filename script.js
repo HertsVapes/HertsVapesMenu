@@ -145,8 +145,11 @@ function openCategory(key) {
 }
 
 function renderCategory(category) {
-  if (category.type === "deals") return category.items.map(renderDeal).join("");
-  return category.items.map(renderProduct).join("");
+  const instruction = `<div class="category-guide">Tap <strong>ADD</strong> to build your order.</div>`;
+  const cards = category.type === "deals"
+    ? category.items.map(renderDeal).join("")
+    : category.items.map(renderProduct).join("");
+  return instruction + cards;
 }
 
 function renderDeal(deal) {
@@ -161,7 +164,7 @@ function renderDeal(deal) {
         <div class="price-pill">${escapeHtml(deal.price)}</div>
       </div>
       <div class="card-actions">
-        <button class="add-cart-button" type="button" data-add="${escapeHtml(deal.name)}" data-price="${escapeHtml(deal.price)}">Add to Cart</button>
+        <button class="add-cart-button" type="button" data-add="${escapeHtml(deal.name)}" data-price="${escapeHtml(deal.price)}">ADD</button>
       </div>
     </article>
   `;
@@ -169,7 +172,9 @@ function renderDeal(deal) {
 
 function renderProduct(product) {
   const choices = product.flavours || product.details || [];
-  const hasExpandable = choices.length > 1;
+  const hasExpandable = choices.length > 1 && !product.pricing;
+  const hasSingleChoice = choices.length === 1 && !product.pricing;
+
   return `
     <article class="product-card ${hasExpandable ? "can-open" : ""}">
       <button class="product-main" type="button" ${hasExpandable ? "" : "disabled"}>
@@ -181,7 +186,8 @@ function renderProduct(product) {
       </button>
       ${product.pricing ? renderPricing(product) : ""}
       ${hasExpandable ? renderExpandable(product) : ""}
-      ${!product.pricing && !hasExpandable ? renderQuickAdd(product, choices[0]) : ""}
+      ${hasSingleChoice ? renderSingleOption(product, choices[0]) : ""}
+      ${!product.pricing && choices.length === 0 ? renderQuickAdd(product, "") : ""}
     </article>
   `;
 }
@@ -189,7 +195,19 @@ function renderProduct(product) {
 function renderQuickAdd(product, option = "") {
   return `
     <div class="card-actions">
-      <button class="add-cart-button" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">Add to Cart</button>
+      <button class="add-cart-button" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">ADD</button>
+    </div>
+  `;
+}
+
+function renderSingleOption(product, option = "") {
+  return `
+    <div class="single-option-list">
+      <button class="option-add-row" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">
+        <span>${escapeHtml(option || product.name)}</span>
+        <strong>${escapeHtml(product.price || "")}</strong>
+        <em>ADD</em>
+      </button>
     </div>
   `;
 }
@@ -202,7 +220,7 @@ function renderPricing(product) {
           <div class="option-group">
             <div class="option-title">${escapeHtml(detail)}</div>
             <div class="option-prices">
-              ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(detail + " - " + row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong></button>`).join("")}
+              ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(detail + " - " + row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
             </div>
           </div>
         `).join("")}
@@ -212,8 +230,8 @@ function renderPricing(product) {
   }
 
   return `
-    <div class="price-pair">
-      ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong></button>`).join("")}
+    <div class="price-pair priced-options">
+      ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
       ${product.saving ? `<div class="saving">${escapeHtml(product.saving)}</div>` : ""}
     </div>
   `;
@@ -222,7 +240,7 @@ function renderPricing(product) {
 function renderExpandable(product) {
   const list = product.flavours || product.details || [];
   const twoCol = list.length >= 6 ? " two-col" : "";
-  return `<div class="expand-content"><div class="flavour-list${twoCol}">${list.map(item => `<button class="flavour add-flavour" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(item)}" data-price="${escapeHtml(product.price || "")}">${escapeHtml(item)}<span>Add</span></button>`).join("")}</div></div>`;
+  return `<div class="expand-content"><div class="flavour-list${twoCol}">${list.map(item => `<button class="flavour add-flavour" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(item)}" data-price="${escapeHtml(product.price || "")}">${escapeHtml(item)}<span>ADD</span></button>`).join("")}</div></div>`;
 }
 
 function setupProductCards() {
@@ -257,7 +275,8 @@ function addToCart(item) {
     cart.push({ ...item, key, qty: 1 });
   }
   saveCart();
-  showToast("Added to cart");
+  showToast("✓ Added");
+  pulseCart();
 }
 
 function updateQty(key, change) {
@@ -284,7 +303,7 @@ function renderCart() {
   cartFloat.classList.toggle("has-items", total > 0);
 
   if (!cart.length) {
-    cartBody.innerHTML = `<div class="empty-cart">Your cart is empty.<br>Open a category and add what you want.</div>`;
+    cartBody.innerHTML = `<div class="empty-cart"><strong>Your cart is empty.</strong><br>Tap <b>ADD</b> on any product to build your order.</div>`;
     return;
   }
 
@@ -344,6 +363,12 @@ function closeCart() {
   cartDrawer.classList.remove("open");
   cartOverlay.setAttribute("aria-hidden", "true");
   cartDrawer.setAttribute("aria-hidden", "true");
+}
+
+function pulseCart() {
+  cartFloat.classList.remove("cart-pop");
+  void cartFloat.offsetWidth;
+  cartFloat.classList.add("cart-pop");
 }
 
 function showToast(message) {
