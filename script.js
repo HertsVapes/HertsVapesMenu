@@ -3,22 +3,65 @@ const inventory = {
     title: "Special Deals",
     type: "deals",
     items: [
-      { name: "Vaporesso XROS Pro 2 + 4 Nic Salts", price: "£30", meta: "Kit bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["Vaporesso body kit", "4 Elux Legend Nic Salt liquids"], prompts: ["Kit colour", "Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4"] },
-      { name: "2 XROS Pods + 6 Nic Salts", price: "£20", meta: "Pods and liquids bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["2 Vaporesso Corex XROS Pods", "6 Elux Legend Nic Salt liquids"], prompts: ["Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4", "Nic Salt 5", "Nic Salt 6"] },
-      { name: "2 Hayati Dual Flavour 25000", price: "£25", meta: "25K disposable bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["2 Hayati Dual Flavour 25000 devices"], prompts: ["Device 1", "Device 2"] },
-      { name: "3 Elux Legend 3500", price: "£10", meta: "3.5K disposable bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["3 Elux Legend 3500 devices"], prompts: ["Flavour 1", "Flavour 2", "Flavour 3"] },
-      { name: "2 Lost Mary BM6000 + 1 Hayati 25K", price: "£30", meta: "Mixed disposable bundle", saving: "Save £5", confirm: "Flavours confirmed in message", included: ["2 Lost Mary BM6000 devices", "1 Hayati Dual Flavour 25000"], prompts: ["Lost Mary 1", "Lost Mary 2", "Hayati 25K"] }
+      {
+        name: "Vaporesso XROS Pro 2.0",
+        subline: "+ 4 Nic Salts",
+        price: "£30",
+        meta: "Kit bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "XROS Pro 2.0" }, { label: "Nic Salts", qty: "×4" }],
+        prompts: ["Kit colour", "Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4"]
+      },
+      {
+        name: "2 XROS Pods",
+        subline: "+ 6 Nic Salts",
+        price: "£20",
+        meta: "Pods and liquids bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "XROS Pods", qty: "×2" }, { label: "Nic Salts", qty: "×6" }],
+        prompts: ["Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4", "Nic Salt 5", "Nic Salt 6"]
+      },
+      {
+        name: "2 Hayati Dual Flavour 25000",
+        price: "£25",
+        meta: "25K disposable bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "Hayati 25K", qty: "×2" }],
+        prompts: ["Device 1", "Device 2"]
+      },
+      {
+        name: "3 Elux Legend 3500",
+        price: "£10",
+        meta: "3.5K disposable bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "Elux 3500", qty: "×3" }],
+        prompts: ["Flavour 1", "Flavour 2", "Flavour 3"]
+      },
+      {
+        name: "2 Lost Mary BM6000",
+        subline: "+ 1 Hayati 25K",
+        price: "£30",
+        meta: "Mixed disposable bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "Lost Mary", qty: "×2" }, { label: "Hayati 25K" }],
+        prompts: ["Lost Mary 1", "Lost Mary 2", "Hayati 25K"]
+      }
     ]
   },
 
   disposable: {
     title: "Disposable Vapes",
     items: [
-      { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
+      { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
       { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"] },
       { name: "Enjoy Ultra 9000", price: "£10", meta: "2 flavours available", flavours: ["Berry Apple Peach", "Apple Watermelon Strawberry"] },
-      { name: "Pixl 8000", price: "£10", meta: "Flavour: Black Cherry", flavours: ["Black Cherry"], simple: true },
-      { name: "Hayati Pro Max 6000", price: "£10", meta: "Flavour: Fizzy Cherry", flavours: ["Fizzy Cherry"], simple: true },
+      { name: "Pixl 8000", price: "£10", meta: "Black Cherry", flavours: ["Black Cherry"], simple: true },
+      { name: "Hayati Pro Max 6000", price: "£10", meta: "Fizzy Cherry", flavours: ["Fizzy Cherry"], simple: true },
       { name: "Elux Legend 3500", price: "£5", meta: "5 flavours available", flavours: ["Cherry Ice", "Fizzy Cherry", "Cherry Sours", "Pineapple Ice", "Watermelon Cherry Raspberry Ice"] }
     ]
   },
@@ -26,29 +69,43 @@ const inventory = {
   podkits: {
     title: "Pod Kits",
     items: [
-      { name: "Vaporesso XROS Pro 2.0 Body Kit", price: "£25", meta: "Comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
+      { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
     ]
   },
 
   salts: {
     title: "Nic Salts",
     items: [
-      { name: "Elux Legend Nic Salts (20mg)", price: "£2.50", meta: "25 flavours available", flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
+      { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
     ]
   },
 
   pods: {
     title: "Replacement Pods",
     items: [
-      { name: "Vaporesso Corex XROS Pods (0.6Ω)", meta: "Replacement pods", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
+      { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
     ]
   },
 
   pouches: {
     title: "Nicotine Pouches",
     items: [
-      { name: "Nicotine Pouches", meta: "VELO and Pablo available", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5 Boxes", price: "£20" }], saving: "Save £5", details: ["VELO - Minty Lemon (10mg)", "Pablo - Frosted Mint (50mg)"] }
+      { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" },
+      { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" }
     ]
+  },
+
+  bulk: {
+    title: "HV Bulk",
+    type: "bulk",
+    intro: "Save big on larger pre-orders.",
+    points: [
+      "Manufacturer-sealed boxes",
+      "A much wider range than our in-stock menu",
+      "Reserved exclusively for your order"
+    ],
+    minimum: "Available on bulk pre-orders from £100.",
+    link: "https://wa.me/447885752823?text=Hi%20Herts%20Vapes%2C%0A%0AI%27m%20interested%20in%20your%20bulk%20prices.%0A%0AProducts%20I%27m%20interested%20in%3A%0A%0A%E2%80%A2"
   }
 };
 
@@ -120,7 +177,7 @@ window.addEventListener("load", () => {
   renderCart();
 });
 
-document.querySelectorAll(".category-hit").forEach((button) => {
+document.querySelectorAll("[data-category]").forEach((button) => {
   button.addEventListener("click", () => {
     softTap();
     openCategory(button.dataset.category);
@@ -145,33 +202,64 @@ function openCategory(key) {
 }
 
 function renderCategory(category) {
-  const instruction = `<div class="category-guide">Tap <strong>ADD</strong> to build your order.</div>`;
-  const cards = category.type === "deals"
-    ? category.items.map(renderDeal).join("")
-    : category.items.map(renderProduct).join("");
-  return instruction + cards;
+  if (category.type === "bulk") return renderBulkCategory(category);
+  if (category.type === "deals") return category.items.map(renderDeal).join("");
+  return category.items.map(renderProduct).join("");
 }
 
 function renderDeal(deal) {
   const promptData = deal.prompts ? escapeHtml(deal.prompts.join("||")) : "";
+  const displayName = deal.subline ? `${deal.name} ${deal.subline}` : deal.name;
   return `
-    <article class="deal-card">
+    <article class="deal-card offer-card">
+      ${renderDealVisuals(deal)}
       <div class="deal-main">
         <div>
+          ${deal.saving ? `<div class="saving-badge">${escapeHtml(deal.saving)}</div>` : ""}
           <div class="deal-name">${escapeHtml(deal.name)}</div>
+          ${deal.subline ? `<div class="deal-plus-line">${escapeHtml(deal.subline)}</div>` : ""}
           <div class="deal-meta">${escapeHtml(deal.meta)}</div>
-          <div class="included-list">${deal.included.map(item => `<span>${escapeHtml(item)}</span>`).join("")}</div>
-          ${deal.saving ? `<div class="saving deal-saving">${escapeHtml(deal.saving)}</div>` : ""}
           ${deal.confirm ? `<div class="confirm-note">${escapeHtml(deal.confirm)}</div>` : ""}
         </div>
         <div class="price-pill">${escapeHtml(deal.price)}</div>
       </div>
       <div class="card-actions">
-        <button class="add-cart-button" type="button" data-add="${escapeHtml(deal.name)}" data-price="${escapeHtml(deal.price)}" data-prompts="${promptData}">ADD</button>
+        <button class="add-cart-button" type="button" data-add="${escapeHtml(displayName)}" data-price="${escapeHtml(deal.price)}" data-prompts="${promptData}">ADD</button>
       </div>
     </article>
   `;
 }
+
+function renderDealVisuals(deal) {
+  if (!deal.visuals || !deal.visuals.length) return "";
+  return `
+    <div class="deal-visuals">
+      ${deal.visuals.map((visual, index) => `
+        ${index > 0 ? `<span class="deal-visual-plus">+</span>` : ""}
+        <div class="deal-product-tile">
+          <span class="deal-product-label">${escapeHtml(visual.label)}</span>
+          ${visual.qty ? `<strong>${escapeHtml(visual.qty)}</strong>` : ""}
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderBulkCategory(category) {
+  return `
+    <article class="bulk-panel-card">
+      <p class="panel-eyebrow">HV BULK</p>
+      <h3>Save Big on Larger Orders</h3>
+      <p class="bulk-intro">${escapeHtml(category.intro)}</p>
+      <div class="bulk-points panel-bulk-points">
+        ${category.points.map(point => `<div class="bulk-point">${escapeHtml(point)}</div>`).join("")}
+      </div>
+      <p class="bulk-minimum">${escapeHtml(category.minimum)}</p>
+      <a href="${category.link}" class="order-button bulk-button">Message for Bulk Prices</a>
+    </article>
+  `;
+}
+
 
 function renderProduct(product) {
   const choices = product.flavours || product.details || [];
@@ -182,7 +270,7 @@ function renderProduct(product) {
     <article class="product-card ${hasExpandable ? "can-open" : ""}">
       <button class="product-main" type="button" ${hasExpandable ? "" : "disabled"}>
         <div>
-          <div class="product-name">${escapeHtml(product.name)}</div>
+          <div class="product-name">${escapeHtml(product.name)}${product.popular ? ` <span class="popular-badge">MOST POPULAR</span>` : ""}</div>
           <div class="product-meta">${escapeHtml(product.meta)}${hasExpandable ? "  ▾" : ""}</div>
         </div>
         ${product.price ? `<div class="price-pill">${escapeHtml(product.price)}</div>` : ""}
