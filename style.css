@@ -1353,3 +1353,12 @@ button, a {
     height: 48vh;
   }
 }
+
+/* Fix: keep the approved menu artwork visible but make the category hotspots clickable above it. */
+.menu-visual .category-hit {
+  z-index: 6;
+}
+
+.menu-visual .menu-art {
+  z-index: 1;
+}
