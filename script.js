@@ -58,9 +58,45 @@ const panel = document.getElementById("inventoryPanel");
 const panelTitle = document.getElementById("panelTitle");
 const panelContent = document.getElementById("panelContent");
 const closePanel = document.getElementById("closePanel");
+const cartFloat = document.getElementById("cartFloat");
+const cartCount = document.getElementById("cartCount");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartDrawer = document.getElementById("cartDrawer");
+const cartClose = document.getElementById("cartClose");
+const cartBody = document.getElementById("cartBody");
+const cartWhatsapp = document.getElementById("cartWhatsapp");
+const cartSnapchat = document.getElementById("cartSnapchat");
+const cartClear = document.getElementById("cartClear");
+const toast = document.getElementById("toast");
+const WHATSAPP_NUMBER = "447885752823";
+const CART_KEY = "hertsVapesCart";
+let cart = loadCart();
+let toastTimer;
 
 function softTap() {
   if (navigator.vibrate) navigator.vibrate(8);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function loadCart() {
+  try {
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveCart() {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  renderCart();
 }
 
 document.querySelectorAll("[data-scroll]").forEach((button) => {
@@ -72,12 +108,15 @@ document.querySelectorAll("[data-scroll]").forEach((button) => {
 
 function revealOnScroll() {
   const vh = window.innerHeight;
-  if (menu && menu.getBoundingClientRect().top < vh * 0.84) menu.classList.add("reveal");
+  if (menu && menu.getBoundingClientRect().top < vh * 0.9) menu.classList.add("reveal");
   if (readyCard && readyCard.getBoundingClientRect().top < vh * 0.86) readyCard.classList.add("reveal");
 }
 
 window.addEventListener("scroll", revealOnScroll, { passive: true });
-window.addEventListener("load", revealOnScroll);
+window.addEventListener("load", () => {
+  revealOnScroll();
+  renderCart();
+});
 
 document.querySelectorAll(".category-hit").forEach((button) => {
   button.addEventListener("click", () => {
@@ -113,39 +152,67 @@ function renderDeal(deal) {
     <article class="deal-card">
       <div class="deal-main">
         <div>
-          <div class="deal-name">${deal.name}</div>
-          <div class="deal-meta">${deal.meta}</div>
-          <div class="included-list">${deal.included.map(item => `<span>${item}</span>`).join("")}</div>
+          <div class="deal-name">${escapeHtml(deal.name)}</div>
+          <div class="deal-meta">${escapeHtml(deal.meta)}</div>
+          <div class="included-list">${deal.included.map(item => `<span>${escapeHtml(item)}</span>`).join("")}</div>
         </div>
-        <div class="price-pill">${deal.price}</div>
+        <div class="price-pill">${escapeHtml(deal.price)}</div>
+      </div>
+      <div class="card-actions">
+        <button class="add-cart-button" type="button" data-add="${escapeHtml(deal.name)}" data-price="${escapeHtml(deal.price)}">Add to Cart</button>
       </div>
     </article>
   `;
 }
 
 function renderProduct(product) {
-  const hasExpandable = (product.flavours && product.flavours.length > 1) || product.details;
+  const choices = product.flavours || product.details || [];
+  const hasExpandable = choices.length > 1;
   return `
     <article class="product-card ${hasExpandable ? "can-open" : ""}">
       <button class="product-main" type="button" ${hasExpandable ? "" : "disabled"}>
         <div>
-          <div class="product-name">${product.name}</div>
-          <div class="product-meta">${product.meta}${hasExpandable ? "  ▾" : ""}</div>
+          <div class="product-name">${escapeHtml(product.name)}</div>
+          <div class="product-meta">${escapeHtml(product.meta)}${hasExpandable ? "  ▾" : ""}</div>
         </div>
-        ${product.price ? `<div class="price-pill">${product.price}</div>` : ""}
+        ${product.price ? `<div class="price-pill">${escapeHtml(product.price)}</div>` : ""}
       </button>
       ${product.pricing ? renderPricing(product) : ""}
       ${hasExpandable ? renderExpandable(product) : ""}
+      ${!product.pricing && !hasExpandable ? renderQuickAdd(product, choices[0]) : ""}
     </article>
   `;
 }
 
+function renderQuickAdd(product, option = "") {
+  return `
+    <div class="card-actions">
+      <button class="add-cart-button" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">Add to Cart</button>
+    </div>
+  `;
+}
+
 function renderPricing(product) {
+  if (product.details && product.details.length) {
+    return `
+      <div class="price-pair priced-options">
+        ${product.details.map(detail => `
+          <div class="option-group">
+            <div class="option-title">${escapeHtml(detail)}</div>
+            <div class="option-prices">
+              ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(detail + " - " + row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong></button>`).join("")}
+            </div>
+          </div>
+        `).join("")}
+        ${product.saving ? `<div class="saving">${escapeHtml(product.saving)}</div>` : ""}
+      </div>
+    `;
+  }
+
   return `
     <div class="price-pair">
-      ${product.pricing.map(row => `<div class="price-row"><span>${row.label}</span><strong>${row.price}</strong></div>`).join("")}
-      ${product.saving ? `<div class="saving">${product.saving}</div>` : ""}
-      ${product.details ? `<div class="flavour-list">${product.details.map(detail => `<div class="flavour">${detail}</div>`).join("")}</div>` : ""}
+      ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong></button>`).join("")}
+      ${product.saving ? `<div class="saving">${escapeHtml(product.saving)}</div>` : ""}
     </div>
   `;
 }
@@ -153,7 +220,7 @@ function renderPricing(product) {
 function renderExpandable(product) {
   const list = product.flavours || product.details || [];
   const twoCol = list.length >= 6 ? " two-col" : "";
-  return `<div class="expand-content"><div class="flavour-list${twoCol}">${list.map(item => `<div class="flavour">${item}</div>`).join("")}</div></div>`;
+  return `<div class="expand-content"><div class="flavour-list${twoCol}">${list.map(item => `<button class="flavour add-flavour" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(item)}" data-price="${escapeHtml(product.price || "")}">${escapeHtml(item)}<span>Add</span></button>`).join("")}</div></div>`;
 }
 
 function setupProductCards() {
@@ -167,3 +234,157 @@ function setupProductCards() {
     });
   });
 }
+
+panelContent.addEventListener("click", (event) => {
+  const addButton = event.target.closest("[data-add]");
+  if (!addButton) return;
+  softTap();
+  addToCart({
+    name: addButton.dataset.add,
+    option: addButton.dataset.option || "",
+    price: addButton.dataset.price || ""
+  });
+});
+
+function addToCart(item) {
+  const key = `${item.name}||${item.option}||${item.price}`;
+  const existing = cart.find(cartItem => cartItem.key === key);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...item, key, qty: 1 });
+  }
+  saveCart();
+  showToast("Added to cart");
+}
+
+function updateQty(key, change) {
+  const item = cart.find(cartItem => cartItem.key === key);
+  if (!item) return;
+  item.qty += change;
+  if (item.qty <= 0) cart = cart.filter(cartItem => cartItem.key !== key);
+  saveCart();
+}
+
+function removeFromCart(key) {
+  cart = cart.filter(cartItem => cartItem.key !== key);
+  saveCart();
+}
+
+function totalItems() {
+  return cart.reduce((sum, item) => sum + item.qty, 0);
+}
+
+function renderCart() {
+  const total = totalItems();
+  cartCount.textContent = total;
+  cartCount.hidden = total === 0;
+  cartFloat.classList.toggle("has-items", total > 0);
+
+  if (!cart.length) {
+    cartBody.innerHTML = `<div class="empty-cart">Your cart is empty.<br>Open a category and add what you want.</div>`;
+    return;
+  }
+
+  cartBody.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <div class="cart-item-main">
+        <strong>${escapeHtml(item.name)}</strong>
+        ${item.option ? `<span>${escapeHtml(item.option)}</span>` : ""}
+        ${item.price ? `<em>${escapeHtml(item.price)}</em>` : ""}
+      </div>
+      <div class="qty-control">
+        <button type="button" data-qty="-1" data-key="${escapeHtml(item.key)}" aria-label="Decrease quantity">−</button>
+        <span>${item.qty}</span>
+        <button type="button" data-qty="1" data-key="${escapeHtml(item.key)}" aria-label="Increase quantity">+</button>
+      </div>
+      <button class="remove-item" type="button" data-remove="${escapeHtml(item.key)}" aria-label="Remove item">×</button>
+    </div>
+  `).join("");
+}
+
+function buildOrderMessage() {
+  if (!cart.length) {
+    return "Hi Herts Vapes, I'd like to place an order.";
+  }
+
+  const lines = cart.map(item => {
+    const option = item.option ? ` - ${item.option}` : "";
+    const price = item.price ? ` (${item.price})` : "";
+    return `• ${item.name}${option}${price} ×${item.qty}`;
+  }).join("\n");
+
+  return `Hi Herts Vapes,\n\nI'd like to order:\n\n${lines}\n\nCollection or delivery?`;
+}
+
+async function copyOrderMessage() {
+  const message = buildOrderMessage();
+  try {
+    await navigator.clipboard.writeText(message);
+    showToast("Order copied");
+  } catch (error) {
+    showToast("Order ready to copy");
+  }
+  return message;
+}
+
+function openCart() {
+  softTap();
+  cartOverlay.classList.add("open");
+  cartDrawer.classList.add("open");
+  cartOverlay.setAttribute("aria-hidden", "false");
+  cartDrawer.setAttribute("aria-hidden", "false");
+}
+
+function closeCart() {
+  softTap();
+  cartOverlay.classList.remove("open");
+  cartDrawer.classList.remove("open");
+  cartOverlay.setAttribute("aria-hidden", "true");
+  cartDrawer.setAttribute("aria-hidden", "true");
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 1500);
+}
+
+cartFloat.addEventListener("click", openCart);
+cartOverlay.addEventListener("click", closeCart);
+cartClose.addEventListener("click", closeCart);
+
+cartBody.addEventListener("click", (event) => {
+  const qtyButton = event.target.closest("[data-qty]");
+  const removeButton = event.target.closest("[data-remove]");
+
+  if (qtyButton) {
+    softTap();
+    updateQty(qtyButton.dataset.key, Number(qtyButton.dataset.qty));
+  }
+
+  if (removeButton) {
+    softTap();
+    removeFromCart(removeButton.dataset.remove);
+  }
+});
+
+cartClear.addEventListener("click", () => {
+  softTap();
+  cart = [];
+  saveCart();
+  showToast("Cart cleared");
+});
+
+cartWhatsapp.addEventListener("click", async () => {
+  softTap();
+  const message = await copyOrderMessage();
+  window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+});
+
+cartSnapchat.addEventListener("click", async () => {
+  softTap();
+  await copyOrderMessage();
+  window.open("https://www.snapchat.com/add/herts.vps", "_blank");
+});
