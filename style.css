@@ -1777,38 +1777,3 @@ button, a {
     transform: none;
   }
 }
-
-/* ==============================
-   Herts Vapes v3.4 Lite
-   Safe polish only: remove extra instruction tab and hide duplicate menu logo.
-   Cart, products, hotspots and JavaScript are unchanged.
-   ============================== */
-
-/* Remove the extra black/red how-to tab if present anywhere in the menu/category flow. */
-.category-guide,
-.how-to-order,
-.how-order,
-.order-guide,
-.menu-guide {
-  display: none !important;
-}
-
-/* Hide the duplicate Herts Vapes logo baked into the top of menu.jpg without moving the image or hotspots. */
-.menu-visual::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 21%;
-  z-index: 3;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 100%, rgba(226,21,33,.10), transparent 45%),
-    linear-gradient(180deg, #020202 0%, rgba(2,2,2,.98) 62%, rgba(2,2,2,.88) 100%);
-}
-
-/* Keep all clickable category/button hotspots above the image layout and untouched. */
-.menu-visual .hotspot {
-  z-index: 4;
-}
