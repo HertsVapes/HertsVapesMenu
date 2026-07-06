@@ -109,7 +109,7 @@ document.querySelectorAll("[data-scroll]").forEach((button) => {
 
 function revealOnScroll() {
   const vh = window.innerHeight;
-  if (menu && menu.getBoundingClientRect().top < vh * 0.9) menu.classList.add("reveal");
+  if (menu && menu.getBoundingClientRect().top < vh * 0.96) menu.classList.add("reveal");
   if (readyCard && readyCard.getBoundingClientRect().top < vh * 0.86) readyCard.classList.add("reveal");
   if (bulkCard && bulkCard.getBoundingClientRect().top < vh * 0.88) bulkCard.classList.add("reveal");
 }
