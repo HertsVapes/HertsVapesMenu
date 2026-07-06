@@ -103,21 +103,32 @@ function saveCart() {
 document.querySelectorAll("[data-scroll]").forEach((button) => {
   button.addEventListener("click", () => {
     softTap();
-    document.querySelector(button.dataset.scroll).scrollIntoView({ behavior: "smooth", block: "start" });
+    const target = document.querySelector(button.dataset.scroll);
+    if (target && target.id === "menu" && menu) menu.classList.add("reveal");
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
 function revealOnScroll() {
   const vh = window.innerHeight;
-  if (menu && menu.getBoundingClientRect().top < vh * 0.92) menu.classList.add("reveal");
+  const hasStartedScrolling = window.scrollY > 24;
+
+  // Keep the menu as a dim preview on first load. It becomes clear once the
+  // customer taps Shop Now or starts scrolling, which makes the first screen
+  // feel more intentional and less like two separate posters.
+  if (menu && (hasStartedScrolling || menu.getBoundingClientRect().top < vh * 0.56)) {
+    menu.classList.add("reveal");
+  }
+
   if (readyCard && readyCard.getBoundingClientRect().top < vh * 0.86) readyCard.classList.add("reveal");
   if (bulkCard && bulkCard.getBoundingClientRect().top < vh * 0.88) bulkCard.classList.add("reveal");
 }
 
 window.addEventListener("scroll", revealOnScroll, { passive: true });
 window.addEventListener("load", () => {
-  revealOnScroll();
+  // Do not auto-reveal the menu on load; the faded preview is intentional.
   renderCart();
+  revealOnScroll();
 });
 
 document.querySelectorAll(".category-hit").forEach((button) => {
