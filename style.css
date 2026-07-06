@@ -444,6 +444,102 @@ button, a {
 
 
 
+/* Bulk order section */
+.bulk-order {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(226,21,33,.14), transparent 34%),
+    linear-gradient(180deg, #070707, #020202);
+  padding: 0 16px calc(52px + env(safe-area-inset-bottom));
+}
+
+.bulk-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 760ms cubic-bezier(.2,.8,.2,1), transform 760ms cubic-bezier(.2,.8,.2,1);
+  border: 1px solid rgba(255,37,49,.62);
+  border-radius: 30px;
+  padding: 30px 20px 24px;
+  background:
+    radial-gradient(circle at 82% 0%, rgba(255,37,49,.26), transparent 38%),
+    radial-gradient(circle at 8% 100%, rgba(226,21,33,.14), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,.072), rgba(255,255,255,.020));
+  text-align: center;
+  box-shadow: 0 22px 54px rgba(0,0,0,.48), 0 0 24px rgba(226,21,33,.10);
+}
+
+.bulk-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bulk-card h2 {
+  margin: 0 auto;
+  max-width: 360px;
+  font-size: 31px;
+  line-height: .96;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+}
+
+.bulk-card h3 {
+  margin: 12px 0 18px;
+  color: #fff;
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+.bulk-intro,
+.bulk-minimum {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.bulk-intro {
+  margin: 0 0 13px;
+  font-weight: 800;
+}
+
+.bulk-points {
+  display: grid;
+  gap: 9px;
+  margin: 0 auto 17px;
+  max-width: 380px;
+}
+
+.bulk-point {
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 17px;
+  padding: 12px 13px;
+  background: rgba(0,0,0,.32);
+  color: #f4f4f4;
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+.bulk-point::before {
+  content: "✔";
+  color: var(--red-bright);
+  margin-right: 7px;
+}
+
+.bulk-minimum {
+  margin: 2px auto 18px;
+  max-width: 300px;
+  font-weight: 850;
+}
+
+.bulk-button {
+  display: block;
+  max-width: 320px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--red-bright), #b6000c);
+  border-color: rgba(255,255,255,.16);
+  box-shadow: 0 0 22px rgba(226,21,33,.24);
+}
+
+
 /* Simple cart add-on */
 .card-actions {
   padding: 0 18px 18px;
@@ -800,6 +896,10 @@ button, a {
 
 @media (min-width: 760px) {
   .cart-header h2 {
+    font-size: 40px;
+  }
+
+  .bulk-card h2 {
     font-size: 40px;
   }
 }

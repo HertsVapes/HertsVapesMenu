@@ -54,6 +54,7 @@ const inventory = {
 
 const menu = document.querySelector(".menu-visual");
 const readyCard = document.querySelector(".ready-card");
+const bulkCard = document.querySelector(".bulk-card");
 const panel = document.getElementById("inventoryPanel");
 const panelTitle = document.getElementById("panelTitle");
 const panelContent = document.getElementById("panelContent");
@@ -110,6 +111,7 @@ function revealOnScroll() {
   const vh = window.innerHeight;
   if (menu && menu.getBoundingClientRect().top < vh * 0.9) menu.classList.add("reveal");
   if (readyCard && readyCard.getBoundingClientRect().top < vh * 0.86) readyCard.classList.add("reveal");
+  if (bulkCard && bulkCard.getBoundingClientRect().top < vh * 0.88) bulkCard.classList.add("reveal");
 }
 
 window.addEventListener("scroll", revealOnScroll, { passive: true });
