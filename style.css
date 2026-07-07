@@ -1845,3 +1845,123 @@ button, a {
 .empty-cart {
   padding: 26px 8px;
 }
+
+/* ==============================
+   Herts Vapes V3.4.1 corrections
+   Fixes from live check: no messy menu-logo cover, subtle HV Bulk trigger, true 2-column flavour lists
+   ============================== */
+
+/* Do NOT cover the menu artwork with a fake block. Until menu.jpg is edited properly,
+   the original menu logo is safer and cleaner than a visible cover patch. */
+.menu-visual::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* HV Bulk should not feel like a full section for normal customers. Keep only a small specialist trigger. */
+.bulk-menu-entry {
+  padding: 8px 16px 18px !important;
+  background: #020202;
+}
+
+.bulk-category-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 54px;
+  border-radius: 18px !important;
+  padding: 13px 14px !important;
+  border-color: rgba(255,255,255,.10) !important;
+  background: rgba(255,255,255,.025) !important;
+  box-shadow: none !important;
+}
+
+.bulk-category-button .bulk-kicker {
+  margin: 0 !important;
+  padding: 5px 8px !important;
+  border-color: rgba(255,37,49,.28) !important;
+  background: rgba(226,21,33,.08) !important;
+  font-size: 10px !important;
+  letter-spacing: .12em !important;
+  white-space: nowrap;
+}
+
+.bulk-category-button strong {
+  flex: 1 1 auto;
+  font-size: 14px !important;
+  letter-spacing: .02em !important;
+  line-height: 1.1 !important;
+  text-transform: uppercase;
+}
+
+.bulk-category-button em {
+  display: none !important;
+}
+
+.bulk-category-button::after {
+  content: "›";
+  color: var(--red-bright);
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+/* Keep the HV Bulk content as a dedicated clicked panel with a slightly more professional tone. */
+.bulk-panel-card {
+  text-align: left !important;
+  border-color: rgba(255,37,49,.46) !important;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255,37,49,.16), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.050), rgba(255,255,255,.014)) !important;
+}
+
+.bulk-panel-card h3 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none !important;
+  font-size: 28px !important;
+}
+
+.panel-bulk-points {
+  max-width: none !important;
+}
+
+.bulk-panel-card .bulk-button {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: none !important;
+  text-align: center;
+}
+
+/* Products with lots of flavours should stay in two columns on mobile as requested. */
+.flavour-list.two-col {
+  grid-template-columns: 1fr 1fr !important;
+  column-gap: 10px !important;
+  row-gap: 8px !important;
+}
+
+.flavour-list.two-col .add-flavour {
+  min-height: 46px;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 12.5px;
+  line-height: 1.15;
+  padding: 9px 0;
+}
+
+.flavour-list.two-col .add-flavour span {
+  font-size: 9.5px;
+  letter-spacing: .08em;
+  padding-top: 2px;
+}
+
+@media (max-width: 360px) {
+  .flavour-list.two-col {
+    column-gap: 8px !important;
+  }
+
+  .flavour-list.two-col .add-flavour {
+    font-size: 11.6px;
+  }
+}
