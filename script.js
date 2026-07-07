@@ -552,3 +552,6 @@ cartSnapchat.addEventListener("click", async () => {
   showToast("✓ Order copied. Paste into Snapchat.");
   setTimeout(() => window.open("https://www.snapchat.com/add/herts.vps", "_blank"), 350);
 });
+
+// Final public clean build marker. Functionality above is unchanged.
+window.HERTS_VAPES_BUILD = "final-public-clean";
