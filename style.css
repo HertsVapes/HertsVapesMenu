@@ -1777,3 +1777,71 @@ button, a {
     transform: none;
   }
 }
+
+
+/* ==============================
+   Herts Vapes Version 3.4
+   Stability fixes + cleaner order flow
+   ============================== */
+
+/* Critical fix: long flavour lists such as the 25 Nic Salts must never be clipped on mobile. */
+.product-card.open .expand-content {
+  max-height: 2600px;
+}
+
+/* Keep HV Bulk as a low-friction menu-only route, not a full visible section. */
+.bulk-menu-entry {
+  padding: 4px 16px 20px;
+}
+
+.bulk-category-button {
+  border-color: rgba(255,37,49,.34);
+  background:
+    radial-gradient(circle at 94% 0%, rgba(255,37,49,.14), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.038), rgba(255,255,255,.010));
+  box-shadow: 0 12px 28px rgba(0,0,0,.28), 0 0 10px rgba(226,21,33,.045);
+}
+
+/* Hide the duplicate logo area on the menu artwork without moving the image or hotspot map. */
+.menu-visual::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 19.5%;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(226,21,33,.10), transparent 38%),
+    linear-gradient(180deg, #020202 0%, #020202 66%, rgba(2,2,2,.72) 86%, rgba(2,2,2,0) 100%);
+}
+
+/* Make sure category/ordering hotspots stay above the visual logo cover. */
+.menu-visual .hotspot {
+  z-index: 3;
+}
+
+/* Cleaner specialist bulk panel. */
+.bulk-panel-card {
+  text-align: left;
+  padding: 28px 20px 22px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(255,37,49,.18), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,.052), rgba(255,255,255,.014));
+}
+
+.bulk-panel-card h3 {
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 28px;
+}
+
+.bulk-panel-card .bulk-button {
+  max-width: none;
+  text-align: center;
+}
+
+.empty-cart {
+  padding: 26px 8px;
+}

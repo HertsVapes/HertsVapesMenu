@@ -98,13 +98,13 @@ const inventory = {
   bulk: {
     title: "HV Bulk",
     type: "bulk",
-    intro: "Save big on larger pre-orders.",
+    intro: "For larger orders, reserved stock and better prices.",
     points: [
       "Manufacturer-sealed boxes",
-      "A much wider range than our in-stock menu",
-      "Reserved exclusively for your order"
+      "Wider range than the everyday menu",
+      "Reserved specifically for your order"
     ],
-    minimum: "Available on bulk pre-orders from £100.",
+    minimum: "Bulk pre-orders available from £100.",
     link: "https://wa.me/447885752823?text=Hi%20Herts%20Vapes%2C%0A%0AI%27m%20interested%20in%20your%20bulk%20prices.%0A%0AProducts%20I%27m%20interested%20in%3A%0A%0A%E2%80%A2"
   }
 };
@@ -249,7 +249,7 @@ function renderBulkCategory(category) {
   return `
     <article class="bulk-panel-card">
       <p class="panel-eyebrow">HV BULK</p>
-      <h3>Save Big on Larger Orders</h3>
+      <h3>Wholesale & Large Orders</h3>
       <p class="bulk-intro">${escapeHtml(category.intro)}</p>
       <div class="bulk-points panel-bulk-points">
         ${category.points.map(point => `<div class="bulk-point">${escapeHtml(point)}</div>`).join("")}
@@ -396,7 +396,7 @@ function renderCart() {
   cartFloat.classList.toggle("has-items", total > 0);
 
   if (!cart.length) {
-    cartBody.innerHTML = `<div class="empty-cart"><strong>Your cart is empty.</strong><br>Tap <b>ADD</b> on any product to build your order.</div>`;
+    cartBody.innerHTML = `<div class="empty-cart"><strong>Your order starts here.</strong><br>Tap <b>ADD</b> on any product to begin.</div>`;
     return;
   }
 
@@ -419,34 +419,31 @@ function renderCart() {
 
 function buildOrderMessage() {
   if (!cart.length) {
-    return "Hi Herts Vapes, I'd like to place an order.";
+    return "Hi, I'd like to place an order.";
   }
 
-  const lines = cart.map(item => {
-    const optionLine = item.option ? `\n  ${item.option}` : "";
-    const priceLine = item.price ? ` (${item.price})` : "";
-    return `• ${item.name}${priceLine}${optionLine} ×${item.qty}`;
-  }).join("\n\n");
-
-  const promptSections = cart
-    .filter(item => item.prompts && item.prompts.length)
+  const normalLines = cart
+    .filter(item => !item.prompts || !item.prompts.length)
     .map(item => {
-      const header = `• ${item.name} ×${item.qty}`;
-      const promptLines = [];
-      for (let i = 1; i <= item.qty; i += 1) {
-        if (item.qty > 1) promptLines.push(`  Bundle ${i}:`);
-        item.prompts.forEach(prompt => {
-          promptLines.push(`${item.qty > 1 ? "    " : "  "}${prompt}:`);
-        });
-      }
-      return `${header}\n${promptLines.join("\n")}`;
+      const optionPart = item.option ? ` - ${item.option}` : "";
+      return `• ${item.name}${optionPart} ×${item.qty}`;
     });
 
-  const flavourSection = promptSections.length
-    ? `\n\nFlavours to be confirmed:\n\n${promptSections.join("\n\n")}`
-    : "";
+  const promptLines = cart
+    .filter(item => item.prompts && item.prompts.length)
+    .flatMap(item => {
+      const lines = [`• ${item.name} ×${item.qty}`];
+      for (let i = 1; i <= item.qty; i += 1) {
+        if (item.qty > 1) lines.push(`  Bundle ${i}:`);
+        item.prompts.forEach(prompt => {
+          lines.push(`${item.qty > 1 ? "  " : ""}${prompt}:`);
+        });
+      }
+      return lines;
+    });
 
-  return `Hi Herts Vapes,\n\nI'd like to order:\n\n${lines}${flavourSection}\n\nCollection or Delivery:`;
+  const lines = [...normalLines, ...promptLines].join("\n");
+  return `Hi,\n\nI'd like:\n\n${lines}\n\nCollection / Delivery:`;
 }
 
 async function copyOrderMessage() {
