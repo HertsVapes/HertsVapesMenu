@@ -2128,3 +2128,261 @@ button, a {
 .category-hit.salts { top: 63.2%; }
 .category-hit.pods { top: 76.2%; }
 .category-hit.pouches { top: 89.0%; height: 10.7%; }
+
+/* ==============================
+   Herts Vapes V3.6 FINAL
+   Final launch polish: seamless artwork transition, cleaner single-option pricing, HV Bulk panel
+   ============================== */
+
+/* Use the approved hero artwork directly so the hero-to-menu transition matches the final design. */
+.hero {
+  min-height: 0 !important;
+  display: block !important;
+  place-items: unset !important;
+  background: #020202 !important;
+  border-bottom: 0 !important;
+  overflow: hidden !important;
+}
+
+.hero::before,
+.hero::after {
+  content: none !important;
+  display: none !important;
+}
+
+.hero-art {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  opacity: 1 !important;
+  filter: none !important;
+  z-index: 0 !important;
+}
+
+.hero-focus {
+  display: none !important;
+}
+
+.hero-shop,
+.hero-whatsapp,
+.hero-snapchat {
+  display: block !important;
+  z-index: 5;
+}
+
+/* The menu starts cleanly under the hero image with no awkward overlap. */
+.section-blend {
+  height: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+}
+
+.menu-visual {
+  margin-top: 0 !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+  background: #020202;
+}
+
+.menu-visual.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Single-flavour disposables already have the red price pill, so do not repeat a second white price. */
+.single-option-list .option-add-row {
+  grid-template-columns: 1fr auto !important;
+}
+
+.single-option-list .option-add-row strong {
+  display: none !important;
+}
+
+/* HV Bulk: keep it as a category, but make its opened panel feel like a polished business enquiry screen. */
+.inventory-panel[data-category="bulk"] .panel-header .panel-eyebrow {
+  display: none !important;
+}
+
+.inventory-panel[data-category="bulk"] .panel-header {
+  margin-bottom: 16px;
+}
+
+.inventory-panel[data-category="bulk"] #panelTitle {
+  font-size: 24px;
+  letter-spacing: .08em;
+}
+
+.bulk-final-card {
+  text-align: center;
+  border: 1px solid rgba(255,37,49,.48);
+  border-radius: 30px;
+  padding: 30px 18px 24px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,37,49,.18), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.040), rgba(255,255,255,.010));
+  box-shadow: 0 22px 54px rgba(0,0,0,.46), 0 0 24px rgba(226,21,33,.10);
+  overflow: hidden;
+}
+
+.bulk-icon-box {
+  width: 112px;
+  height: 88px;
+  margin: 2px auto 20px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.bulk-icon-box::before,
+.bulk-icon-box::after,
+.bulk-icon-box span {
+  content: "";
+  position: absolute;
+  border: 3px solid var(--red-bright);
+  filter: drop-shadow(0 0 10px rgba(226,21,33,.25));
+}
+
+.bulk-icon-box::before {
+  width: 66px;
+  height: 50px;
+  transform: skewY(-28deg) rotate(30deg);
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.bulk-icon-box::after {
+  width: 66px;
+  height: 50px;
+  transform: skewY(28deg) rotate(-30deg);
+  border-left: 0;
+  border-bottom: 0;
+}
+
+.bulk-icon-box span {
+  width: 72px;
+  height: 52px;
+  border-top: 0;
+  transform: translateY(22px) rotate(0deg);
+}
+
+.bulk-panel-kicker {
+  margin: 0 0 8px;
+  color: rgba(255,255,255,.74);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+
+.bulk-final-card h3 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 29px;
+  line-height: .95;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.bulk-final-card .bulk-intro {
+  margin: 0 0 18px;
+  color: var(--red-bright);
+  font-size: 14px;
+  font-weight: 950;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.bulk-final-card .bulk-points {
+  margin: 0 0 18px;
+  padding: 16px 14px;
+  border: 1px solid rgba(255,37,49,.40);
+  border-radius: 18px;
+  background: rgba(0,0,0,.32);
+  gap: 10px;
+}
+
+.bulk-final-card .bulk-point {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 10px 8px;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  align-items: start;
+  gap: 10px;
+  color: rgba(255,255,255,.86);
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.bulk-final-card .bulk-point::before {
+  content: "✓";
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--red-bright);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--red-bright);
+  font-size: 12px;
+  margin: 0;
+}
+
+.bulk-minimum-box {
+  margin: 0 0 18px;
+  padding: 18px 16px;
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(255,37,49,.42);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 12% 50%, rgba(226,21,33,.14), transparent 34%),
+    rgba(0,0,0,.24);
+}
+
+.bulk-minimum-box span {
+  color: rgba(255,255,255,.78);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.bulk-minimum-box strong {
+  color: var(--red-bright);
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: .08em;
+}
+
+.bulk-final-card .bulk-button {
+  max-width: none;
+  margin: 0 auto 12px;
+  padding: 17px 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, var(--red-bright), #b6000c);
+  box-shadow: 0 0 24px rgba(226,21,33,.28), 0 16px 34px rgba(0,0,0,.32);
+}
+
+.bulk-footnote {
+  margin: 0 auto;
+  max-width: 260px;
+  color: rgba(255,255,255,.62);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* Mobile Safari: keep the fixed cart visible without covering the final menu title awkwardly. */
+.cart-float {
+  right: max(16px, env(safe-area-inset-right)) !important;
+  bottom: calc(22px + env(safe-area-inset-bottom)) !important;
+}

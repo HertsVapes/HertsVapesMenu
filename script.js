@@ -254,15 +254,22 @@ function renderDealVisuals(deal) {
 
 function renderBulkCategory(category) {
   return `
-    <article class="bulk-panel-card">
-      <p class="panel-eyebrow">HV BULK</p>
-      <h3>Bulk Pre-Orders</h3>
+    <article class="bulk-panel-card bulk-final-card">
+      <div class="bulk-icon-box" aria-hidden="true">
+        <span></span>
+      </div>
+      <p class="bulk-panel-kicker">HV BULK</p>
+      <h3>Bulk Enquiries</h3>
       <p class="bulk-intro">${escapeHtml(category.intro)}</p>
       <div class="bulk-points panel-bulk-points">
         ${category.points.map(point => `<div class="bulk-point">${escapeHtml(point)}</div>`).join("")}
       </div>
-      <p class="bulk-minimum">${escapeHtml(category.minimum)}</p>
-      <a href="${category.link}" class="order-button bulk-button">Message for Bulk Prices</a>
+      <div class="bulk-minimum-box">
+        <span>Available on bulk pre-orders from</span>
+        <strong>£100+</strong>
+      </div>
+      <a href="${category.link}" class="order-button bulk-button">Enquire on WhatsApp</a>
+      <p class="bulk-footnote">You will be redirected to WhatsApp to discuss your requirements.</p>
     </article>
   `;
 }
@@ -303,7 +310,6 @@ function renderSingleOption(product, option = "") {
     <div class="single-option-list">
       <button class="option-add-row" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">
         <span>${escapeHtml(option || product.name)}</span>
-        <strong>${escapeHtml(product.price || "")}</strong>
         <em>ADD</em>
       </button>
     </div>
