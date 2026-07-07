@@ -1780,188 +1780,126 @@ button, a {
 
 
 /* ==============================
-   Herts Vapes Version 3.4
-   Stability fixes + cleaner order flow
+   Herts Vapes V3.4 final polish
+   Clean menu artwork + stronger order flow
    ============================== */
 
-/* Critical fix: long flavour lists such as the 25 Nic Salts must never be clipped on mobile. */
-.product-card.open .expand-content {
-  max-height: 2600px;
+.section-blend {
+  height: 8svh;
+  margin-top: -6svh;
+  margin-bottom: -2svh;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(226,21,33,.16), transparent 46%),
+    linear-gradient(180deg, rgba(2,2,2,0), rgba(2,2,2,.82) 54%, #020202 100%);
 }
 
-/* Keep HV Bulk as a low-friction menu-only route, not a full visible section. */
+.menu-visual {
+  margin-top: -1svh;
+  opacity: .42;
+  transform: translateY(8px) scale(.995);
+  filter: brightness(.70) saturate(.90);
+}
+
+.menu-visual.reveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: brightness(1) saturate(1);
+}
+
+/* Remapped against the cleaned menu.jpg artwork. */
+.category-hit {
+  left: 3%;
+  width: 94%;
+  height: 10.8%;
+  border-radius: 23px;
+}
+.category-hit.special { top: 17.7%; }
+.category-hit.disposable { top: 34.9%; }
+.category-hit.podkits { top: 49.7%; }
+.category-hit.salts { top: 63.0%; }
+.category-hit.pods { top: 75.7%; }
+.category-hit.pouches { top: 87.6%; }
+
+/* The cleaned menu artwork no longer has WhatsApp/Snapchat buttons at the bottom. */
+.menu-whatsapp,
+.menu-snapchat {
+  display: none;
+}
+
 .bulk-menu-entry {
-  padding: 4px 16px 20px;
-}
-
-.bulk-category-button {
-  border-color: rgba(255,37,49,.34);
-  background:
-    radial-gradient(circle at 94% 0%, rgba(255,37,49,.14), transparent 36%),
-    linear-gradient(180deg, rgba(255,255,255,.038), rgba(255,255,255,.010));
-  box-shadow: 0 12px 28px rgba(0,0,0,.28), 0 0 10px rgba(226,21,33,.045);
-}
-
-/* Hide the duplicate logo area on the menu artwork without moving the image or hotspot map. */
-.menu-visual::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 19.5%;
-  z-index: 2;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(226,21,33,.10), transparent 38%),
-    linear-gradient(180deg, #020202 0%, #020202 66%, rgba(2,2,2,.72) 86%, rgba(2,2,2,0) 100%);
-}
-
-/* Make sure category/ordering hotspots stay above the visual logo cover. */
-.menu-visual .hotspot {
-  z-index: 3;
-}
-
-/* Cleaner specialist bulk panel. */
-.bulk-panel-card {
-  text-align: left;
-  padding: 28px 20px 22px;
-  background:
-    radial-gradient(circle at 92% 0%, rgba(255,37,49,.18), transparent 42%),
-    linear-gradient(180deg, rgba(255,255,255,.052), rgba(255,255,255,.014));
-}
-
-.bulk-panel-card h3 {
-  margin-left: 0;
-  margin-right: 0;
-  font-size: 28px;
-}
-
-.bulk-panel-card .bulk-button {
-  max-width: none;
-  text-align: center;
-}
-
-.empty-cart {
-  padding: 26px 8px;
-}
-
-/* ==============================
-   Herts Vapes V3.4.1 corrections
-   Fixes from live check: no messy menu-logo cover, subtle HV Bulk trigger, true 2-column flavour lists
-   ============================== */
-
-/* Do NOT cover the menu artwork with a fake block. Until menu.jpg is edited properly,
-   the original menu logo is safer and cleaner than a visible cover patch. */
-.menu-visual::before {
-  content: none !important;
-  display: none !important;
-}
-
-/* HV Bulk should not feel like a full section for normal customers. Keep only a small specialist trigger. */
-.bulk-menu-entry {
-  padding: 8px 16px 18px !important;
+  padding: 12px 16px 24px;
   background: #020202;
 }
 
 .bulk-category-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 54px;
-  border-radius: 18px !important;
-  padding: 13px 14px !important;
-  border-color: rgba(255,255,255,.10) !important;
-  background: rgba(255,255,255,.025) !important;
-  box-shadow: none !important;
-}
-
-.bulk-category-button .bulk-kicker {
-  margin: 0 !important;
-  padding: 5px 8px !important;
-  border-color: rgba(255,37,49,.28) !important;
-  background: rgba(226,21,33,.08) !important;
-  font-size: 10px !important;
-  letter-spacing: .12em !important;
-  white-space: nowrap;
+  min-height: 68px;
+  border-radius: 20px;
+  border-color: rgba(255,37,49,.42);
+  background:
+    radial-gradient(circle at 92% 0%, rgba(226,21,33,.14), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+  box-shadow: 0 12px 30px rgba(0,0,0,.32), inset 0 0 0 1px rgba(226,21,33,.08);
 }
 
 .bulk-category-button strong {
-  flex: 1 1 auto;
-  font-size: 14px !important;
-  letter-spacing: .02em !important;
-  line-height: 1.1 !important;
-  text-transform: uppercase;
+  font-size: 18px;
 }
 
 .bulk-category-button em {
-  display: none !important;
+  font-size: 12px;
 }
 
-.bulk-category-button::after {
-  content: "›";
-  color: var(--red-bright);
-  font-size: 24px;
-  line-height: 1;
-  font-weight: 900;
-}
-
-/* Keep the HV Bulk content as a dedicated clicked panel with a slightly more professional tone. */
-.bulk-panel-card {
-  text-align: left !important;
-  border-color: rgba(255,37,49,.46) !important;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(255,37,49,.16), transparent 34%),
-    linear-gradient(180deg, rgba(255,255,255,.050), rgba(255,255,255,.014)) !important;
-}
-
-.bulk-panel-card h3 {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  max-width: none !important;
-  font-size: 28px !important;
-}
-
-.panel-bulk-points {
-  max-width: none !important;
-}
-
-.bulk-panel-card .bulk-button {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  max-width: none !important;
-  text-align: center;
-}
-
-/* Products with lots of flavours should stay in two columns on mobile as requested. */
+/* Keep long flavour lists compact and visible. */
 .flavour-list.two-col {
-  grid-template-columns: 1fr 1fr !important;
-  column-gap: 10px !important;
-  row-gap: 8px !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 11px;
+  row-gap: 7px;
 }
 
 .flavour-list.two-col .add-flavour {
-  min-height: 46px;
-  align-items: flex-start;
-  gap: 7px;
+  min-height: 44px;
   font-size: 12.5px;
-  line-height: 1.15;
-  padding: 9px 0;
+  line-height: 1.18;
 }
 
 .flavour-list.two-col .add-flavour span {
-  font-size: 9.5px;
-  letter-spacing: .08em;
-  padding-top: 2px;
+  font-size: 10px;
 }
 
-@media (max-width: 360px) {
+.product-card.open .expand-content {
+  max-height: 1800px;
+}
+
+/* Make the cart easier to notice without blocking the menu. */
+.cart-float {
+  right: max(18px, env(safe-area-inset-right));
+  bottom: calc(22px + env(safe-area-inset-bottom));
+  width: 66px;
+  height: 66px;
+  border-color: rgba(255,37,49,.78);
+  box-shadow: 0 20px 44px rgba(0,0,0,.55), 0 0 28px rgba(226,21,33,.30);
+}
+
+.cart-float.has-items {
+  box-shadow: 0 22px 48px rgba(0,0,0,.58), 0 0 34px rgba(226,21,33,.42);
+}
+
+.empty-cart {
+  line-height: 1.55;
+}
+
+@media (max-width: 420px) {
   .flavour-list.two-col {
-    column-gap: 8px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 9px;
   }
 
   .flavour-list.two-col .add-flavour {
-    font-size: 11.6px;
+    font-size: 12px;
+  }
+
+  .cart-float {
+    width: 64px;
+    height: 64px;
   }
 }

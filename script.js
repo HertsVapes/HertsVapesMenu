@@ -98,13 +98,13 @@ const inventory = {
   bulk: {
     title: "HV Bulk",
     type: "bulk",
-    intro: "For larger orders, reserved stock and better prices.",
+    intro: "Save big on larger pre-orders.",
     points: [
       "Manufacturer-sealed boxes",
-      "Wider range than the everyday menu",
-      "Reserved specifically for your order"
+      "A much wider range than our in-stock menu",
+      "Reserved exclusively for your order"
     ],
-    minimum: "Bulk pre-orders available from £100.",
+    minimum: "Available on bulk pre-orders from £100.",
     link: "https://wa.me/447885752823?text=Hi%20Herts%20Vapes%2C%0A%0AI%27m%20interested%20in%20your%20bulk%20prices.%0A%0AProducts%20I%27m%20interested%20in%3A%0A%0A%E2%80%A2"
   }
 };
@@ -249,7 +249,7 @@ function renderBulkCategory(category) {
   return `
     <article class="bulk-panel-card">
       <p class="panel-eyebrow">HV BULK</p>
-      <h3>Wholesale & Large Orders</h3>
+      <h3>Save Big on Larger Orders</h3>
       <p class="bulk-intro">${escapeHtml(category.intro)}</p>
       <div class="bulk-points panel-bulk-points">
         ${category.points.map(point => `<div class="bulk-point">${escapeHtml(point)}</div>`).join("")}
@@ -419,31 +419,33 @@ function renderCart() {
 
 function buildOrderMessage() {
   if (!cart.length) {
-    return "Hi, I'd like to place an order.";
+    return "Hi,\n\nI'd like to place an order.\n\nCollection / Delivery:";
   }
 
-  const normalLines = cart
-    .filter(item => !item.prompts || !item.prompts.length)
-    .map(item => {
-      const optionPart = item.option ? ` - ${item.option}` : "";
-      return `• ${item.name}${optionPart} ×${item.qty}`;
-    });
+  const lines = cart.map(item => {
+    const optionLine = item.option ? ` - ${item.option}` : "";
+    return `• ${item.name}${optionLine} ×${item.qty}`;
+  }).join("\n");
 
-  const promptLines = cart
+  const promptSections = cart
     .filter(item => item.prompts && item.prompts.length)
-    .flatMap(item => {
-      const lines = [`• ${item.name} ×${item.qty}`];
+    .map(item => {
+      const header = `\n${item.name} ×${item.qty}`;
+      const promptLines = [];
       for (let i = 1; i <= item.qty; i += 1) {
-        if (item.qty > 1) lines.push(`  Bundle ${i}:`);
+        if (item.qty > 1) promptLines.push(`Bundle ${i}:`);
         item.prompts.forEach(prompt => {
-          lines.push(`${item.qty > 1 ? "  " : ""}${prompt}:`);
+          promptLines.push(`${prompt}:`);
         });
       }
-      return lines;
+      return `${header}\n${promptLines.join("\n")}`;
     });
 
-  const lines = [...normalLines, ...promptLines].join("\n");
-  return `Hi,\n\nI'd like:\n\n${lines}\n\nCollection / Delivery:`;
+  const promptText = promptSections.length
+    ? `\n${promptSections.join("\n")}`
+    : "";
+
+  return `Hi,\n\nI'd like:\n\n${lines}${promptText}\n\nCollection / Delivery:`;
 }
 
 async function copyOrderMessage() {
@@ -521,6 +523,6 @@ cartWhatsapp.addEventListener("click", async () => {
 cartSnapchat.addEventListener("click", async () => {
   softTap();
   await copyOrderMessage();
-  showToast("✓ Order copied. Paste it into Snapchat.");
+  showToast("✓ Order copied. Paste into Snapchat.");
   setTimeout(() => window.open("https://www.snapchat.com/add/herts.vps", "_blank"), 350);
 });
