@@ -2549,3 +2549,147 @@ button, a {
   z-index: 40 !important;
 }
 
+
+/* ==============================
+   Herts Vapes V3.8 PUBLIC FINAL
+   Clean landing page polish only.
+   Product data, category hotspots, cart, WhatsApp/Snapchat order flow and HV Bulk logic are unchanged.
+   ============================== */
+
+/* Cleaner first impression: polished full landing screen using the approved hero artwork. */
+.hero {
+  min-height: 94svh !important;
+  height: 94svh !important;
+  max-height: 860px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 50% 58%, rgba(226,21,33,.16), transparent 42%),
+    linear-gradient(180deg, #020202 0%, #030000 52%, #020202 100%) !important;
+  border-bottom: 0 !important;
+  isolation: isolate !important;
+}
+
+.hero::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(ellipse at 50% 61%, rgba(255,37,49,.10), transparent 44%),
+    linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.00) 34%, rgba(0,0,0,.34) 78%, rgba(2,2,2,.88) 100%) !important;
+}
+
+.hero::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: -2px !important;
+  width: 100% !important;
+  height: 140px !important;
+  transform: translateX(-50%) !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(226,21,33,.12), transparent 58%),
+    linear-gradient(180deg, rgba(2,2,2,0), #020202 82%) !important;
+}
+
+.hero-art {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  opacity: 1 !important;
+  filter: saturate(1.04) contrast(1.05) brightness(.96) !important;
+  z-index: 0 !important;
+  transform: scale(.965) !important;
+  transform-origin: center center !important;
+}
+
+/* Keep the visual hero artwork as the landing; no duplicate text/logo layer. */
+.hero-focus {
+  display: none !important;
+}
+
+/* Only Shop Now is active on the landing page. */
+.hero-whatsapp,
+.hero-snapchat {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+.hero-shop {
+  display: block !important;
+  pointer-events: auto !important;
+  z-index: 6 !important;
+  left: 24.5% !important;
+  top: 73% !important;
+  width: 51% !important;
+  height: 13% !important;
+  border-radius: 999px !important;
+}
+
+.hero-shop:active {
+  transform: scale(.985) !important;
+}
+
+/* Smooth, no-gap hero-to-menu handoff. */
+.section-blend {
+  height: 32px !important;
+  margin-top: -32px !important;
+  margin-bottom: 0 !important;
+  position: relative !important;
+  z-index: 3 !important;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(226,21,33,.10), transparent 58%),
+    linear-gradient(180deg, rgba(2,2,2,0), #020202 86%) !important;
+  pointer-events: none !important;
+}
+
+.menu-visual {
+  margin-top: 0 !important;
+  background: #020202 !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+  scroll-margin-top: 0 !important;
+}
+
+.menu-visual.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Mobile refinements so the landing feels clean on shorter screens too. */
+@media (max-height: 740px) {
+  .hero {
+    min-height: 92svh !important;
+    height: 92svh !important;
+  }
+
+  .hero-art {
+    transform: scale(.94) !important;
+  }
+
+  .hero-shop {
+    top: 72.5% !important;
+    height: 13.5% !important;
+  }
+}
+
+@media (min-width: 760px) {
+  .hero {
+    max-height: 900px !important;
+  }
+
+  .hero-art {
+    transform: scale(.92) !important;
+  }
+}
