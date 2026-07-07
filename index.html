@@ -12,17 +12,24 @@
 </head>
 <body>
   <main class="site-shell">
-    <section class="hero" id="top" aria-label="Herts Vapes hero">
+    <section class="hero final-hero" id="top" aria-label="Herts Vapes hero">
       <img src="hero.jpg" alt="Herts Vapes - Fast. Reliable. Local." class="hero-art" />
+      <div class="hero-ambient" aria-hidden="true"></div>
       <div class="hero-focus">
+        <div class="hero-trust-row" aria-label="Fast delivery, trusted locally, quality vapes">
+          <span>Fast Delivery</span>
+          <span>Trusted Locally</span>
+          <span>Quality Vapes</span>
+        </div>
         <div class="brand-lockup" aria-label="Herts Vapes">
           <div class="hero-logo-mark"><span>H</span><span>V</span></div>
           <div class="hero-brand">Herts <strong>Vapes</strong></div>
         </div>
         <p class="hero-tagline">Fast. Reliable. Local.</p>
-        <p class="hero-subcopy">Build your order, then send through WhatsApp or Snapchat.</p>
-        <button class="hero-cta" type="button" data-scroll="#menu" aria-label="Shop now">Shop Now</button>
-        <div class="scroll-cue">⌄</div>
+        <p class="hero-subcopy">Build your order in seconds, then send it through WhatsApp or Snapchat.</p>
+        <button class="hero-cta" type="button" data-scroll="#menu" aria-label="Shop now"><span class="hero-lock">▱</span> Shop Now</button>
+        <p class="hero-mini-note">Tap Shop Now or scroll down to open the live menu.</p>
+        <div class="scroll-cue" aria-hidden="true">⌄</div>
       </div>
       <button class="hotspot hero-shop" data-scroll="#menu" aria-label="Shop now"></button>
       <a class="hotspot hero-whatsapp" href="https://wa.me/447885752823?text=Hi%20Herts%20Vapes%2C%20I%27d%20like%20to%20place%20an%20order." aria-label="Order through WhatsApp"></a>
@@ -32,6 +39,11 @@
     <div class="section-blend" aria-hidden="true"></div>
 
     <section class="menu-visual" id="menu" aria-label="Herts Vapes menu categories">
+      <div class="menu-title-band" aria-hidden="true">
+        <span></span>
+        <strong>Live Menu</strong>
+        <span></span>
+      </div>
       <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art" />
       <button class="hotspot category-hit special" data-category="special" aria-label="Open special deals"></button>
       <button class="hotspot category-hit disposable" data-category="disposable" aria-label="Open disposable vapes"></button>

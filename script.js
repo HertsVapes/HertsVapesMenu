@@ -162,23 +162,31 @@ function saveCart() {
   renderCart();
 }
 
+function revealMenu() {
+  if (!menu) return;
+  menu.classList.add("reveal");
+  document.body.classList.add("menu-entered");
+}
+
 document.querySelectorAll("[data-scroll]").forEach((button) => {
   button.addEventListener("click", () => {
     softTap();
-    document.querySelector(button.dataset.scroll).scrollIntoView({ behavior: "smooth", block: "start" });
+    revealMenu();
+    const target = document.querySelector(button.dataset.scroll);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
 function revealOnScroll() {
   const vh = window.innerHeight;
-  if (menu && menu.getBoundingClientRect().top < vh * 0.9) menu.classList.add("reveal");
+  if (window.scrollY > 18 || (menu && menu.getBoundingClientRect().top < vh * 0.72)) revealMenu();
   if (readyCard && readyCard.getBoundingClientRect().top < vh * 0.86) readyCard.classList.add("reveal");
   if (bulkCard && bulkCard.getBoundingClientRect().top < vh * 0.88) bulkCard.classList.add("reveal");
 }
 
 window.addEventListener("scroll", revealOnScroll, { passive: true });
 window.addEventListener("load", () => {
-  revealOnScroll();
+  document.body.classList.add("hero-loaded");
   renderCart();
 });
 
