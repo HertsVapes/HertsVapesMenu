@@ -3483,3 +3483,116 @@ body { background: #020202; }
   .menu-title-band { gap: 12px; }
   .menu-title-band strong { letter-spacing: .12em; }
 }
+
+
+/* =====================================================
+   FINAL MICRO-POLISH: cleaner Shop Now bar only
+   Keeps all menu/cart/category/order behaviour unchanged.
+   ===================================================== */
+.final-hero .hero-cta {
+  min-width: min(76vw, 318px) !important;
+  min-height: 62px !important;
+  gap: 13px !important;
+  margin-top: 10px !important;
+  padding: 15px 28px !important;
+  border: 1px solid rgba(255, 45, 58, .94) !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, .10), transparent 42%),
+    linear-gradient(180deg, rgba(22, 22, 22, .88), rgba(5, 5, 5, .82)) !important;
+  font-size: clamp(19px, 5.15vw, 28px) !important;
+  line-height: 1 !important;
+  letter-spacing: .16em !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.075),
+    inset 0 -10px 20px rgba(0,0,0,.30),
+    0 0 20px rgba(255,37,49,.32),
+    0 15px 34px rgba(0,0,0,.50) !important;
+  animation: finalButtonGlowClean 4.4s ease-in-out infinite !important;
+}
+
+.final-hero .hero-cta::before {
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0) 37%, rgba(255,255,255,.18) 49%, rgba(255,255,255,0) 61%, transparent 100%) !important;
+  animation: finalButtonShineClean 4.8s ease-in-out infinite !important;
+}
+
+.final-hero .hero-cta::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 1px solid rgba(255,37,49,.18);
+  pointer-events: none;
+  filter: drop-shadow(0 0 9px rgba(255,37,49,.22));
+}
+
+@keyframes finalButtonGlowClean {
+  0%,100% {
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,.075),
+      inset 0 -10px 20px rgba(0,0,0,.30),
+      0 0 18px rgba(255,37,49,.28),
+      0 15px 34px rgba(0,0,0,.50);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,.10),
+      inset 0 -10px 20px rgba(0,0,0,.32),
+      0 0 30px rgba(255,37,49,.42),
+      0 17px 40px rgba(0,0,0,.56);
+  }
+}
+
+@keyframes finalButtonShineClean {
+  0%,62% { opacity: 0; transform: translateX(-120%); }
+  74% { opacity: .85; }
+  90%,100% { opacity: 0; transform: translateX(120%); }
+}
+
+.final-hero .hero-cta:active {
+  transform: scale(.978) !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, .12), transparent 42%),
+    linear-gradient(180deg, rgba(40, 8, 10, .88), rgba(7, 7, 7, .86)) !important;
+}
+
+.hero-lock {
+  width: 24px !important;
+  height: 24px !important;
+  border-width: 2px !important;
+  border-radius: 6px !important;
+  opacity: .92;
+}
+
+.hero-lock::before {
+  top: -13px !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-width: 2.5px !important;
+}
+
+@media (max-height: 740px) {
+  .final-hero .hero-cta {
+    min-height: 58px !important;
+    padding: 14px 26px !important;
+  }
+  .hero-lock {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .hero-lock::before {
+    top: -12px !important;
+    width: 15px !important;
+    height: 15px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .final-hero .hero-cta {
+    min-width: 74vw !important;
+    gap: 11px !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    letter-spacing: .14em !important;
+  }
+}
