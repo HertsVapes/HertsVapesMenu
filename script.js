@@ -1,3 +1,8 @@
+/*
+  HERTS VAPES PRODUCT DATA
+  Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
+  The rendering/cart/order logic below should not need changing for normal stock updates.
+*/
 const inventory = {
   special: {
     title: "Special Deals",
@@ -193,6 +198,8 @@ closePanel.addEventListener("click", () => {
 
 function openCategory(key) {
   const category = inventory[key];
+  if (!category) return;
+  panel.dataset.category = key;
   panelTitle.textContent = category.title;
   panelContent.innerHTML = renderCategory(category);
   panel.style.display = "block";
@@ -249,7 +256,7 @@ function renderBulkCategory(category) {
   return `
     <article class="bulk-panel-card">
       <p class="panel-eyebrow">HV BULK</p>
-      <h3>Save Big on Larger Orders</h3>
+      <h3>Bulk Pre-Orders</h3>
       <p class="bulk-intro">${escapeHtml(category.intro)}</p>
       <div class="bulk-points panel-bulk-points">
         ${category.points.map(point => `<div class="bulk-point">${escapeHtml(point)}</div>`).join("")}
