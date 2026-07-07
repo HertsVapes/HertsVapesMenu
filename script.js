@@ -255,8 +255,13 @@ function renderDealVisuals(deal) {
 function renderBulkCategory(category) {
   return `
     <article class="bulk-panel-card bulk-final-card">
-      <div class="bulk-icon-box" aria-hidden="true">
-        <span></span>
+      <div class="bulk-icon-box package-icon" aria-hidden="true">
+        <svg viewBox="0 0 120 100" focusable="false">
+          <path d="M20 34 60 14 100 34 60 54 20 34Z"></path>
+          <path d="M20 34v38l40 20V54L20 34Z"></path>
+          <path d="M100 34v38L60 92V54l40-20Z"></path>
+          <path d="M42 24 82 44"></path>
+        </svg>
       </div>
       <p class="bulk-panel-kicker">HV BULK</p>
       <h3>Bulk Enquiries</h3>

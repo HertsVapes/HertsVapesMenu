@@ -2386,3 +2386,80 @@ button, a {
   right: max(16px, env(safe-area-inset-right)) !important;
   bottom: calc(22px + env(safe-area-inset-bottom)) !important;
 }
+
+
+/* ==============================
+   Herts Vapes V3.7 FINAL
+   Final hero cleanup + clearer HV Bulk package icon
+   ============================== */
+
+/* The V3.7 hero artwork removes the WhatsApp/Snapchat boxes, so only Shop Now remains clickable. */
+.hero-whatsapp,
+.hero-snapchat {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+.hero-shop {
+  display: block !important;
+  left: 29.5% !important;
+  top: 81.0% !important;
+  width: 41.5% !important;
+  height: 10.8% !important;
+  border-radius: 999px !important;
+}
+
+/* Keep the hero tight to the live menu with a clean dark/red blend. */
+.section-blend {
+  height: 22px !important;
+  margin-top: -14px !important;
+  margin-bottom: -8px !important;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(226,21,33,.14), transparent 58%),
+    linear-gradient(180deg, rgba(2,2,2,0), #020202 80%) !important;
+}
+
+.menu-visual {
+  margin-top: 0 !important;
+  background: #020202 !important;
+}
+
+/* Replace the abstract HV Bulk icon with a clear package/box icon. */
+.bulk-icon-box.package-icon,
+.bulk-icon-box {
+  width: 118px !important;
+  height: 98px !important;
+  margin: 2px auto 20px !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+}
+
+.bulk-icon-box.package-icon::before,
+.bulk-icon-box.package-icon::after,
+.bulk-icon-box.package-icon span,
+.bulk-icon-box::before,
+.bulk-icon-box::after,
+.bulk-icon-box span {
+  content: none !important;
+  display: none !important;
+}
+
+.bulk-icon-box.package-icon svg {
+  width: 118px;
+  height: 98px;
+  overflow: visible;
+  filter: drop-shadow(0 0 14px rgba(226,21,33,.34));
+}
+
+.bulk-icon-box.package-icon path {
+  fill: none;
+  stroke: var(--red-bright);
+  stroke-width: 5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.bulk-final-card {
+  padding-top: 32px !important;
+}
