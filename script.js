@@ -272,7 +272,7 @@ function renderBulkCategory(category) {
         </svg>
       </div>
       <p class="bulk-panel-kicker">HV BULK</p>
-      <h3>Bulk Enquiries</h3>
+      <h3>Bulk Orders</h3>
       <p class="bulk-intro">${escapeHtml(category.intro)}</p>
       <div class="bulk-points panel-bulk-points">
         ${category.points.map(point => `<div class="bulk-point">${escapeHtml(point)}</div>`).join("")}
@@ -281,8 +281,8 @@ function renderBulkCategory(category) {
         <span>Available on bulk pre-orders from</span>
         <strong>£100+</strong>
       </div>
-      <a href="${category.link}" class="order-button bulk-button">Enquire on WhatsApp</a>
-      <p class="bulk-footnote">You will be redirected to WhatsApp to discuss your requirements.</p>
+      <a href="${category.link}" class="order-button bulk-button">Order on WhatsApp</a>
+      <p class="bulk-footnote">You will be redirected to WhatsApp to place your bulk order.</p>
     </article>
   `;
 }
