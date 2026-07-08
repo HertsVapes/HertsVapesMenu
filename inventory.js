@@ -6,10 +6,8 @@
 window.HERTS_VAPES_INVENTORY = {
   special: {
     title: "Special Deals",
-    cardTitle: "Special Deals",
-    cardSubtitle: "Best current bundles",
-    icon: "★",
     image: "assets/categories/special.png",
+    icon: "special",
     type: "deals",
     items: [
       {
@@ -65,10 +63,8 @@ window.HERTS_VAPES_INVENTORY = {
 
   disposable: {
     title: "Disposable Vapes",
-    cardTitle: "Disposable Vapes",
-    cardSubtitle: "6000s, 25Ks and more",
-    icon: "↯",
     image: "assets/categories/disposable.png",
+    icon: "disposable",
     items: [
       { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
       { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"] },
@@ -81,10 +77,8 @@ window.HERTS_VAPES_INVENTORY = {
 
   podkits: {
     title: "Pod Kits",
-    cardTitle: "Pod Kits",
-    cardSubtitle: "Reusable kits",
-    icon: "▣",
     image: "assets/categories/podkits.png",
+    icon: "podkits",
     items: [
       { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
     ]
@@ -92,10 +86,8 @@ window.HERTS_VAPES_INVENTORY = {
 
   salts: {
     title: "Nic Salts",
-    cardTitle: "Nic Salts",
-    cardSubtitle: "20mg liquids",
-    icon: "◆",
     image: "assets/categories/salts.png",
+    icon: "salts",
     items: [
       { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
     ]
@@ -103,10 +95,8 @@ window.HERTS_VAPES_INVENTORY = {
 
   pods: {
     title: "Replacement Pods",
-    cardTitle: "Replacement Pods",
-    cardSubtitle: "XROS Corex pods",
-    icon: "◫",
     image: "assets/categories/pods.png",
+    icon: "pods",
     items: [
       { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
     ]
@@ -114,10 +104,8 @@ window.HERTS_VAPES_INVENTORY = {
 
   pouches: {
     title: "Nicotine Pouches",
-    cardTitle: "Nicotine Pouches",
-    cardSubtitle: "Boxes and 5-box deals",
-    icon: "●",
     image: "assets/categories/pouches.png",
+    icon: "pouches",
     items: [
       { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" },
       { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" }
@@ -126,20 +114,15 @@ window.HERTS_VAPES_INVENTORY = {
 
   tobacco: {
     title: "Tobacco",
-    cardTitle: "Tobacco",
-    cardSubtitle: "Ask for current tobacco stock",
-    icon: "▰",
     image: "assets/categories/tobacco.png",
+    icon: "tobacco",
     items: [
-      { name: "Tobacco", price: "Message for price", meta: "Availability changes often", details: ["Tell us what tobacco you want and we’ll confirm current stock/prices"] }
+      { name: "Tobacco", price: "Message", meta: "Message to check current options", details: ["Options confirmed on WhatsApp"] }
     ]
   },
 
   bulk: {
     title: "HV Bulk",
-    cardTitle: "HV Bulk",
-    cardSubtitle: "£100+ pre-orders",
-    icon: "HV",
     type: "bulk",
     intro: "Save big on larger pre-orders.",
     points: [
@@ -160,8 +143,6 @@ window.HERTS_VAPES_INVENTORY = {
     { name: "Flavour name", stock: false }
   - Do not edit script.js for normal stock/menu updates.
 */
-window.HERTS_VAPES_CATEGORY_ORDER = ["special", "disposable", "podkits", "salts", "pods", "pouches", "tobacco", "bulk"];
-
 window.HERTS_VAPES_CONTACT = {
   whatsappNumber: "447885752823",
   snapchatUrl: "https://www.snapchat.com/add/herts.vps"

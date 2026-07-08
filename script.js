@@ -1,15 +1,12 @@
 /*
-  HERTS VAPES V4
-  Products, categories, prices, flavours, deals, stock and category images are loaded from inventory.js.
-  Keep normal stock updates in inventory.js only.
+  HERTS VAPES MENU LOGIC
+  Product/category data is loaded from inventory.js.
 */
 const inventory = window.HERTS_VAPES_INVENTORY || {};
-const categoryOrder = window.HERTS_VAPES_CATEGORY_ORDER || Object.keys(inventory);
 const contact = window.HERTS_VAPES_CONTACT || {};
-
 const menu = document.querySelector(".menu-visual");
 const readyCard = document.querySelector(".ready-card");
-const bulkCard = document.querySelector(".hv-bulk-category-button");
+const bulkCard = document.querySelector(".bulk-card");
 const panel = document.getElementById("inventoryPanel");
 const panelTitle = document.getElementById("panelTitle");
 const panelContent = document.getElementById("panelContent");
@@ -25,7 +22,6 @@ const cartSnapchat = document.getElementById("cartSnapchat");
 const cartClear = document.getElementById("cartClear");
 const toast = document.getElementById("toast");
 const WHATSAPP_NUMBER = contact.whatsappNumber || "447885752823";
-const SNAPCHAT_URL = contact.snapchatUrl || "https://www.snapchat.com/add/herts.vps";
 const CART_KEY = "hertsVapesCart";
 let cart = loadCart();
 let toastTimer;
@@ -52,11 +48,7 @@ function loadCart() {
 }
 
 function saveCart() {
-  try {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  } catch (error) {
-    // Cart still works in the current session if storage is unavailable.
-  }
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
   renderCart();
 }
 
@@ -88,43 +80,12 @@ window.addEventListener("load", () => {
   renderCart();
 });
 
-function renderCategoryCards() {
-  const grid = document.getElementById("categoryGrid");
-  if (!grid) return;
-
-  grid.innerHTML = categoryOrder
-    .filter((key) => inventory[key])
-    .map((key) => {
-      const category = inventory[key];
-      const hasImage = Boolean(category.image);
-      const itemCount = Array.isArray(category.items) ? category.items.length : 0;
-      const subtitle = category.cardSubtitle || category.meta || (category.type === "bulk" ? "£100+ pre-orders" : `${itemCount} option${itemCount === 1 ? "" : "s"}`);
-      return `
-        <button class="category-card-v4 ${category.type === "bulk" ? "bulk-card-v4" : ""}" type="button" data-category="${escapeHtml(key)}" aria-label="Open ${escapeHtml(category.title)}">
-          <span class="category-glow" aria-hidden="true"></span>
-          <span class="category-card-content">
-            <span class="category-icon-v4">${escapeHtml(category.icon || "HV")}</span>
-            <span class="category-copy-v4">
-              <strong>${escapeHtml(category.cardTitle || category.title)}</strong>
-              <em>${escapeHtml(subtitle)}</em>
-            </span>
-          </span>
-          ${hasImage ? `<img class="category-image-v4" src="${escapeHtml(category.image)}" alt="" loading="eager" decoding="async" />` : ""}
-          <span class="category-arrow-v4" aria-hidden="true">›</span>
-        </button>
-      `;
-    })
-    .join("");
-
-  grid.querySelectorAll("[data-category]").forEach((button) => {
-    button.addEventListener("click", () => {
-      softTap();
-      openCategory(button.dataset.category);
-    });
+document.querySelectorAll("[data-category]").forEach((button) => {
+  button.addEventListener("click", () => {
+    softTap();
+    openCategory(button.dataset.category);
   });
-}
-
-renderCategoryCards();
+});
 
 closePanel.addEventListener("click", () => {
   softTap();
@@ -147,6 +108,7 @@ function openCategory(key) {
 
 function renderCategory(category) {
   if (category.type === "bulk") return renderBulkCategory(category);
+  if (!category.items || !category.items.length) return `<article class="product-card"><div class="product-main"><div><div class="product-name">${escapeHtml(category.title)}</div><div class="product-meta">Message Herts Vapes to check current options.</div></div></div></article>`;
   if (category.type === "deals") return category.items.map(renderDeal).join("");
   return category.items.map(renderProduct).join("");
 }
@@ -479,8 +441,8 @@ cartSnapchat.addEventListener("click", async () => {
   softTap();
   await copyOrderMessage();
   showToast("✓ Order copied. Paste into Snapchat.");
-  setTimeout(() => window.open(SNAPCHAT_URL, "_blank"), 350);
+  setTimeout(() => window.open(contact.snapchatUrl || "https://www.snapchat.com/add/herts.vps", "_blank"), 350);
 });
 
 // Final public clean build marker. Functionality above is unchanged.
-window.HERTS_VAPES_BUILD = "v4-data-driven-category-cards";
+window.HERTS_VAPES_BUILD = "final-public-clean";

@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="site-shell" data-version="v4-data-driven">
+  <main class="site-shell" data-version="final-public-shopnow-clean">
     <section class="hero final-hero" id="top" aria-label="Herts Vapes hero">
       <img src="hero.jpg" alt="Herts Vapes - Fast. Reliable. Local." class="hero-art" />
       <div class="hero-ambient" aria-hidden="true"></div>
@@ -38,13 +38,74 @@
 
     <div class="section-blend" aria-hidden="true"></div>
 
-    <section class="menu-visual menu-v4" id="menu" aria-label="Herts Vapes menu categories">
-      <div class="menu-title-band" aria-hidden="true">
+    <section class="menu-visual v4-menu" id="menu" aria-label="Herts Vapes menu categories">
+      <div class="menu-title-band">
         <span></span>
         <strong>Live Menu</strong>
         <span></span>
       </div>
-      <div class="category-grid-v4" id="categoryGrid"></div>
+
+      <div class="category-card-grid" aria-label="Product categories">
+        <button class="category-card" type="button" data-category="special" aria-label="Open special deals">
+          <span class="category-icon icon-special" aria-hidden="true"></span>
+          <span class="category-copy"><strong>Special Deals</strong><em>Bundle offers</em></span>
+          <img class="category-image" src="assets/categories/special.png" alt="" loading="eager" />
+          <span class="category-arrow" aria-hidden="true">›</span>
+        </button>
+
+        <button class="category-card" type="button" data-category="disposable" aria-label="Open disposable vapes">
+          <span class="category-icon icon-disposable" aria-hidden="true"></span>
+          <span class="category-copy"><strong>Disposable Vapes</strong><em>6000–25000 puff range</em></span>
+          <img class="category-image" src="assets/categories/disposable.png" alt="" loading="eager" />
+          <span class="category-arrow" aria-hidden="true">›</span>
+        </button>
+
+        <button class="category-card" type="button" data-category="podkits" aria-label="Open pod kits">
+          <span class="category-icon icon-podkits" aria-hidden="true"></span>
+          <span class="category-copy"><strong>Pod Kits</strong><em>XROS kits</em></span>
+          <img class="category-image" src="assets/categories/podkits.png" alt="" loading="eager" />
+          <span class="category-arrow" aria-hidden="true">›</span>
+        </button>
+
+        <button class="category-card" type="button" data-category="salts" aria-label="Open nic salts">
+          <span class="category-icon icon-salts" aria-hidden="true"></span>
+          <span class="category-copy"><strong>Nic Salts</strong><em>20mg liquids</em></span>
+          <img class="category-image" src="assets/categories/salts.png" alt="" loading="eager" />
+          <span class="category-arrow" aria-hidden="true">›</span>
+        </button>
+
+        <button class="category-card" type="button" data-category="pods" aria-label="Open replacement pods">
+          <span class="category-icon icon-pods" aria-hidden="true"></span>
+          <span class="category-copy"><strong>Replacement Pods</strong><em>Corex XROS pods</em></span>
+          <img class="category-image" src="assets/categories/pods.png" alt="" loading="eager" />
+          <span class="category-arrow" aria-hidden="true">›</span>
+        </button>
+
+        <button class="category-card" type="button" data-category="pouches" aria-label="Open nicotine pouches">
+          <span class="category-icon icon-pouches" aria-hidden="true"></span>
+          <span class="category-copy"><strong>Nicotine Pouches</strong><em>VELO + Pablo</em></span>
+          <img class="category-image" src="assets/categories/pouches.png" alt="" loading="eager" />
+          <span class="category-arrow" aria-hidden="true">›</span>
+        </button>
+
+        <button class="category-card" type="button" data-category="tobacco" aria-label="Open tobacco">
+          <span class="category-icon icon-tobacco" aria-hidden="true"></span>
+          <span class="category-copy"><strong>Tobacco</strong><em>Rolling tobacco</em></span>
+          <img class="category-image" src="assets/categories/tobacco.png" alt="" loading="eager" />
+          <span class="category-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="hv-bulk-category" aria-label="HV Bulk category">
+      <button class="hv-bulk-category-button" type="button" data-category="bulk" aria-label="Open HV Bulk">
+        <span class="hv-bulk-icon">HV</span>
+        <span class="hv-bulk-text">
+          <strong>HV BULK</strong>
+          <em>£100+ pre-orders</em>
+        </span>
+        <span class="hv-bulk-arrow">›</span>
+      </button>
     </section>
 
     <section class="inventory-panel" id="inventoryPanel" aria-live="polite">
