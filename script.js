@@ -3,120 +3,19 @@
   Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
   The rendering/cart/order logic below should not need changing for normal stock updates.
 */
-const inventory = {
-  special: {
-    title: "Special Deals",
-    type: "deals",
-    items: [
-      {
-        name: "Vaporesso XROS Pro 2.0",
-        subline: "+ 4 Nic Salts",
-        price: "£30",
-        meta: "Kit bundle",
-        saving: "Save £5",
-        confirm: "Flavours confirmed in message",
-        visuals: [{ label: "XROS Pro 2.0" }, { label: "Nic Salts", qty: "×4" }],
-        prompts: ["Kit colour", "Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4"]
-      },
-      {
-        name: "2 XROS Pods",
-        subline: "+ 6 Nic Salts",
-        price: "£20",
-        meta: "Pods and liquids bundle",
-        saving: "Save £5",
-        confirm: "Flavours confirmed in message",
-        visuals: [{ label: "XROS Pods", qty: "×2" }, { label: "Nic Salts", qty: "×6" }],
-        prompts: ["Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4", "Nic Salt 5", "Nic Salt 6"]
-      },
-      {
-        name: "2 Hayati Dual Flavour 25000",
-        price: "£25",
-        meta: "25K disposable bundle",
-        saving: "Save £5",
-        confirm: "Flavours confirmed in message",
-        visuals: [{ label: "Hayati 25K", qty: "×2" }],
-        prompts: ["Device 1", "Device 2"]
-      },
-      {
-        name: "3 Elux Legend 3500",
-        price: "£10",
-        meta: "3.5K disposable bundle",
-        saving: "Save £5",
-        confirm: "Flavours confirmed in message",
-        visuals: [{ label: "Elux 3500", qty: "×3" }],
-        prompts: ["Flavour 1", "Flavour 2", "Flavour 3"]
-      },
-      {
-        name: "2 Lost Mary BM6000",
-        subline: "+ 1 Hayati 25K",
-        price: "£30",
-        meta: "Mixed disposable bundle",
-        saving: "Save £5",
-        confirm: "Flavours confirmed in message",
-        visuals: [{ label: "Lost Mary", qty: "×2" }, { label: "Hayati 25K" }],
-        prompts: ["Lost Mary 1", "Lost Mary 2", "Hayati 25K"]
-      }
-    ]
-  },
-
-  disposable: {
-    title: "Disposable Vapes",
-    items: [
-      { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
-      { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"] },
-      { name: "Enjoy Ultra 9000", price: "£10", meta: "2 flavours available", flavours: ["Berry Apple Peach", "Apple Watermelon Strawberry"] },
-      { name: "Pixl 8000", price: "£10", meta: "Black Cherry", flavours: ["Black Cherry"], simple: true },
-      { name: "Hayati Pro Max 6000", price: "£10", meta: "Fizzy Cherry", flavours: ["Fizzy Cherry"], simple: true },
-      { name: "Elux Legend 3500", price: "£5", meta: "5 flavours available", flavours: ["Cherry Ice", "Fizzy Cherry", "Cherry Sours", "Pineapple Ice", "Watermelon Cherry Raspberry Ice"] }
-    ]
-  },
-
-  podkits: {
-    title: "Pod Kits",
-    items: [
-      { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
-    ]
-  },
-
-  salts: {
-    title: "Nic Salts",
-    items: [
-      { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
-    ]
-  },
-
-  pods: {
-    title: "Replacement Pods",
-    items: [
-      { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
-    ]
-  },
-
-  pouches: {
-    title: "Nicotine Pouches",
-    items: [
-      { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" },
-      { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" }
-    ]
-  },
-
-  bulk: {
-    title: "HV Bulk",
-    type: "bulk",
-    intro: "Save big on larger pre-orders.",
-    points: [
-      "Manufacturer-sealed boxes",
-      "A much wider range than our in-stock menu",
-      "Reserved exclusively for your order"
-    ],
-    minimum: "Available on bulk pre-orders from £100.",
-    link: "https://wa.me/447885752823?text=Hi%20Herts%20Vapes%2C%0A%0AI%27m%20interested%20in%20your%20bulk%20prices.%0A%0AProducts%20I%27m%20interested%20in%3A%0A%0A%E2%80%A2"
-  }
+const settings = window.HV_SETTINGS || {
+  whatsappNumber: "447885752823",
+  snapchatUsername: "herts.vps",
+  snapchatUrl: "https://www.snapchat.com/add/herts.vps"
 };
+
+const categoryData = (window.HV_INVENTORY && window.HV_INVENTORY.categories) || [];
+const inventory = (window.HV_INVENTORY && window.HV_INVENTORY.inventory) || {};
 
 const menu = document.querySelector(".menu-visual");
 const readyCard = document.querySelector(".ready-card");
 const bulkCard = document.querySelector(".bulk-card");
+const categoryGrid = document.getElementById("categoryGrid");
 const panel = document.getElementById("inventoryPanel");
 const panelTitle = document.getElementById("panelTitle");
 const panelContent = document.getElementById("panelContent");
@@ -131,7 +30,7 @@ const cartWhatsapp = document.getElementById("cartWhatsapp");
 const cartSnapchat = document.getElementById("cartSnapchat");
 const cartClear = document.getElementById("cartClear");
 const toast = document.getElementById("toast");
-const WHATSAPP_NUMBER = "447885752823";
+const WHATSAPP_NUMBER = settings.whatsappNumber || "447885752823";
 const CART_KEY = "hertsVapesCart";
 let cart = loadCart();
 let toastTimer;
@@ -147,6 +46,10 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+}
+
+function disabledAttr(item) {
+  return item && item.inStock === false ? " disabled aria-disabled=\"true\"" : "";
 }
 
 function loadCart() {
@@ -167,6 +70,25 @@ function revealMenu() {
   menu.classList.add("reveal");
   document.body.classList.add("menu-entered");
 }
+function renderCategoryCards() {
+  if (!categoryGrid) return;
+  categoryGrid.innerHTML = categoryData.map(renderCategoryCard).join("");
+}
+
+function renderCategoryCard(category) {
+  const image = category.image ? escapeHtml(category.image) : "";
+  return `
+    <button class="category-card" type="button" data-category="${escapeHtml(category.key)}" aria-label="${escapeHtml(category.ariaLabel || `Open ${category.title}`)}">
+      <span class="category-card-text">
+        <strong>${escapeHtml(category.title)}</strong>
+        <em>${escapeHtml(category.subtitle || "Tap to view")}</em>
+      </span>
+      ${image ? `<img src="${image}" alt="" class="category-card-img" loading="lazy" />` : ""}
+      <span class="category-card-arrow">›</span>
+    </button>
+  `;
+}
+
 
 document.querySelectorAll("[data-scroll]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -187,15 +109,37 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll, { passive: true });
 window.addEventListener("load", () => {
   document.body.classList.add("hero-loaded");
+  renderCategoryCards();
+  setupCategoryButtons();
+  updateBusinessLinks();
   renderCart();
 });
 
-document.querySelectorAll("[data-category]").forEach((button) => {
-  button.addEventListener("click", () => {
-    softTap();
-    openCategory(button.dataset.category);
+function setupCategoryButtons() {
+  document.querySelectorAll("[data-category]").forEach((button) => {
+    button.addEventListener("click", () => {
+      softTap();
+      openCategory(button.dataset.category);
+    });
   });
-});
+}
+
+function whatsappUrl(message) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+function bulkWhatsappUrl(category) {
+  const message = category.bulkMessage || "Hi Herts Vapes,\n\nI'm interested in your bulk prices.\n\nProducts I'm interested in:\n\n•";
+  return whatsappUrl(message);
+}
+
+function updateBusinessLinks() {
+  const defaultText = settings.whatsappOrderText || "Hi Herts Vapes, I'd like to place an order.";
+  const defaultWhatsappUrl = whatsappUrl(defaultText);
+  document.querySelectorAll('[data-business-link="whatsapp"]').forEach(link => { link.href = defaultWhatsappUrl; });
+  const snapUrl = settings.snapchatUrl || `https://www.snapchat.com/add/${settings.snapchatUsername || "herts.vps"}`;
+  document.querySelectorAll('[data-business-link="snapchat"]').forEach(link => { link.href = snapUrl; });
+}
 
 closePanel.addEventListener("click", () => {
   softTap();
@@ -226,7 +170,7 @@ function renderDeal(deal) {
   const promptData = deal.prompts ? escapeHtml(deal.prompts.join("||")) : "";
   const displayName = deal.subline ? `${deal.name} ${deal.subline}` : deal.name;
   return `
-    <article class="deal-card offer-card">
+    <article class="deal-card offer-card ${deal.inStock === false ? "out-of-stock" : ""}">
       ${renderDealVisuals(deal)}
       <div class="deal-main">
         <div>
@@ -239,7 +183,7 @@ function renderDeal(deal) {
         <div class="price-pill">${escapeHtml(deal.price)}</div>
       </div>
       <div class="card-actions">
-        <button class="add-cart-button" type="button" data-add="${escapeHtml(displayName)}" data-price="${escapeHtml(deal.price)}" data-prompts="${promptData}">ADD</button>
+        <button class="add-cart-button" type="button"${disabledAttr(deal)} data-add="${escapeHtml(displayName)}" data-price="${escapeHtml(deal.price)}" data-prompts="${promptData}">ADD</button>
       </div>
     </article>
   `;
@@ -281,7 +225,7 @@ function renderBulkCategory(category) {
         <span>Available on bulk pre-orders from</span>
         <strong>£100+</strong>
       </div>
-      <a href="${category.link}" class="order-button bulk-button">Order on WhatsApp</a>
+      <a href="${bulkWhatsappUrl(category)}" class="order-button bulk-button">Order on WhatsApp</a>
       <p class="bulk-footnote">You will be redirected to WhatsApp to place your bulk order.</p>
     </article>
   `;
@@ -294,13 +238,13 @@ function renderProduct(product) {
   const hasSingleChoice = choices.length === 1 && !product.pricing;
 
   return `
-    <article class="product-card ${hasExpandable ? "can-open" : ""}">
-      <button class="product-main" type="button" ${hasExpandable ? "" : "disabled"}>
+    <article class="product-card ${hasExpandable ? "can-open" : ""} ${product.inStock === false ? "out-of-stock" : ""}">
+      <button class="product-main" type="button" ${hasExpandable && product.inStock !== false ? "" : "disabled"}>
         <div>
           <div class="product-name">${escapeHtml(product.name)}${product.popular ? ` <span class="popular-badge">MOST POPULAR</span>` : ""}</div>
           <div class="product-meta">${escapeHtml(product.meta)}${hasExpandable ? "  ▾" : ""}</div>
         </div>
-        ${product.price ? `<div class="price-pill">${escapeHtml(product.price)}</div>` : ""}
+        ${product.inStock === false ? `<div class="stock-pill">OUT OF STOCK</div>` : (product.price ? `<div class="price-pill">${escapeHtml(product.price)}</div>` : "")}
       </button>
       ${product.pricing ? renderPricing(product) : ""}
       ${hasExpandable ? renderExpandable(product) : ""}
@@ -313,7 +257,7 @@ function renderProduct(product) {
 function renderQuickAdd(product, option = "") {
   return `
     <div class="card-actions">
-      <button class="add-cart-button" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">ADD</button>
+      <button class="add-cart-button" type="button"${disabledAttr(product)} data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">ADD</button>
     </div>
   `;
 }
@@ -321,7 +265,7 @@ function renderQuickAdd(product, option = "") {
 function renderSingleOption(product, option = "") {
   return `
     <div class="single-option-list">
-      <button class="option-add-row" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">
+      <button class="option-add-row" type="button"${disabledAttr(product)} data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">
         <span>${escapeHtml(option || product.name)}</span>
         <em>ADD</em>
       </button>
@@ -337,7 +281,7 @@ function renderPricing(product) {
           <div class="option-group">
             <div class="option-title">${escapeHtml(detail)}</div>
             <div class="option-prices">
-              ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(detail + " - " + row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
+              ${product.pricing.map(row => `<button class="price-row add-price" type="button"${disabledAttr(product)} data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(detail + " - " + row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
             </div>
             ${product.saving ? `<div class="saving option-saving">${escapeHtml(product.saving)}</div>` : ""}
           </div>
@@ -348,7 +292,7 @@ function renderPricing(product) {
 
   return `
     <div class="price-pair priced-options">
-      ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
+      ${product.pricing.map(row => `<button class="price-row add-price" type="button"${disabledAttr(product)} data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
       ${product.saving ? `<div class="saving">${escapeHtml(product.saving)}</div>` : ""}
     </div>
   `;
@@ -357,7 +301,7 @@ function renderPricing(product) {
 function renderExpandable(product) {
   const list = product.flavours || product.details || [];
   const twoCol = list.length >= 6 ? " two-col" : "";
-  return `<div class="expand-content"><div class="flavour-list${twoCol}">${list.map(item => `<button class="flavour add-flavour" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(item)}" data-price="${escapeHtml(product.price || "")}">${escapeHtml(item)}<span>ADD</span></button>`).join("")}</div></div>`;
+  return `<div class="expand-content"><div class="flavour-list${twoCol}">${list.map(item => `<button class="flavour add-flavour" type="button"${disabledAttr(product)} data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(item)}" data-price="${escapeHtml(product.price || "")}">${escapeHtml(item)}<span>ADD</span></button>`).join("")}</div></div>`;
 }
 
 function setupProductCards() {
@@ -550,8 +494,8 @@ cartSnapchat.addEventListener("click", async () => {
   softTap();
   await copyOrderMessage();
   showToast("✓ Order copied. Paste into Snapchat.");
-  setTimeout(() => window.open("https://www.snapchat.com/add/herts.vps", "_blank"), 350);
+  setTimeout(() => window.open(settings.snapchatUrl || `https://www.snapchat.com/add/${settings.snapchatUsername || "herts.vps"}`, "_blank"), 350);
 });
 
 // Final public clean build marker. Functionality above is unchanged.
-window.HERTS_VAPES_BUILD = "final-public-clean";
+window.HERTS_VAPES_BUILD = "v4-inventory-driven";

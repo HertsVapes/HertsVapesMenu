@@ -1,15 +1,26 @@
-# Herts Vapes Menu - Version 2 Polished
+# Herts Vapes Version 4
 
-Upload every file in this folder to the root of your GitHub repository:
+Inventory-driven GitHub Pages build.
 
-- index.html
-- style.css
-- script.js
-- hero.jpg
-- menu.jpg
-- README.md
+## Files to edit for future updates
 
-Important:
-- Replace 447000000000 in index.html with your real WhatsApp number when ready.
-- Replace YOUR_SNAPCHAT_USERNAME in index.html with your Snapchat username.
-- GitHub Pages should be set to Deploy from branch: main / root.
+- `data/inventory.js` — categories, products, flavours, prices, deals, stock and category images.
+- `data/settings.js` — WhatsApp number, Snapchat username and business settings.
+
+## Stock updates
+
+To mark something out of stock, change that product or deal to:
+
+```js
+inStock: false
+```
+
+To put it back in stock:
+
+```js
+inStock: true
+```
+
+## Images
+
+Use only local image files already uploaded to the project. Category images are referenced in `data/inventory.js`.

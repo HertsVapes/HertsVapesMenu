@@ -1,0 +1,135 @@
+window.HV_INVENTORY = {
+  categories: [
+    { key: "special", title: "Special Deals", subtitle: "Best value bundles", image: "special.png", ariaLabel: "Open special deals" },
+    { key: "disposable", title: "Disposable Vapes", subtitle: "Live flavours and prices", image: "disposable.png", ariaLabel: "Open disposable vapes" },
+    { key: "podkits", title: "Pod Kits", subtitle: "Kits and colours", image: "podkits.png", ariaLabel: "Open pod kits" },
+    { key: "salts", title: "Nic Salts", subtitle: "20mg liquids", image: "salts.png", ariaLabel: "Open nic salts" },
+    { key: "pods", title: "Replacement Pods", subtitle: "XROS Corex pods", image: "pods.png", ariaLabel: "Open replacement pods" },
+    { key: "pouches", title: "Nicotine Pouches", subtitle: "Boxes and pack deals", image: "pouches.png", ariaLabel: "Open nicotine pouches" },
+    { key: "tobacco", title: "Tobacco", subtitle: "Amber Leaf Original", image: "tobacco.png", ariaLabel: "Open tobacco" },
+    { key: "bulk", title: "HV Bulk", subtitle: "£100+ pre-orders", image: "menu.jpg", ariaLabel: "Open HV Bulk" }
+  ],
+
+  inventory: {
+    special: {
+      title: "Special Deals",
+      type: "deals",
+      items: [
+        {
+          name: "XROS Pro 2.0 Body Kit",
+          subline: "+ 4 Nic Salts",
+          price: "£30",
+          meta: "Kit and liquids bundle",
+          saving: "Save £5",
+          confirm: "Flavours confirmed in message",
+          visuals: [{ label: "XROS Pro 2.0" }, { label: "Nic Salts", qty: "×4" }],
+          prompts: ["Kit colour", "Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4"],
+          inStock: true
+        },
+        {
+          name: "2 XROS Pods",
+          subline: "+ 6 Nic Salts",
+          price: "£20",
+          meta: "Pods and liquids bundle",
+          saving: "Save £5",
+          confirm: "Flavours confirmed in message",
+          visuals: [{ label: "XROS Pods", qty: "×2" }, { label: "Nic Salts", qty: "×6" }],
+          prompts: ["Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4", "Nic Salt 5", "Nic Salt 6"],
+          inStock: true
+        },
+        {
+          name: "2 Hayati Dual Flavour 25000",
+          price: "£25",
+          meta: "25K disposable bundle",
+          saving: "Save £5",
+          confirm: "Flavours confirmed in message",
+          visuals: [{ label: "Hayati 25K", qty: "×2" }],
+          prompts: ["Device 1", "Device 2"],
+          inStock: true
+        },
+        {
+          name: "3 Elux Legend 3500",
+          price: "£10",
+          meta: "3.5K disposable bundle",
+          saving: "Save £5",
+          confirm: "Flavours confirmed in message",
+          visuals: [{ label: "Elux 3500", qty: "×3" }],
+          prompts: ["Flavour 1", "Flavour 2", "Flavour 3"],
+          inStock: true
+        },
+        {
+          name: "2 Lost Mary BM6000",
+          subline: "+ 1 Hayati 25K",
+          price: "£30",
+          meta: "Mixed disposable bundle",
+          saving: "Save £5",
+          confirm: "Flavours confirmed in message",
+          visuals: [{ label: "Lost Mary", qty: "×2" }, { label: "Hayati 25K" }],
+          prompts: ["Lost Mary 1", "Lost Mary 2", "Hayati 25K"],
+          inStock: true
+        }
+      ]
+    },
+
+    disposable: {
+      title: "Disposable Vapes",
+      items: [
+        { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"], inStock: true },
+        { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"], inStock: true },
+        { name: "Enjoy Ultra 9000", price: "£10", meta: "2 flavours available", flavours: ["Berry Apple Peach", "Apple Watermelon Strawberry"], inStock: true },
+        { name: "Pixl 8000", price: "£10", meta: "Black Cherry", flavours: ["Black Cherry"], simple: true, inStock: true },
+        { name: "Hayati Pro Max 6000", price: "£10", meta: "Fizzy Cherry", flavours: ["Fizzy Cherry"], simple: true, inStock: true },
+        { name: "Elux Legend 3500", price: "£5", meta: "5 flavours available", flavours: ["Cherry Ice", "Fizzy Cherry", "Cherry Sours", "Pineapple Ice", "Watermelon Cherry Raspberry Ice"], inStock: true }
+      ]
+    },
+
+    podkits: {
+      title: "Pod Kits",
+      items: [
+        { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"], inStock: true }
+      ]
+    },
+
+    salts: {
+      title: "Nic Salts",
+      items: [
+        { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"], inStock: true }
+      ]
+    },
+
+    pods: {
+      title: "Replacement Pods",
+      items: [
+        { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5", inStock: true }
+      ]
+    },
+
+    pouches: {
+      title: "Nicotine Pouches",
+      items: [
+        { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5", inStock: true },
+        { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5", inStock: true }
+      ]
+    },
+
+    tobacco: {
+      title: "Tobacco",
+      items: [
+        { name: "Amber Leaf Original", meta: "50g", pricing: [{ label: "50g", price: "£30" }, { label: "2 Packs", price: "£55" }], saving: "Save £5", inStock: true }
+      ]
+    },
+
+    bulk: {
+      title: "HV Bulk",
+      type: "bulk",
+      intro: "Save big on larger pre-orders.",
+      points: [
+        "Manufacturer-sealed boxes",
+        "A much wider range than our in-stock menu",
+        "Reserved exclusively for your order"
+      ],
+      minimum: "Available on bulk pre-orders from £100.",
+      bulkMessage: "Hi Herts Vapes,\n\nI'm interested in your bulk prices.\n\nProducts I'm interested in:\n\n•"
+    }
+  }
+};
