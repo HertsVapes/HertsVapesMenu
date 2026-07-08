@@ -7,7 +7,6 @@
   <meta name="description" content="Herts Vapes live menu. Browse products, flavours and deals, then order through WhatsApp or Snapchat." />
   <title>Herts Vapes Menu</title>
   <link rel="preload" href="hero.jpg" as="image" />
-  <link rel="preload" href="menu.jpg" as="image" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -44,37 +43,51 @@
         <strong>Live Menu</strong>
         <span></span>
       </div>
-      <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art" />
-      <div class="category-image-layer" aria-hidden="true">
-        <div class="category-image-stage category-special">
-          <img src="assets/categories/podkit-cutout.png" alt="" class="product-cutout product-podkit" />
-          <img src="assets/categories/lostmary-cutout.png" alt="" class="product-cutout product-lostmary" />
-          <img src="assets/categories/eluxnicsalt-cutout.png" alt="" class="product-cutout product-salt" />
-        </div>
-        <div class="category-image-stage category-disposable">
-          <img src="assets/categories/lostmary-cutout.png" alt="" class="product-cutout product-lostmary" />
-          <img src="assets/categories/hayati25k-cutout.png" alt="" class="product-cutout product-hayati" />
-          <img src="assets/categories/elux3500-cutout.png" alt="" class="product-cutout product-elux3500" />
-        </div>
-        <div class="category-image-stage category-podkits">
-          <img src="assets/categories/podkit-cutout.png" alt="" class="product-cutout product-podkit solo" />
-        </div>
-        <div class="category-image-stage category-salts">
-          <img src="assets/categories/eluxnicsalt-cutout.png" alt="" class="product-cutout product-salt solo" />
-        </div>
-        <div class="category-image-stage category-pods">
-          <img src="assets/categories/vaporessopod-cutout.png" alt="" class="product-cutout product-pods solo" />
-        </div>
-        <div class="category-image-stage category-pouches">
-          <img src="assets/categories/pablopouch-cutout.png" alt="" class="product-cutout product-pouch solo" />
-        </div>
+      <div class="category-card-list" aria-label="Shop by category">
+        <button class="category-card special" type="button" data-category="special" aria-label="Open special deals">
+          <span class="category-card-copy"><strong>Special Deals</strong><em>Bundles & savings</em></span>
+          <span class="category-card-art multi-art special-art" aria-hidden="true">
+            <img src="lostmary.png" alt="" loading="lazy" />
+            <img src="podkit.png" alt="" loading="lazy" />
+            <img src="eluxnicsalt.png" alt="" loading="lazy" />
+          </span>
+          <span class="category-card-arrow">›</span>
+        </button>
+        <button class="category-card disposable" type="button" data-category="disposable" aria-label="Open disposable vapes">
+          <span class="category-card-copy"><strong>Disposable Vapes</strong><em>Lost Mary, Hayati, Elux</em></span>
+          <span class="category-card-art multi-art disposable-art" aria-hidden="true">
+            <img src="lostmary.png" alt="" loading="lazy" />
+            <img src="hayati25k.png" alt="" loading="lazy" />
+            <img src="elux3500.png" alt="" loading="lazy" />
+          </span>
+          <span class="category-card-arrow">›</span>
+        </button>
+        <button class="category-card podkits" type="button" data-category="podkits" aria-label="Open pod kits">
+          <span class="category-card-copy"><strong>Pod Kits</strong><em>Vaporesso XROS</em></span>
+          <span class="category-card-art" aria-hidden="true"><img src="podkit.png" alt="" loading="lazy" /></span>
+          <span class="category-card-arrow">›</span>
+        </button>
+        <button class="category-card salts" type="button" data-category="salts" aria-label="Open nic salts">
+          <span class="category-card-copy"><strong>Nic Salts</strong><em>Elux Legend</em></span>
+          <span class="category-card-art" aria-hidden="true"><img src="eluxnicsalt.png" alt="" loading="lazy" /></span>
+          <span class="category-card-arrow">›</span>
+        </button>
+        <button class="category-card pods" type="button" data-category="pods" aria-label="Open replacement pods">
+          <span class="category-card-copy"><strong>Replacement Pods</strong><em>XROS Corex pods</em></span>
+          <span class="category-card-art" aria-hidden="true"><img src="vaporessopod.png" alt="" loading="lazy" /></span>
+          <span class="category-card-arrow">›</span>
+        </button>
+        <button class="category-card pouches" type="button" data-category="pouches" aria-label="Open nicotine pouches">
+          <span class="category-card-copy"><strong>Nicotine Pouches</strong><em>VELO & Pablo</em></span>
+          <span class="category-card-art" aria-hidden="true"><img src="pablopouch.png" alt="" loading="lazy" /></span>
+          <span class="category-card-arrow">›</span>
+        </button>
+        <button class="category-card tobacco" type="button" data-category="tobacco" aria-label="Open tobacco">
+          <span class="category-card-copy"><strong>Tobacco</strong><em>Amber Leaf</em></span>
+          <span class="category-card-art" aria-hidden="true"><img src="amberleaf.png" alt="" loading="lazy" /></span>
+          <span class="category-card-arrow">›</span>
+        </button>
       </div>
-      <button class="hotspot category-hit special" data-category="special" aria-label="Open special deals"></button>
-      <button class="hotspot category-hit disposable" data-category="disposable" aria-label="Open disposable vapes"></button>
-      <button class="hotspot category-hit podkits" data-category="podkits" aria-label="Open pod kits"></button>
-      <button class="hotspot category-hit salts" data-category="salts" aria-label="Open nic salts"></button>
-      <button class="hotspot category-hit pods" data-category="pods" aria-label="Open replacement pods"></button>
-      <button class="hotspot category-hit pouches" data-category="pouches" aria-label="Open nicotine pouches"></button>
     </section>
 
     <section class="hv-bulk-category" aria-label="HV Bulk category">
