@@ -6,6 +6,7 @@
 window.HERTS_VAPES_INVENTORY = {
   special: {
     title: "Special Deals",
+    categoryCard: { icon: "◇", image: "assets/special.png", imageAlt: "Special deals" },
     type: "deals",
     items: [
       {
@@ -61,6 +62,7 @@ window.HERTS_VAPES_INVENTORY = {
 
   disposable: {
     title: "Disposable Vapes",
+    categoryCard: { icon: "▯", image: "assets/disposable.png", imageAlt: "Disposable vapes" },
     items: [
       { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
       { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"] },
@@ -73,6 +75,7 @@ window.HERTS_VAPES_INVENTORY = {
 
   podkits: {
     title: "Pod Kits",
+    categoryCard: { icon: "▯", image: "assets/podkits.png", imageAlt: "Pod kits" },
     items: [
       { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
     ]
@@ -80,6 +83,7 @@ window.HERTS_VAPES_INVENTORY = {
 
   salts: {
     title: "Nic Salts",
+    categoryCard: { icon: "◌", image: "assets/salts.png", imageAlt: "Nic salts" },
     items: [
       { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
     ]
@@ -87,6 +91,7 @@ window.HERTS_VAPES_INVENTORY = {
 
   pods: {
     title: "Replacement Pods",
+    categoryCard: { icon: "▤", image: "assets/pods.png", imageAlt: "Replacement pods" },
     items: [
       { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
     ]
@@ -94,6 +99,7 @@ window.HERTS_VAPES_INVENTORY = {
 
   pouches: {
     title: "Nicotine Pouches",
+    categoryCard: { icon: "◎", image: "assets/pouches.png", imageAlt: "Nicotine pouches" },
     items: [
       { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" },
       { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" }
@@ -102,6 +108,7 @@ window.HERTS_VAPES_INVENTORY = {
 
   tobacco: {
     title: "Tobacco",
+    categoryCard: { icon: "▦", image: "amber-leaf-pouch.svg", imageAlt: "Amber Leaf tobacco pouch" },
     items: [
       { name: "Amber Leaf 50g Pack", meta: "Rolling tobacco", pricing: [{ label: "1 Pack", price: "£30" }, { label: "2 Packs", price: "£55" }], saving: "Save £5" }
     ]

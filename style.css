@@ -1956,119 +1956,6 @@ button, a {
   display: none;
 }
 
-
-
-/* V4 Tobacco category entry: product-category style, kept separate from HV Bulk. */
-.tobacco-category {
-  padding: 8px 22px 12px;
-  margin-top: -2px;
-  background:
-    radial-gradient(circle at 80% 0%, rgba(226,21,33,.10), transparent 38%),
-    linear-gradient(180deg, #020202, #020202);
-}
-
-.tobacco-category-button {
-  width: 100%;
-  min-height: 148px;
-  display: grid;
-  grid-template-columns: 82px 1fr 138px 28px;
-  align-items: center;
-  gap: 14px;
-  border: 1px solid rgba(226,21,33,.48);
-  border-radius: 23px;
-  background:
-    radial-gradient(circle at 87% 15%, rgba(226,21,33,.24), transparent 38%),
-    linear-gradient(180deg, rgba(255,255,255,.046), rgba(255,255,255,.012));
-  color: #fff;
-  text-align: left;
-  padding: 17px 16px;
-  box-shadow: 0 16px 36px rgba(0,0,0,.36), 0 0 16px rgba(226,21,33,.06);
-  cursor: pointer;
-  overflow: hidden;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.tobacco-category-button:active {
-  transform: scale(.988);
-  border-color: rgba(255,37,49,.74);
-  background:
-    radial-gradient(circle at 87% 15%, rgba(226,21,33,.30), transparent 38%),
-    rgba(226,21,33,.08);
-}
-
-.tobacco-icon {
-  width: 64px;
-  height: 64px;
-  border: 2px solid rgba(255,37,49,.74);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--red-bright);
-  font-size: 18px;
-  font-weight: 950;
-  letter-spacing: -.04em;
-  box-shadow: inset 0 0 0 1px rgba(226,21,33,.08), 0 0 18px rgba(226,21,33,.08);
-}
-
-.tobacco-text {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-}
-
-.tobacco-text strong {
-  color: #fff;
-  font-size: clamp(25px, 7vw, 34px);
-  line-height: 1;
-  font-weight: 950;
-  letter-spacing: -.02em;
-  text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(255,37,49,.08), 0 10px 24px rgba(0,0,0,.36);
-}
-
-.tobacco-product-image {
-  width: min(132px, 26vw);
-  justify-self: end;
-  align-self: center;
-  filter: drop-shadow(0 18px 20px rgba(0,0,0,.46)) drop-shadow(0 0 14px rgba(226,21,33,.12));
-  transform: rotate(-2deg);
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.tobacco-arrow {
-  color: var(--red-bright);
-  font-size: 54px;
-  line-height: 1;
-  font-weight: 300;
-  justify-self: end;
-  text-shadow: 0 0 18px rgba(226,21,33,.32);
-}
-
-@media (max-width: 420px) {
-  .tobacco-category-button {
-    min-height: 138px;
-    grid-template-columns: 72px 1fr 108px 24px;
-    gap: 10px;
-    padding: 15px 14px;
-  }
-
-  .tobacco-icon {
-    width: 58px;
-    height: 58px;
-    font-size: 17px;
-  }
-
-  .tobacco-product-image {
-    width: min(108px, 26vw);
-  }
-
-  .tobacco-arrow {
-    font-size: 47px;
-  }
-}
-
 /* HV Bulk now behaves like a small category entry, not a visible bulk section */
 .hv-bulk-category {
   padding: 10px 22px 28px;
@@ -3758,34 +3645,147 @@ body { background: #020202; }
   }
 }
 
-/* V4 stock state support. Only appears when inventory.js marks an item or flavour as stock: false. */
-.stock-badge {
-  display: inline-flex;
+/* =====================================================
+   V4 reusable inventory category menu
+   All normal product categories render from inventory.js.
+   HV Bulk keeps its existing separate category style.
+   ===================================================== */
+.menu-art-reference {
+  display: none !important;
+}
+
+.category-list {
+  display: grid;
+  gap: 12px;
+  padding: calc(124px + env(safe-area-inset-top)) 22px 8px;
+  background: #020202;
+}
+
+.menu-category-card {
+  width: 100%;
+  min-height: 132px;
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr) minmax(112px, 36%) 34px;
   align-items: center;
-  width: fit-content;
-  margin-top: 7px;
-  padding: 5px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
-  color: rgba(255,255,255,.72);
-  font-size: 10px;
+  gap: 16px;
+  border: 1px solid rgba(226,21,33,.48);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 88% 16%, rgba(226,21,33,.12), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.010));
+  color: #fff;
+  text-align: left;
+  padding: 13px 16px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.36), inset 0 0 0 1px rgba(226,21,33,.055);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+.menu-category-card:active {
+  transform: scale(.985);
+  border-color: rgba(255,37,49,.74);
+  box-shadow: 0 0 34px rgba(226,21,33,.22), 0 14px 34px rgba(0,0,0,.38);
+}
+
+.menu-category-icon {
+  width: 66px;
+  height: 66px;
+  border: 2px solid rgba(226,21,33,.72);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--red-bright);
+  font-size: 30px;
   line-height: 1;
   font-weight: 950;
-  letter-spacing: .12em;
+  box-shadow: inset 0 0 0 1px rgba(226,21,33,.08), 0 0 18px rgba(226,21,33,.08);
+}
+
+.menu-category-text {
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.menu-category-text strong {
+  color: #fff;
+  font-size: clamp(21px, 5.4vw, 30px);
+  line-height: .98;
+  font-weight: 950;
+  letter-spacing: -.035em;
   text-transform: uppercase;
 }
 
-.is-out-of-stock {
-  opacity: .72;
+.menu-category-text em {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.1;
+  font-style: normal;
+  font-weight: 850;
 }
 
-.add-cart-button:disabled,
-.add-flavour:disabled,
-.option-add-row:disabled,
-.add-price.price-row:disabled,
-.price-row.add-price:disabled {
-  cursor: not-allowed;
-  opacity: .56;
-  transform: none !important;
+.menu-category-image {
+  width: 100%;
+  max-height: 112px;
+  object-fit: contain;
+  object-position: center;
+  justify-self: center;
+  filter: drop-shadow(0 12px 16px rgba(0,0,0,.50));
+  pointer-events: none;
+}
+
+.menu-category-arrow {
+  color: var(--red-bright);
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 300;
+  justify-self: end;
+}
+
+@media (max-width: 420px) {
+  .category-list {
+    gap: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .menu-category-card {
+    min-height: 118px;
+    grid-template-columns: 72px minmax(0, 1fr) minmax(88px, 34%) 28px;
+    gap: 12px;
+    padding: 12px 13px;
+    border-radius: 13px;
+  }
+
+  .menu-category-icon {
+    width: 58px;
+    height: 58px;
+    font-size: 25px;
+  }
+
+  .menu-category-text strong {
+    font-size: clamp(19px, 5.8vw, 25px);
+  }
+
+  .menu-category-image {
+    max-height: 100px;
+  }
+
+  .menu-category-arrow {
+    font-size: 46px;
+  }
+}
+
+@media (max-width: 360px) {
+  .menu-category-card {
+    grid-template-columns: 60px minmax(0, 1fr) minmax(78px, 32%) 24px;
+    gap: 9px;
+  }
+
+  .menu-category-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+  }
 }
