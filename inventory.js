@@ -1,17 +1,19 @@
 /*
   HERTS VAPES PRODUCT DATA
-  Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
+  Future updates: edit categories, category images, products, flavours, prices, bundles, deals, stock and bulk copy in this inventory object only.
+  Category images must live in assets/categories/ and be referenced by each category image property.
   The rendering/cart/order logic below should not need changing for normal stock updates.
 */
 window.HERTS_VAPES_INVENTORY = {
   menuCategories: [
-    { key: "special", title: "Special Deals", icon: "tag", image: "assets/special.png" },
-    { key: "disposable", title: "Disposable Vapes", icon: "bottle", image: "assets/disposable.png" },
-    { key: "podkits", title: "Pod Kits", icon: "kit", image: "assets/podkits.png" },
-    { key: "salts", title: "Nic Salts", icon: "drop", image: "assets/salts.png" },
-    { key: "pods", title: "Replacement Pods", icon: "pod", image: "assets/pods.png" },
-    { key: "pouches", title: "Nicotine Pouches", icon: "pouch", image: "assets/pouches.png" },
-    { key: "tobacco", title: "Tobacco", icon: "tobacco", image: "assets/tobacco.png" }
+    { id: "special", key: "special", name: "Special Deals", title: "Special Deals", icon: "tag", image: "assets/categories/special.png" },
+    { id: "disposable", key: "disposable", name: "Disposable Vapes", title: "Disposable Vapes", icon: "bottle", image: "assets/categories/disposable.png" },
+    { id: "podkits", key: "podkits", name: "Pod Kits", title: "Pod Kits", icon: "kit", image: "assets/categories/podkits.png" },
+    { id: "salts", key: "salts", name: "Nic Salts", title: "Nic Salts", icon: "drop", image: "assets/categories/salts.png" },
+    { id: "pods", key: "pods", name: "Replacement Pods", title: "Replacement Pods", icon: "pod", image: "assets/categories/pods.png" },
+    { id: "pouches", key: "pouches", name: "Nicotine Pouches", title: "Nicotine Pouches", icon: "pouch", image: "assets/categories/pouches.png" },
+    { id: "tobacco", key: "tobacco", name: "Tobacco", title: "Tobacco", icon: "tobacco", image: "assets/categories/tobacco.png" },
+    { id: "bulk", key: "bulk", name: "HV Bulk", title: "HV Bulk", icon: "bulk", image: "" }
   ],
 
   special: {
@@ -133,7 +135,7 @@ window.HERTS_VAPES_INVENTORY = {
 
 /*
   Normal stock update guide:
-  - Add/edit categories, products, flavours, prices, deals and stock here.
+  - Add/edit categories, category image paths, products, flavours, prices, deals and stock here.
   - Use stock: true for available items, stock: false for out of stock items.
   - For individual flavours, either keep simple text entries or use:
     { name: "Flavour name", stock: false }

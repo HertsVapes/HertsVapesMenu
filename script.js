@@ -59,14 +59,21 @@ function saveCart() {
 function renderMenuCategories() {
   if (!categoryList) return;
   const categories = inventory.menuCategories || [];
-  categoryList.innerHTML = categories.map((category) => `
-    <button class="category-card" type="button" data-category="${escapeHtml(category.key)}" aria-label="Open ${escapeHtml(category.title)}">
-      <span class="category-icon" aria-hidden="true">${categoryIcon(category.icon)}</span>
-      <span class="category-name">${escapeHtml(category.title)}</span>
-      ${category.image ? `<img class="category-image" src="${escapeHtml(category.image)}" alt="" loading="lazy" />` : ""}
-      <span class="category-arrow" aria-hidden="true">›</span>
-    </button>
-  `).join("");
+  categoryList.innerHTML = categories.map((category) => {
+    const key = category.key || category.id;
+    const title = category.title || category.name;
+    const image = category.image || "";
+    return `
+      <button class="category-card" type="button" data-category="${escapeHtml(key)}" aria-label="Open ${escapeHtml(title)}">
+        <span class="category-icon" aria-hidden="true">${categoryIcon(category.icon)}</span>
+        <span class="category-name">${escapeHtml(title)}</span>
+        <span class="category-image-slot" aria-hidden="true">
+          ${image ? `<img class="category-image" src="${escapeHtml(image)}" alt="" loading="lazy" onerror="this.hidden=true" />` : ""}
+        </span>
+        <span class="category-arrow" aria-hidden="true">›</span>
+      </button>
+    `;
+  }).join("");
 }
 
 function categoryIcon(icon) {
@@ -77,7 +84,8 @@ function categoryIcon(icon) {
     drop: '<svg viewBox="0 0 48 48"><path d="M24 5S12 20 12 30a12 12 0 0 0 24 0C36 20 24 5 24 5Z"></path></svg>',
     pod: '<svg viewBox="0 0 48 48"><path d="M15 6h18v13H15z"></path><path d="M13 19h22v23H13z"></path><path d="M18 28h12"></path></svg>',
     pouch: '<svg viewBox="0 0 48 48"><ellipse cx="24" cy="17" rx="17" ry="8"></ellipse><path d="M7 17v14c0 4.4 7.6 8 17 8s17-3.6 17-8V17"></path></svg>',
-    tobacco: '<svg viewBox="0 0 48 48"><path d="M10 32c8-12 20-15 29-16"></path><path d="M14 37c7-8 15-11 24-11"></path><path d="M17 14h14l4 7H13l4-7Z"></path><path d="M13 21h22v13H13z"></path></svg>'
+    tobacco: '<svg viewBox="0 0 48 48"><path d="M10 32c8-12 20-15 29-16"></path><path d="M14 37c7-8 15-11 24-11"></path><path d="M17 14h14l4 7H13l4-7Z"></path><path d="M13 21h22v13H13z"></path></svg>',
+    bulk: '<svg viewBox="0 0 48 48"><path d="M8 17 24 9l16 8-16 8-16-8Z"></path><path d="M8 17v17l16 8V25L8 17Z"></path><path d="M40 17v17l-16 8V25l16-8Z"></path><path d="M17 12l16 8"></path></svg>'
   };
   return icons[icon] || icons.bottle;
 }
