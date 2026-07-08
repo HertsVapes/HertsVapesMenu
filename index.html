@@ -44,7 +44,16 @@
         <strong>Live Menu</strong>
         <span></span>
       </div>
-      <div class="category-grid" id="categoryGrid"></div>
+      <div class="original-menu-fallback" id="originalMenuFallback" aria-label="Original menu fallback">
+        <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art" />
+        <button class="hotspot category-hit special" data-category="special" aria-label="Open special deals"></button>
+        <button class="hotspot category-hit disposable" data-category="disposable" aria-label="Open disposable vapes"></button>
+        <button class="hotspot category-hit podkits" data-category="podkits" aria-label="Open pod kits"></button>
+        <button class="hotspot category-hit salts" data-category="salts" aria-label="Open nic salts"></button>
+        <button class="hotspot category-hit pods" data-category="pods" aria-label="Open replacement pods"></button>
+        <button class="hotspot category-hit pouches" data-category="pouches" aria-label="Open nicotine pouches"></button>
+      </div>
+      <div class="category-grid" id="categoryGrid" hidden></div>
     </section>
 
     <section class="inventory-panel" id="inventoryPanel" aria-live="polite">

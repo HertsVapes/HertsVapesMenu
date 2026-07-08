@@ -9,8 +9,24 @@ const settings = window.HV_SETTINGS || {
   snapchatUrl: "https://www.snapchat.com/add/herts.vps"
 };
 
-const categoryData = (window.HV_INVENTORY && window.HV_INVENTORY.categories) || [];
-const inventory = (window.HV_INVENTORY && window.HV_INVENTORY.inventory) || {};
+const rawInventoryBundle = window.HV_INVENTORY || {};
+const inventory = rawInventoryBundle.inventory || rawInventoryBundle.products || {};
+const fallbackCategoryTitles = {
+  special: ["Special Deals", "Best value bundles", "special.png"],
+  disposable: ["Disposable Vapes", "Live flavours and prices", "disposable.png"],
+  podkits: ["Pod Kits", "Kits and colours", "podkits.png"],
+  salts: ["Nic Salts", "20mg liquids", "salts.png"],
+  pods: ["Replacement Pods", "XROS Corex pods", "pods.png"],
+  pouches: ["Nicotine Pouches", "Boxes and pack deals", "pouches.png"],
+  tobacco: ["Tobacco", "Amber Leaf Original", "tobacco.png"],
+  bulk: ["HV Bulk", "£100+ pre-orders", "menu.jpg"]
+};
+const categoryData = Array.isArray(rawInventoryBundle.categories) && rawInventoryBundle.categories.length
+  ? rawInventoryBundle.categories
+  : Object.keys(inventory).map(key => {
+      const fallback = fallbackCategoryTitles[key] || [key, "Tap to view", ""];
+      return { key, title: fallback[0], subtitle: fallback[1], image: fallback[2], ariaLabel: `Open ${fallback[0]}` };
+    });
 
 const menu = document.querySelector(".menu-visual");
 const readyCard = document.querySelector(".ready-card");
@@ -71,8 +87,20 @@ function revealMenu() {
   document.body.classList.add("menu-entered");
 }
 function renderCategoryCards() {
-  if (!categoryGrid) return;
-  categoryGrid.innerHTML = categoryData.map(renderCategoryCard).join("");
+  if (!categoryGrid || !menu) return false;
+  try {
+    const safeCategories = categoryData.filter(category => category && category.key && inventory[category.key]);
+    if (!safeCategories.length) return false;
+    categoryGrid.innerHTML = safeCategories.map(renderCategoryCard).join("");
+    categoryGrid.hidden = false;
+    menu.classList.add("inventory-ready");
+    return true;
+  } catch (error) {
+    console.error("Herts Vapes inventory menu failed. Original menu fallback remains visible.", error);
+    categoryGrid.hidden = true;
+    menu.classList.remove("inventory-ready");
+    return false;
+  }
 }
 
 function renderCategoryCard(category) {
@@ -117,6 +145,8 @@ window.addEventListener("load", () => {
 
 function setupCategoryButtons() {
   document.querySelectorAll("[data-category]").forEach((button) => {
+    if (button.dataset.boundCategory === "true") return;
+    button.dataset.boundCategory = "true";
     button.addEventListener("click", () => {
       softTap();
       openCategory(button.dataset.category);
@@ -141,29 +171,42 @@ function updateBusinessLinks() {
   document.querySelectorAll('[data-business-link="snapchat"]').forEach(link => { link.href = snapUrl; });
 }
 
-closePanel.addEventListener("click", () => {
-  softTap();
-  panel.classList.remove("open");
-  panel.style.display = "none";
-  document.getElementById("menu").scrollIntoView({ behavior: "smooth", block: "start" });
-});
+if (closePanel && panel) {
+  closePanel.addEventListener("click", () => {
+    softTap();
+    panel.classList.remove("open");
+    panel.style.display = "none";
+    const menuSection = document.getElementById("menu");
+    if (menuSection) menuSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
 
 function openCategory(key) {
   const category = inventory[key];
-  if (!category) return;
-  panel.dataset.category = key;
-  panelTitle.textContent = category.title;
-  panelContent.innerHTML = renderCategory(category);
-  panel.style.display = "block";
-  requestAnimationFrame(() => panel.classList.add("open"));
-  panel.scrollIntoView({ behavior: "smooth", block: "start" });
-  setupProductCards();
+  if (!category || !panel || !panelTitle || !panelContent) {
+    showToast("Menu item not available");
+    return;
+  }
+  try {
+    panel.dataset.category = key;
+    panelTitle.textContent = category.title || fallbackCategoryTitles[key]?.[0] || "Menu";
+    panelContent.innerHTML = renderCategory(category);
+    panel.style.display = "block";
+    requestAnimationFrame(() => panel.classList.add("open"));
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    setupProductCards();
+  } catch (error) {
+    console.error("Category failed to open", key, error);
+    showToast("Category could not open");
+  }
 }
 
 function renderCategory(category) {
   if (category.type === "bulk") return renderBulkCategory(category);
-  if (category.type === "deals") return category.items.map(renderDeal).join("");
-  return category.items.map(renderProduct).join("");
+  const items = Array.isArray(category.items) ? category.items : [];
+  if (!items.length) return `<div class="empty-cart"><strong>No items listed yet.</strong><br>This category is ready to update in inventory.js.</div>`;
+  if (category.type === "deals") return items.map(renderDeal).join("");
+  return items.map(renderProduct).join("");
 }
 
 function renderDeal(deal) {
@@ -219,7 +262,7 @@ function renderBulkCategory(category) {
       <h3>Bulk Orders</h3>
       <p class="bulk-intro">${escapeHtml(category.intro)}</p>
       <div class="bulk-points panel-bulk-points">
-        ${category.points.map(point => `<div class="bulk-point">${escapeHtml(point)}</div>`).join("")}
+        ${(category.points || []).map(point => `<div class="bulk-point">${escapeHtml(point)}</div>`).join("")}
       </div>
       <div class="bulk-minimum-box">
         <span>Available on bulk pre-orders from</span>
@@ -316,7 +359,7 @@ function setupProductCards() {
   });
 }
 
-panelContent.addEventListener("click", (event) => {
+if (panelContent) panelContent.addEventListener("click", (event) => {
   const addButton = event.target.closest("[data-add]");
   if (!addButton) return;
   softTap();
@@ -498,4 +541,4 @@ cartSnapchat.addEventListener("click", async () => {
 });
 
 // Final public clean build marker. Functionality above is unchanged.
-window.HERTS_VAPES_BUILD = "v4-inventory-driven";
+window.HERTS_VAPES_BUILD = "v4-inventory-driven-fallback-fixed";

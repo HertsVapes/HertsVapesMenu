@@ -3745,3 +3745,18 @@ button:disabled {
   .category-card { min-height: 88px; border-radius: 20px; padding-left: 14px; }
   .category-card-img { width: 96px; max-height: 74px; }
 }
+
+/* V4 debug fix: keep original menu visible until inventory categories render safely */
+.original-menu-fallback {
+  position: relative;
+  display: block;
+}
+.category-grid[hidden] {
+  display: none !important;
+}
+.menu-visual.inventory-ready .original-menu-fallback {
+  display: none !important;
+}
+.menu-visual.inventory-ready .category-grid {
+  display: grid !important;
+}
