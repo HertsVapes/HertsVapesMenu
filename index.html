@@ -38,63 +38,19 @@
 
     <div class="section-blend" aria-hidden="true"></div>
 
-    <section class="menu-visual v4-menu" id="menu" aria-label="Herts Vapes menu categories">
-      <div class="menu-title-band">
+    <section class="menu-visual" id="menu" aria-label="Herts Vapes menu categories">
+      <div class="menu-title-band" aria-hidden="true">
         <span></span>
         <strong>Live Menu</strong>
         <span></span>
       </div>
-
-      <div class="category-card-grid" aria-label="Product categories">
-        <button class="category-card" type="button" data-category="special" aria-label="Open special deals">
-          <span class="category-icon icon-special" aria-hidden="true"></span>
-          <span class="category-copy"><strong>Special Deals</strong><em>Bundle offers</em></span>
-          <img class="category-image" src="assets/categories/special.png" alt="" loading="eager" />
-          <span class="category-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="disposable" aria-label="Open disposable vapes">
-          <span class="category-icon icon-disposable" aria-hidden="true"></span>
-          <span class="category-copy"><strong>Disposable Vapes</strong><em>6000–25000 puff range</em></span>
-          <img class="category-image" src="assets/categories/disposable.png" alt="" loading="eager" />
-          <span class="category-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="podkits" aria-label="Open pod kits">
-          <span class="category-icon icon-podkits" aria-hidden="true"></span>
-          <span class="category-copy"><strong>Pod Kits</strong><em>XROS kits</em></span>
-          <img class="category-image" src="assets/categories/podkits.png" alt="" loading="eager" />
-          <span class="category-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="salts" aria-label="Open nic salts">
-          <span class="category-icon icon-salts" aria-hidden="true"></span>
-          <span class="category-copy"><strong>Nic Salts</strong><em>20mg liquids</em></span>
-          <img class="category-image" src="assets/categories/salts.png" alt="" loading="eager" />
-          <span class="category-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="pods" aria-label="Open replacement pods">
-          <span class="category-icon icon-pods" aria-hidden="true"></span>
-          <span class="category-copy"><strong>Replacement Pods</strong><em>Corex XROS pods</em></span>
-          <img class="category-image" src="assets/categories/pods.png" alt="" loading="eager" />
-          <span class="category-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="pouches" aria-label="Open nicotine pouches">
-          <span class="category-icon icon-pouches" aria-hidden="true"></span>
-          <span class="category-copy"><strong>Nicotine Pouches</strong><em>VELO + Pablo</em></span>
-          <img class="category-image" src="assets/categories/pouches.png" alt="" loading="eager" />
-          <span class="category-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="tobacco" aria-label="Open tobacco">
-          <span class="category-icon icon-tobacco" aria-hidden="true"></span>
-          <span class="category-copy"><strong>Tobacco</strong><em>Rolling tobacco</em></span>
-          <img class="category-image" src="assets/categories/tobacco.png" alt="" loading="eager" />
-          <span class="category-arrow" aria-hidden="true">›</span>
-        </button>
-      </div>
+      <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art" />
+      <button class="hotspot category-hit special" data-category="special" aria-label="Open special deals"></button>
+      <button class="hotspot category-hit disposable" data-category="disposable" aria-label="Open disposable vapes"></button>
+      <button class="hotspot category-hit podkits" data-category="podkits" aria-label="Open pod kits"></button>
+      <button class="hotspot category-hit salts" data-category="salts" aria-label="Open nic salts"></button>
+      <button class="hotspot category-hit pods" data-category="pods" aria-label="Open replacement pods"></button>
+      <button class="hotspot category-hit pouches" data-category="pouches" aria-label="Open nicotine pouches"></button>
     </section>
 
     <section class="hv-bulk-category" aria-label="HV Bulk category">
@@ -166,7 +122,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite">Added to cart</div>
   </main>
 
-  <script src="inventory.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
