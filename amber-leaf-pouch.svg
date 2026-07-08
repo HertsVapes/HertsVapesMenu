@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 260" role="img" aria-label="Amber Leaf 50g pouch">
+  <defs>
+    <linearGradient id="pack" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4b13f"/>
+      <stop offset=".42" stop-color="#d77b18"/>
+      <stop offset="1" stop-color="#6b2a08"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity=".34"/>
+      <stop offset=".28" stop-color="#fff" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="10" flood-color="#000" flood-opacity=".55"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M42 30c29-12 108-12 136 0 11 5 17 18 14 31l-26 154c-4 20-15 28-34 30-24 3-50 3-74 0-19-2-30-10-34-30L-2 61c-3-13 3-26 14-31z" transform="translate(16 4)" fill="#2a1508" opacity=".55"/>
+    <path d="M42 23c29-11 108-11 136 0 12 5 18 17 16 30l-27 160c-4 21-17 31-37 33-23 3-48 3-71 0-20-2-33-12-37-33L-4 53C-6 40 0 28 12 23z" transform="translate(16 4)" fill="url(#pack)" stroke="#f7c267" stroke-width="5"/>
+    <path d="M33 32c43 13 95 13 138 0" fill="none" stroke="#ffe1a4" stroke-width="8" stroke-linecap="round" opacity=".88"/>
+    <path d="M42 64h136l-15 90H57z" fill="#f6d154" opacity=".93"/>
+    <path d="M62 77h96c10 0 17 8 15 18l-9 46H56l-9-46c-2-10 5-18 15-18z" fill="#18461d" stroke="#f9e7a3" stroke-width="4"/>
+    <path d="M45 34c29 8 101 9 131 0l-7 31c-39 9-86 9-125 0z" fill="#f2cc57"/>
+    <path d="M69 94c18-25 52-31 82-12-26 8-37 25-46 48-9-18-18-29-36-36z" fill="#f7d94d" opacity=".94"/>
+    <path d="M52 171h116l-7 40c-3 15-12 21-27 23-18 2-38 2-56 0-15-2-24-8-27-23z" fill="#5c260a" opacity=".88"/>
+    <text x="110" y="117" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="24" fill="#fff" letter-spacing="1">AMBER</text>
+    <text x="110" y="143" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="29" fill="#fff" letter-spacing="1">LEAF</text>
+    <text x="110" y="199" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="34" fill="#ffd56c">50g</text>
+    <path d="M29 28c33 8 48 36 55 72 8 43 11 89 25 133" fill="none" stroke="url(#shine)" stroke-width="16" stroke-linecap="round" opacity=".75"/>
+  </g>
+</svg>
