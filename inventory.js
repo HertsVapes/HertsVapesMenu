@@ -1,13 +1,6 @@
-/*
-  HERTS VAPES PRODUCT DATA
-  Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
-  The rendering/cart/order logic below should not need changing for normal stock updates.
-*/
-window.HERTS_VAPES_INVENTORY = {
+const inventory = {
   special: {
     title: "Special Deals",
-    image: "assets/categories/special.png",
-    icon: "special",
     type: "deals",
     items: [
       {
@@ -63,8 +56,6 @@ window.HERTS_VAPES_INVENTORY = {
 
   disposable: {
     title: "Disposable Vapes",
-    image: "assets/categories/disposable.png",
-    icon: "disposable",
     items: [
       { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
       { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"] },
@@ -77,8 +68,6 @@ window.HERTS_VAPES_INVENTORY = {
 
   podkits: {
     title: "Pod Kits",
-    image: "assets/categories/podkits.png",
-    icon: "podkits",
     items: [
       { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
     ]
@@ -86,8 +75,6 @@ window.HERTS_VAPES_INVENTORY = {
 
   salts: {
     title: "Nic Salts",
-    image: "assets/categories/salts.png",
-    icon: "salts",
     items: [
       { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
     ]
@@ -95,8 +82,6 @@ window.HERTS_VAPES_INVENTORY = {
 
   pods: {
     title: "Replacement Pods",
-    image: "assets/categories/pods.png",
-    icon: "pods",
     items: [
       { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
     ]
@@ -104,8 +89,6 @@ window.HERTS_VAPES_INVENTORY = {
 
   pouches: {
     title: "Nicotine Pouches",
-    image: "assets/categories/pouches.png",
-    icon: "pouches",
     items: [
       { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" },
       { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" }
@@ -114,10 +97,16 @@ window.HERTS_VAPES_INVENTORY = {
 
   tobacco: {
     title: "Tobacco",
-    image: "assets/categories/tobacco.png",
-    icon: "tobacco",
     items: [
-      { name: "Tobacco", price: "Message", meta: "Message to check current options", details: ["Options confirmed on WhatsApp"] }
+      {
+        name: "Amber Leaf Original",
+        meta: "50g hand rolling tobacco",
+        pricing: [
+          { label: "50g", price: "£30" },
+          { label: "2 Packs", price: "£55" }
+        ],
+        saving: "Save £5"
+      }
     ]
   },
 
@@ -133,17 +122,4 @@ window.HERTS_VAPES_INVENTORY = {
     minimum: "Available on bulk pre-orders from £100.",
     link: "https://wa.me/447885752823?text=Hi%20Herts%20Vapes%2C%0A%0AI%27m%20interested%20in%20your%20bulk%20prices.%0A%0AProducts%20I%27m%20interested%20in%3A%0A%0A%E2%80%A2"
   }
-};
-
-/*
-  Normal stock update guide:
-  - Add/edit categories, products, flavours, prices, deals and stock here.
-  - Use stock: true for available items, stock: false for out of stock items.
-  - For individual flavours, either keep simple text entries or use:
-    { name: "Flavour name", stock: false }
-  - Do not edit script.js for normal stock/menu updates.
-*/
-window.HERTS_VAPES_CONTACT = {
-  whatsappNumber: "447885752823",
-  snapchatUrl: "https://www.snapchat.com/add/herts.vps"
 };
