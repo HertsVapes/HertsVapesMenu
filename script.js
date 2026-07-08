@@ -99,6 +99,8 @@ function renderCategoryCards() {
   const categoryGrid = document.getElementById("categoryGrid");
   if (!categoryGrid || !Array.isArray(inventory.categories)) return;
 
+  if (!inventory.categories.length) return;
+
   categoryGrid.innerHTML = inventory.categories.map((category) => {
     const image = category.image ? `<img src="${escapeHtml(category.image)}" alt="" class="category-card-image" loading="lazy" />` : "";
     return `
@@ -113,14 +115,16 @@ function renderCategoryCards() {
     `;
   }).join("");
 
+  document.body.classList.add("categories-rendered");
   bindCategoryButtons();
 }
 
-closePanel.addEventListener("click", () => {
+if (closePanel) closePanel.addEventListener("click", () => {
   softTap();
   panel.classList.remove("open");
   panel.style.display = "none";
-  document.getElementById("menu").scrollIntoView({ behavior: "smooth", block: "start" });
+  const menuSection = document.getElementById("menu");
+  if (menuSection) menuSection.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
 function openCategory(key) {

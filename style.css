@@ -3657,9 +3657,9 @@ body { background: #020202; }
     linear-gradient(180deg, #050000 0%, #020202 100%) !important;
 }
 
-.menu-art,
-.category-hit,
-.hv-bulk-category {
+.categories-rendered .menu-art,
+.categories-rendered .category-hit,
+.categories-rendered .hv-bulk-category {
   display: none !important;
 }
 

@@ -8,10 +8,11 @@
   <title>Herts Vapes Menu</title>
   <link rel="preload" href="hero.jpg" as="image" />
   <link rel="preload" href="menu.jpg" as="image" />
+  <link rel="preload" href="assets/categories/disposable.png" as="image" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="site-shell" data-version="v4-inventory-master-categories">
+  <main class="site-shell" data-version="final-public-shopnow-clean">
     <section class="hero final-hero" id="top" aria-label="Herts Vapes hero">
       <img src="hero.jpg" alt="Herts Vapes - Fast. Reliable. Local." class="hero-art" />
       <div class="hero-ambient" aria-hidden="true"></div>
@@ -44,13 +45,8 @@
         <strong>Live Menu</strong>
         <span></span>
       </div>
-      <div class="menu-art category-menu-art">
-        <div class="category-copy">
-          <h2>Shop Our <span>Range</span></h2>
-          <p>Tap a category to view products</p>
-        </div>
-        <div class="category-list" id="categoryList"></div>
-      </div>
+      <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art" />
+      <div class="category-grid" id="categoryGrid" aria-label="Product categories"></div>
     </section>
 
     <section class="inventory-panel" id="inventoryPanel" aria-live="polite">
