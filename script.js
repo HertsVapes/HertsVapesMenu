@@ -6,7 +6,6 @@
 const inventory = {
   special: {
     title: "Special Deals",
-    images: ["lostmary.png.JPG", "podkit.png.JPG", "eluxnicsalt.png.JPG"],
     type: "deals",
     items: [
       {
@@ -62,7 +61,6 @@ const inventory = {
 
   disposable: {
     title: "Disposable Vapes",
-    images: ["lostmary.png.JPG", "hayati25k.png.JPG", "elux3500.png.JPG"],
     items: [
       { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
       { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"] },
@@ -75,7 +73,6 @@ const inventory = {
 
   podkits: {
     title: "Pod Kits",
-    images: ["podkit.png.JPG"],
     items: [
       { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
     ]
@@ -83,7 +80,6 @@ const inventory = {
 
   salts: {
     title: "Nic Salts",
-    images: ["eluxnicsalt.png.JPG"],
     items: [
       { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
     ]
@@ -91,7 +87,6 @@ const inventory = {
 
   pods: {
     title: "Replacement Pods",
-    images: ["vaporessopod.png.JPG"],
     items: [
       { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
     ]
@@ -99,18 +94,9 @@ const inventory = {
 
   pouches: {
     title: "Nicotine Pouches",
-    images: ["pablopouch.png.JPG"],
     items: [
       { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" },
       { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" }
-    ]
-  },
-
-  tobacco: {
-    title: "Tobacco",
-    images: ["tobacco.png"],
-    items: [
-      { name: "Amber Leaf Original", meta: "50g", pricing: [{ label: "1 Pack", price: "£30" }, { label: "2 Packs", price: "£55" }], saving: "Save £5" }
     ]
   },
 
@@ -203,37 +189,6 @@ window.addEventListener("load", () => {
   document.body.classList.add("hero-loaded");
   renderCart();
 });
-
-function renderCategoryMenu() {
-  if (!menu) return;
-  const existing = menu.querySelector(".category-card-grid");
-  if (existing) existing.remove();
-
-  const categoryKeys = Object.keys(inventory).filter((key) => inventory[key].type !== "bulk");
-  const grid = document.createElement("div");
-  grid.className = "category-card-grid";
-
-  grid.innerHTML = categoryKeys.map((key) => {
-    const category = inventory[key];
-    const images = Array.isArray(category.images) ? category.images : [];
-    return `
-      <button class="category-card-button" type="button" data-category="${escapeHtml(key)}" aria-label="Open ${escapeHtml(category.title)}">
-        <span class="category-card-copy">
-          <strong>${escapeHtml(category.title)}</strong>
-          <em>Tap to open</em>
-        </span>
-        <span class="category-card-images" aria-hidden="true">
-          ${images.map((src) => `<img src="${escapeHtml(src)}" alt="" loading="lazy" />`).join("")}
-        </span>
-        <span class="category-card-arrow" aria-hidden="true">›</span>
-      </button>
-    `;
-  }).join("");
-
-  menu.appendChild(grid);
-}
-
-renderCategoryMenu();
 
 document.querySelectorAll("[data-category]").forEach((button) => {
   button.addEventListener("click", () => {
