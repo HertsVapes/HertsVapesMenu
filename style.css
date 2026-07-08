@@ -3645,150 +3645,95 @@ body { background: #020202; }
   }
 }
 
-
-/* V4 inventory-driven category cards */
-.category-grid {
-  display: grid;
-  gap: 14px;
-  padding: 18px 16px 24px;
+/* V4 added category entry: keeps the current menu image/hotspots unchanged */
+.extra-category {
+  padding: 10px 22px 0;
+  margin-top: -4px;
   background:
-    radial-gradient(circle at 82% 8%, rgba(226,21,33,.20), transparent 38%),
-    linear-gradient(180deg, #080808, #020202 80%);
+    radial-gradient(circle at 80% 0%, rgba(226,21,33,.10), transparent 38%),
+    linear-gradient(180deg, #020202, #020202);
 }
 
-.category-card {
+.extra-category-button {
   width: 100%;
-  min-height: 96px;
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 24px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
-    radial-gradient(circle at 86% 50%, rgba(226,21,33,.24), transparent 44%);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 14px 14px 18px;
-  overflow: hidden;
-  box-shadow: 0 18px 34px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.08);
-  cursor: pointer;
-  text-align: left;
-}
-
-.category-card:active {
-  transform: scale(.985);
-  box-shadow: 0 0 34px rgba(226,21,33,.26);
-}
-
-.category-card-text {
+  min-height: 86px;
   display: grid;
-  gap: 4px;
-  min-width: 0;
-  position: relative;
-  z-index: 2;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid rgba(226,21,33,.48);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(226,21,33,.14), transparent 35%),
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+  color: #fff;
+  text-align: left;
+  padding: 12px 16px;
+  box-shadow: 0 16px 36px rgba(0,0,0,.36), 0 0 16px rgba(226,21,33,.06);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.category-card-text strong {
-  font-size: clamp(1.08rem, 4.2vw, 1.42rem);
-  letter-spacing: .04em;
-  text-transform: uppercase;
+.extra-category-button:active {
+  transform: scale(.988);
+  border-color: rgba(255,37,49,.74);
+  background: rgba(226,21,33,.10);
 }
 
-.category-card-text em {
-  color: rgba(255,255,255,.68);
-  font-size: .84rem;
-  font-style: normal;
-  font-weight: 700;
+.extra-category-image {
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(255,37,49,.68);
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.28);
+  box-shadow: inset 0 0 0 1px rgba(226,21,33,.08), 0 0 18px rgba(226,21,33,.08);
 }
 
-.category-card-img {
-  width: 112px;
-  max-height: 82px;
-  object-fit: contain;
-  margin-left: auto;
-  filter: drop-shadow(0 12px 18px rgba(0,0,0,.42));
-  position: relative;
-  z-index: 1;
-}
-
-.category-card-arrow {
-  color: var(--red-bright);
-  font-size: 2.1rem;
-  line-height: 1;
-  padding-left: 4px;
-  position: relative;
-  z-index: 2;
-}
-
-.product-card.out-of-stock,
-.deal-card.out-of-stock {
-  opacity: .62;
-}
-
-.stock-pill {
-  background: rgba(255,255,255,.08);
-  color: rgba(255,255,255,.72);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 999px;
-  padding: 8px 10px;
-  font-size: .74rem;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-button:disabled {
-  cursor: not-allowed;
-}
-
-@media (max-width: 430px) {
-  .category-grid { padding-left: 12px; padding-right: 12px; gap: 12px; }
-  .category-card { min-height: 88px; border-radius: 20px; padding-left: 14px; }
-  .category-card-img { width: 96px; max-height: 74px; }
-}
-
-/* V4 debug fix: keep original menu visible until inventory categories render safely */
-.original-menu-fallback {
-  position: relative;
+.extra-category-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
-.category-grid[hidden] {
-  display: none !important;
-}
-.menu-visual.inventory-ready .original-menu-fallback {
-  display: none !important;
-}
-.menu-visual.inventory-ready .category-grid {
-  display: grid !important;
+
+.extra-category-text {
+  display: grid;
+  gap: 5px;
 }
 
-/* V4 menu visibility emergency fix: original menu artwork must always be visible.
-   This is intentionally only a visibility fix, not a redesign. */
-.menu-visual,
-.menu-visual:not(.reveal) {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  height: auto !important;
-  min-height: 1px !important;
-  transform: none !important;
-  filter: none !important;
-  pointer-events: auto !important;
-  z-index: 2 !important;
+.extra-category-text strong {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: .02em;
 }
-.original-menu-fallback {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 2 !important;
+
+.extra-category-text em {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+  font-style: normal;
+  font-weight: 800;
 }
-.menu-art {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  width: 100% !important;
-  height: auto !important;
+
+.extra-category-arrow {
+  color: var(--red-bright);
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 300;
 }
-.menu-visual.inventory-ready .original-menu-fallback {
-  display: block !important;
+
+.extra-categories {
+  padding: 10px 22px 0;
+  margin-top: -4px;
+  background:
+    radial-gradient(circle at 80% 0%, rgba(226,21,33,.10), transparent 38%),
+    linear-gradient(180deg, #020202, #020202);
+}
+
+.extra-categories[hidden] {
+  display: none;
 }
