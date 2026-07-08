@@ -7,7 +7,6 @@
   <meta name="description" content="Herts Vapes live menu. Browse products, flavours and deals, then order through WhatsApp or Snapchat." />
   <title>Herts Vapes Menu</title>
   <link rel="preload" href="hero.jpg" as="image" />
-  <link rel="preload" href="menu.jpg" as="image" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -38,32 +37,13 @@
 
     <div class="section-blend" aria-hidden="true"></div>
 
-    <section class="menu-visual" id="menu" aria-label="Herts Vapes menu categories">
+    <section class="category-menu" id="menu" aria-label="Herts Vapes menu categories">
       <div class="menu-title-band" aria-hidden="true">
         <span></span>
         <strong>Live Menu</strong>
         <span></span>
       </div>
-      <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art" />
-      <button class="hotspot category-hit special" data-category="special" aria-label="Open special deals"></button>
-      <button class="hotspot category-hit disposable" data-category="disposable" aria-label="Open disposable vapes"></button>
-      <button class="hotspot category-hit podkits" data-category="podkits" aria-label="Open pod kits"></button>
-      <button class="hotspot category-hit salts" data-category="salts" aria-label="Open nic salts"></button>
-      <button class="hotspot category-hit pods" data-category="pods" aria-label="Open replacement pods"></button>
-      <button class="hotspot category-hit pouches" data-category="pouches" aria-label="Open nicotine pouches"></button>
-    </section>
-
-    <section class="extra-categories" id="extraCategories" aria-label="Extra menu categories"></section>
-
-    <section class="hv-bulk-category" aria-label="HV Bulk category">
-      <button class="hv-bulk-category-button" type="button" data-category="bulk" aria-label="Open HV Bulk">
-        <span class="hv-bulk-icon">HV</span>
-        <span class="hv-bulk-text">
-          <strong>HV BULK</strong>
-          <em>£100+ pre-orders</em>
-        </span>
-        <span class="hv-bulk-arrow">›</span>
-      </button>
+      <div class="category-card-grid" id="categoryCardGrid"></div>
     </section>
 
     <section class="inventory-panel" id="inventoryPanel" aria-live="polite">
@@ -124,8 +104,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite">Added to cart</div>
   </main>
 
-  <script src="data/settings.js"></script>
-  <script src="data/inventory.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -3,12 +3,19 @@
   Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
   The rendering/cart/order logic below should not need changing for normal stock updates.
 */
-/*
-  HERTS VAPES V4 LOGIC
-  Product/category data now loads from data/inventory.js.
-  This fallback keeps the current menu working if inventory.js fails to load.
-*/
-const FALLBACK_INVENTORY = {
+
+const categoryCards = [
+  { key: "special", title: "Special Deals", subtitle: "Best value bundles", image: "special.png" },
+  { key: "disposable", title: "Disposable Vapes", subtitle: "Ready-to-use devices", image: "disposable.png" },
+  { key: "podkits", title: "Pod Kits", subtitle: "XROS kits", image: "podkits.png" },
+  { key: "salts", title: "Nic Salts", subtitle: "20mg liquids", image: "salts.png" },
+  { key: "pods", title: "Replacement Pods", subtitle: "XROS Corex pods", image: "pods.png" },
+  { key: "pouches", title: "Nicotine Pouches", subtitle: "VELO and Pablo", image: "pouches.png" },
+  { key: "tobacco", title: "Tobacco", subtitle: "Amber Leaf", image: "tobacco.png" },
+  { key: "bulk", title: "HV Bulk", subtitle: "£100+ pre-orders", image: "" }
+];
+
+const inventory = {
   special: {
     title: "Special Deals",
     type: "deals",
@@ -107,12 +114,16 @@ const FALLBACK_INVENTORY = {
 
   tobacco: {
     title: "Tobacco",
-    menuEntry: true,
-    menuLabel: "TOBACCO",
-    menuSubline: "Amber Leaf Original",
-    menuImage: "assets/categories/tobacco.png",
     items: [
-      { name: "Amber Leaf Original", meta: "50g", pricing: [{ label: "50g", price: "£30" }, { label: "2 Packs", price: "£55" }], saving: "Save £5" }
+      {
+        name: "Amber Leaf Original",
+        meta: "50g rolling tobacco",
+        pricing: [
+          { label: "50g", price: "£30" },
+          { label: "2 packs", price: "£55" }
+        ],
+        saving: "Save £5"
+      }
     ]
   },
 
@@ -130,17 +141,9 @@ const FALLBACK_INVENTORY = {
   }
 };
 
-const settings = window.HV_SETTINGS || {
-  whatsappNumber: "447885752823",
-  snapchatUsername: "herts.vps",
-  defaultWhatsappText: "Hi Herts Vapes, I'd like to place an order."
-};
-
-const inventory = window.HV_INVENTORY || FALLBACK_INVENTORY;
-
-const menu = document.querySelector(".menu-visual");
+const menu = document.querySelector(".category-menu");
+const categoryCardGrid = document.getElementById("categoryCardGrid");
 const readyCard = document.querySelector(".ready-card");
-const extraCategories = document.getElementById("extraCategories");
 const bulkCard = document.querySelector(".bulk-card");
 const panel = document.getElementById("inventoryPanel");
 const panelTitle = document.getElementById("panelTitle");
@@ -156,7 +159,7 @@ const cartWhatsapp = document.getElementById("cartWhatsapp");
 const cartSnapchat = document.getElementById("cartSnapchat");
 const cartClear = document.getElementById("cartClear");
 const toast = document.getElementById("toast");
-const WHATSAPP_NUMBER = settings.whatsappNumber || "447885752823";
+const WHATSAPP_NUMBER = "447885752823";
 const CART_KEY = "hertsVapesCart";
 let cart = loadCart();
 let toastTimer;
@@ -212,37 +215,38 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll, { passive: true });
 window.addEventListener("load", () => {
   document.body.classList.add("hero-loaded");
+  renderCategoryCards();
   renderCart();
 });
 
+function renderCategoryCards() {
+  if (!categoryCardGrid) return;
+  categoryCardGrid.innerHTML = categoryCards.map(card => {
+    const imageMarkup = card.image
+      ? `<img src="${escapeHtml(card.image)}" alt="${escapeHtml(card.title)}" loading="eager" />`
+      : `<span class="category-card-monogram">HV</span>`;
 
-function renderExtraCategories() {
-  if (!extraCategories) return;
-  const entries = Object.entries(inventory)
-    .filter(([key, category]) => category.menuEntry && key !== "bulk");
-
-  extraCategories.innerHTML = entries.map(([key, category]) => `
-    <button class="extra-category-button" type="button" data-category="${escapeHtml(key)}" aria-label="Open ${escapeHtml(category.title)}">
-      <span class="extra-category-image">${category.menuImage ? `<img src="${escapeHtml(category.menuImage)}" alt="" />` : `<span>${escapeHtml(category.menuLabel || category.title)}</span>`}</span>
-      <span class="extra-category-text">
-        <strong>${escapeHtml(category.menuLabel || category.title)}</strong>
-        <em>${escapeHtml(category.menuSubline || "Tap to view")}</em>
-      </span>
-      <span class="extra-category-arrow">›</span>
-    </button>
-  `).join("");
-
-  extraCategories.hidden = entries.length === 0;
+    return `
+      <button class="category-card" type="button" data-category="${escapeHtml(card.key)}" aria-label="Open ${escapeHtml(card.title)}">
+        <span class="category-card-copy">
+          <strong>${escapeHtml(card.title)}</strong>
+          <em>${escapeHtml(card.subtitle)}</em>
+        </span>
+        <span class="category-card-image" aria-hidden="true">${imageMarkup}</span>
+        <span class="category-card-arrow" aria-hidden="true">›</span>
+      </button>
+    `;
+  }).join("");
 }
 
-renderExtraCategories();
-
-document.querySelectorAll("[data-category]").forEach((button) => {
-  button.addEventListener("click", () => {
+if (categoryCardGrid) {
+  categoryCardGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-category]");
+    if (!button) return;
     softTap();
     openCategory(button.dataset.category);
   });
-});
+}
 
 closePanel.addEventListener("click", () => {
   softTap();
@@ -597,8 +601,10 @@ cartSnapchat.addEventListener("click", async () => {
   softTap();
   await copyOrderMessage();
   showToast("✓ Order copied. Paste into Snapchat.");
-  setTimeout(() => window.open(`https://www.snapchat.com/add/${settings.snapchatUsername || "herts.vps"}`, "_blank"), 350);
+  setTimeout(() => window.open("https://www.snapchat.com/add/herts.vps", "_blank"), 350);
 });
 
-// Final public clean build marker. Functionality above is unchanged.
+renderCategoryCards();
+
+// Final public clean build marker. Category cards now replace the old image-map menu; cart/order logic is unchanged.
 window.HERTS_VAPES_BUILD = "final-public-clean";
