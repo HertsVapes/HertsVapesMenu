@@ -100,13 +100,6 @@ const inventory = {
     ]
   },
 
-  tobacco: {
-    title: "Tobacco",
-    items: [
-      { name: "Amber Leaf Original", meta: "50g", pricing: [{ label: "1 Pack", price: "£30" }, { label: "2 Packs", price: "£55" }], saving: "Save £5" }
-    ]
-  },
-
   bulk: {
     title: "HV Bulk",
     type: "bulk",

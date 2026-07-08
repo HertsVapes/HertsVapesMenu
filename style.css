@@ -3645,177 +3645,103 @@ body { background: #020202; }
   }
 }
 
-/* =====================================================
-   FINAL V4 CATEGORY IMAGE CONNECTION ONLY
-   Uses the transparent product PNG assets directly.
-   Cart, product pages, ordering and category opening logic remain in script.js.
-   ===================================================== */
-.menu-visual .menu-art,
-.menu-visual .category-hit {
-  display: none !important;
-}
-
-.menu-visual {
-  min-height: auto !important;
-  padding: calc(112px + env(safe-area-inset-top)) 14px 18px !important;
-}
-
-.category-card-list {
-  position: relative;
-  z-index: 5;
-  display: grid;
-  gap: 12px;
-  width: min(100%, 560px);
-  margin: 0 auto;
-}
-
-.category-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr minmax(112px, 36%) 24px;
-  align-items: center;
-  min-height: 106px;
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 24px;
-  padding: 14px 14px 14px 18px;
-  background:
-    radial-gradient(circle at 82% 46%, rgba(255,37,49,.15), transparent 44%),
-    linear-gradient(135deg, rgba(24,24,24,.96), rgba(6,6,6,.98));
-  color: #fff;
-  font: inherit;
-  text-align: left;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.035),
-    0 15px 30px rgba(0,0,0,.34);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.category-card::before {
-  content: "";
+/* IMAGE POLISH ONLY
+   Product images are layered over the approved category artwork.
+   This keeps the existing menu image, tap areas, categories, cart and order flow unchanged. */
+.category-image-layer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, rgba(255,255,255,.07), transparent 38%, rgba(255,37,49,.06));
+  z-index: 18;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.category-card:active {
-  transform: scale(.985);
-}
-
-.category-card-copy {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  gap: 7px;
-  min-width: 0;
-}
-
-.category-card-copy strong {
-  font-size: clamp(19px, 5vw, 28px);
-  line-height: 1.02;
-  font-weight: 950;
-  letter-spacing: -.035em;
-  text-transform: uppercase;
-}
-
-.category-card-copy em {
-  color: rgba(255,255,255,.62);
-  font-style: normal;
-  font-size: 12px;
-  line-height: 1.1;
-  font-weight: 850;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-
-.category-card-art {
-  position: relative;
-  z-index: 2;
+.category-image-stage {
+  position: absolute;
+  left: 48.5%;
+  right: 8.5%;
+  height: 13.2%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 82px;
-  min-width: 0;
-  pointer-events: none;
+  gap: clamp(4px, 1.2vw, 10px);
+  padding: 1.2% 2.1%;
+  isolation: isolate;
 }
 
-.category-card-art::before {
+.category-image-stage::before {
   content: "";
   position: absolute;
-  width: 92%;
-  height: 68%;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(255,255,255,.13), rgba(255,37,49,.07) 42%, transparent 70%);
-  filter: blur(10px);
-  opacity: .9;
+  inset: 2% 0;
+  z-index: -2;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 54% 50%, rgba(255,37,49,.12), transparent 58%),
+    linear-gradient(90deg, rgba(2,2,2,.08), rgba(2,2,2,.94) 18%, rgba(2,2,2,.94) 82%, rgba(2,2,2,.20));
+  box-shadow: inset 22px 0 28px rgba(2,2,2,.86), inset -10px 0 18px rgba(2,2,2,.68);
 }
 
-.category-card-art img {
-  position: relative;
-  z-index: 1;
+.category-image-stage::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 16%;
+  height: 20%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,.11), rgba(255,37,49,.07) 34%, transparent 72%);
+  filter: blur(7px);
+  opacity: .86;
+}
+
+.category-special { top: 18.3%; }
+.category-disposable { top: 34.5%; }
+.category-podkits { top: 49.6%; }
+.category-salts { top: 63.2%; }
+.category-pods { top: 76.2%; }
+.category-pouches { top: 88.7%; height: 10.9%; }
+
+.product-cutout {
   display: block;
-  max-width: 100%;
-  max-height: 82px;
   width: auto;
-  height: auto;
+  height: 100%;
+  max-width: 42%;
   object-fit: contain;
   object-position: center;
-  filter: drop-shadow(0 13px 14px rgba(0,0,0,.48));
+  filter: drop-shadow(0 14px 16px rgba(0,0,0,.62)) drop-shadow(0 0 8px rgba(255,37,49,.10));
+  transform-origin: center bottom;
 }
 
-.category-card-art.multi-art {
-  justify-content: space-evenly;
-  gap: 4px;
-}
+.category-special .product-podkit { height: 95%; max-width: 27%; transform: translateX(8%) rotate(-1deg); }
+.category-special .product-lostmary { height: 98%; max-width: 31%; transform: translateX(-2%) rotate(-4deg); }
+.category-special .product-salt { height: 86%; max-width: 25%; transform: translateX(-8%) rotate(2deg); }
 
-.category-card-art.multi-art img {
-  max-width: 34%;
-  max-height: 76px;
-  flex: 0 1 34%;
-}
+.category-disposable .product-lostmary { height: 98%; max-width: 31%; transform: translateX(7%) rotate(-4deg); }
+.category-disposable .product-hayati { height: 96%; max-width: 31%; transform: scale(1.14) translateX(-2%); }
+.category-disposable .product-elux3500 { height: 94%; max-width: 22%; transform: translateX(-8%) rotate(4deg); }
 
-.category-card-art.special-art img:nth-child(2) {
-  max-width: 38%;
-  max-height: 84px;
+.product-cutout.solo {
+  max-width: 54%;
+  height: 96%;
 }
+.category-podkits .product-podkit.solo { height: 98%; max-width: 34%; }
+.category-salts .product-salt.solo { height: 93%; max-width: 32%; }
+.category-pods .product-pods.solo { height: 96%; max-width: 48%; }
+.category-pouches .product-pouch.solo { height: 90%; max-width: 52%; }
 
-.category-card-art.disposable-art img:nth-child(2) {
-  max-height: 84px;
-}
-
-.category-card-arrow {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  color: rgba(255,255,255,.88);
-  font-size: 34px;
-  line-height: 1;
-  font-weight: 300;
-}
-
-@media (max-width: 390px) {
-  .menu-visual {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+@media (max-width: 430px) {
+  .category-image-stage {
+    left: 49%;
+    right: 8.5%;
+    gap: 3px;
+    padding-left: 1.4%;
+    padding-right: 2.2%;
   }
-
-  .category-card {
-    grid-template-columns: 1fr minmax(104px, 34%) 20px;
-    min-height: 98px;
-    border-radius: 21px;
-    padding: 13px 12px 13px 15px;
-  }
-
-  .category-card-art,
-  .category-card-art img {
-    max-height: 74px;
-  }
-
-  .category-card-art.multi-art img {
-    max-height: 68px;
-  }
+  .category-special .product-podkit { max-width: 25%; }
+  .category-special .product-lostmary { max-width: 32%; }
+  .category-special .product-salt { max-width: 24%; }
+  .category-disposable .product-lostmary { max-width: 31%; }
+  .category-disposable .product-hayati { max-width: 31%; }
+  .category-disposable .product-elux3500 { max-width: 21%; }
 }
