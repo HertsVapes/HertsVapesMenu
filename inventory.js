@@ -100,6 +100,13 @@ window.HERTS_VAPES_INVENTORY = {
     ]
   },
 
+  tobacco: {
+    title: "Tobacco",
+    items: [
+      { name: "Amber Leaf 50g Pack", meta: "Rolling tobacco", pricing: [{ label: "1 Pack", price: "£30" }, { label: "2 Packs", price: "£55" }], saving: "Save £5" }
+    ]
+  },
+
   bulk: {
     title: "HV Bulk",
     type: "bulk",
