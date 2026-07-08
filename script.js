@@ -3,8 +3,122 @@
   Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
   The rendering/cart/order logic below should not need changing for normal stock updates.
 */
-const inventory = window.HERTS_VAPES_INVENTORY || {};
-const contact = window.HERTS_VAPES_CONTACT || {};
+const inventory = {
+  special: {
+    title: "Special Deals",
+    image: "assets/categories/special.png",
+    type: "deals",
+    items: [
+      {
+        name: "Vaporesso XROS Pro 2.0",
+        subline: "+ 4 Nic Salts",
+        price: "£30",
+        meta: "Kit bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "XROS Pro 2.0" }, { label: "Nic Salts", qty: "×4" }],
+        prompts: ["Kit colour", "Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4"]
+      },
+      {
+        name: "2 XROS Pods",
+        subline: "+ 6 Nic Salts",
+        price: "£20",
+        meta: "Pods and liquids bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "XROS Pods", qty: "×2" }, { label: "Nic Salts", qty: "×6" }],
+        prompts: ["Nic Salt 1", "Nic Salt 2", "Nic Salt 3", "Nic Salt 4", "Nic Salt 5", "Nic Salt 6"]
+      },
+      {
+        name: "2 Hayati Dual Flavour 25000",
+        price: "£25",
+        meta: "25K disposable bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "Hayati 25K", qty: "×2" }],
+        prompts: ["Device 1", "Device 2"]
+      },
+      {
+        name: "3 Elux Legend 3500",
+        price: "£10",
+        meta: "3.5K disposable bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "Elux 3500", qty: "×3" }],
+        prompts: ["Flavour 1", "Flavour 2", "Flavour 3"]
+      },
+      {
+        name: "2 Lost Mary BM6000",
+        subline: "+ 1 Hayati 25K",
+        price: "£30",
+        meta: "Mixed disposable bundle",
+        saving: "Save £5",
+        confirm: "Flavours confirmed in message",
+        visuals: [{ label: "Lost Mary", qty: "×2" }, { label: "Hayati 25K" }],
+        prompts: ["Lost Mary 1", "Lost Mary 2", "Hayati 25K"]
+      }
+    ]
+  },
+
+  disposable: {
+    title: "Disposable Vapes",
+    image: "assets/categories/disposable.png",
+    items: [
+      { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
+      { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"] },
+      { name: "Enjoy Ultra 9000", price: "£10", meta: "2 flavours available", flavours: ["Berry Apple Peach", "Apple Watermelon Strawberry"] },
+      { name: "Pixl 8000", price: "£10", meta: "Black Cherry", flavours: ["Black Cherry"], simple: true },
+      { name: "Hayati Pro Max 6000", price: "£10", meta: "Fizzy Cherry", flavours: ["Fizzy Cherry"], simple: true },
+      { name: "Elux Legend 3500", price: "£5", meta: "5 flavours available", flavours: ["Cherry Ice", "Fizzy Cherry", "Cherry Sours", "Pineapple Ice", "Watermelon Cherry Raspberry Ice"] }
+    ]
+  },
+
+  podkits: {
+    title: "Pod Kits",
+    image: "assets/categories/podkits.png",
+    items: [
+      { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
+    ]
+  },
+
+  salts: {
+    title: "Nic Salts",
+    image: "assets/categories/salts.png",
+    items: [
+      { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
+    ]
+  },
+
+  pods: {
+    title: "Replacement Pods",
+    image: "assets/categories/pods.png",
+    items: [
+      { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
+    ]
+  },
+
+  pouches: {
+    title: "Nicotine Pouches",
+    image: "assets/categories/pouches.png",
+    items: [
+      { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" },
+      { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" }
+    ]
+  },
+
+  bulk: {
+    title: "HV Bulk",
+    type: "bulk",
+    intro: "Save big on larger pre-orders.",
+    points: [
+      "Manufacturer-sealed boxes",
+      "A much wider range than our in-stock menu",
+      "Reserved exclusively for your order"
+    ],
+    minimum: "Available on bulk pre-orders from £100.",
+    link: "https://wa.me/447885752823?text=Hi%20Herts%20Vapes%2C%0A%0AI%27m%20interested%20in%20your%20bulk%20prices.%0A%0AProducts%20I%27m%20interested%20in%3A%0A%0A%E2%80%A2"
+  }
+};
 
 const menu = document.querySelector(".menu-visual");
 const readyCard = document.querySelector(".ready-card");
@@ -23,7 +137,7 @@ const cartWhatsapp = document.getElementById("cartWhatsapp");
 const cartSnapchat = document.getElementById("cartSnapchat");
 const cartClear = document.getElementById("cartClear");
 const toast = document.getElementById("toast");
-const WHATSAPP_NUMBER = contact.whatsappNumber || "447885752823";
+const WHATSAPP_NUMBER = "447885752823";
 const CART_KEY = "hertsVapesCart";
 let cart = loadCart();
 let toastTimer;
@@ -79,42 +193,28 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll, { passive: true });
 window.addEventListener("load", () => {
   document.body.classList.add("hero-loaded");
-  renderCategoryCards();
-  bindCategoryButtons();
   renderCart();
+  renderCategoryImages();
 });
 
-function bindCategoryButtons() {
-  document.querySelectorAll("[data-category]").forEach((button) => {
-    if (button.dataset.boundCategory === "true") return;
-    button.dataset.boundCategory = "true";
-    button.addEventListener("click", () => {
-      softTap();
-      openCategory(button.dataset.category);
-    });
-  });
-}
+function renderCategoryImages() {
+  const layer = document.querySelector(".category-image-layer");
+  if (!layer) return;
 
-function renderCategoryCards() {
-  const categoryGrid = document.getElementById("categoryGrid");
-  if (!categoryGrid || !Array.isArray(inventory.categories)) return;
-
-  categoryGrid.innerHTML = inventory.categories.map((category) => {
-    const image = category.image ? `<img src="${escapeHtml(category.image)}" alt="" class="category-card-image" loading="lazy" />` : "";
-    return `
-      <button class="category-card" type="button" data-category="${escapeHtml(category.id)}" aria-label="Open ${escapeHtml(category.name)}">
-        <span class="category-card-copy">
-          <strong>${escapeHtml(category.name)}</strong>
-          <em>${escapeHtml(category.subtitle || "Tap to view")}</em>
-        </span>
-        <span class="category-card-media">${image}</span>
-        <span class="category-card-arrow">›</span>
-      </button>
-    `;
+  const keys = ["special", "disposable", "podkits", "salts", "pods", "pouches"];
+  layer.innerHTML = keys.map((key) => {
+    const category = inventory[key];
+    if (!category || !category.image) return "";
+    return `<img class="category-card-image ${key}" src="${escapeHtml(category.image)}" alt="" loading="eager" />`;
   }).join("");
-
-  bindCategoryButtons();
 }
+
+document.querySelectorAll("[data-category]").forEach((button) => {
+  button.addEventListener("click", () => {
+    softTap();
+    openCategory(button.dataset.category);
+  });
+});
 
 closePanel.addEventListener("click", () => {
   softTap();
@@ -137,7 +237,6 @@ function openCategory(key) {
 
 function renderCategory(category) {
   if (category.type === "bulk") return renderBulkCategory(category);
-  if (!category.items || category.items.length === 0) return `<div class="empty-category">Stock will be added here soon. Message Herts Vapes to ask what is available.</div>`;
   if (category.type === "deals") return category.items.map(renderDeal).join("");
   return category.items.map(renderProduct).join("");
 }

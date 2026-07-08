@@ -135,6 +135,34 @@ button, a {
   height: 4.7%;
 }
 
+.category-image-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.category-card-image {
+  position: absolute;
+  right: 8.5%;
+  width: 20%;
+  height: 7.4%;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  transform: translateY(-50%);
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,.38));
+}
+
+.category-card-image.special { top: 27.425%; }
+.category-card-image.disposable { top: 39.575%; }
+.category-card-image.podkits { top: 51.725%; }
+.category-card-image.salts { top: 63.875%; }
+.category-card-image.pods { top: 76.025%; }
+.category-card-image.pouches { top: 88.175%; }
+
 .menu-visual {
   opacity: 0;
   transform: translateY(24px) scale(.996);
@@ -3643,137 +3671,4 @@ body { background: #020202; }
     width: 14px !important;
     height: 14px !important;
   }
-}
-
-/* =====================================================
-   V4 inventory-driven category cards
-   Category entries now render from inventory.js using one reusable card.
-   Existing product panels, cart, WhatsApp, Snapchat and animations are unchanged.
-   ===================================================== */
-.menu-visual {
-  padding: 0 18px 24px !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(226,21,33,.12), transparent 36%),
-    linear-gradient(180deg, #050000 0%, #020202 100%) !important;
-}
-
-.menu-art,
-.category-hit,
-.hv-bulk-category {
-  display: none !important;
-}
-
-.category-grid {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  width: 100%;
-  max-width: 710px;
-  margin: 0 auto;
-  padding: 88px 0 0;
-}
-
-.category-card {
-  width: 100%;
-  min-height: 92px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 112px 24px;
-  align-items: center;
-  gap: 12px;
-  border: 1px solid rgba(255,37,49,.42);
-  border-radius: 22px;
-  padding: 12px 14px 12px 18px;
-  background:
-    radial-gradient(circle at 92% 12%, rgba(226,21,33,.15), transparent 38%),
-    linear-gradient(180deg, rgba(255,255,255,.048), rgba(255,255,255,.012));
-  color: #fff;
-  text-align: left;
-  box-shadow: 0 16px 36px rgba(0,0,0,.36), inset 0 0 0 1px rgba(255,255,255,.035);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.category-card:active {
-  transform: scale(.988);
-  border-color: rgba(255,37,49,.74);
-  background:
-    radial-gradient(circle at 92% 12%, rgba(226,21,33,.21), transparent 38%),
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.016));
-}
-
-.category-card-copy {
-  display: grid;
-  gap: 6px;
-  min-width: 0;
-}
-
-.category-card-copy strong {
-  font-size: clamp(18px, 5vw, 24px);
-  line-height: 1;
-  font-weight: 950;
-  letter-spacing: -.02em;
-  text-transform: uppercase;
-}
-
-.category-card-copy em {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.15;
-  font-style: normal;
-  font-weight: 800;
-}
-
-.category-card-media {
-  width: 112px;
-  height: 68px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border-radius: 16px;
-  background: rgba(0,0,0,.28);
-}
-
-.category-card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  filter: drop-shadow(0 10px 12px rgba(0,0,0,.42));
-}
-
-.category-card-arrow {
-  color: var(--red-bright);
-  font-size: 38px;
-  line-height: 1;
-  font-weight: 300;
-  justify-self: end;
-}
-
-.empty-category {
-  border: 1px solid rgba(255,37,49,.24);
-  border-radius: 20px;
-  padding: 18px;
-  color: var(--muted);
-  background: rgba(255,255,255,.035);
-  font-weight: 800;
-  line-height: 1.45;
-}
-
-@media (max-width: 390px) {
-  .category-grid { gap: 10px; padding-top: 82px; }
-  .category-card {
-    min-height: 86px;
-    grid-template-columns: minmax(0, 1fr) 96px 20px;
-    gap: 10px;
-    padding: 11px 12px 11px 15px;
-  }
-  .category-card-media {
-    width: 96px;
-    height: 62px;
-  }
-  .category-card-copy em { font-size: 12px; }
-  .category-card-arrow { font-size: 34px; }
 }
