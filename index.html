@@ -7,6 +7,7 @@
   <meta name="description" content="Herts Vapes live menu. Browse products, flavours and deals, then order through WhatsApp or Snapchat." />
   <title>Herts Vapes Menu</title>
   <link rel="preload" href="hero.jpg" as="image" />
+  <link rel="preload" href="menu.jpg" as="image" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -43,56 +44,54 @@
         <strong>Live Menu</strong>
         <span></span>
       </div>
-
-      <div class="category-card-grid" aria-label="Browse categories">
+      <div class="category-card-list" aria-label="Herts Vapes categories">
         <button class="category-card" type="button" data-category="special" aria-label="Open special deals">
-          <span class="category-card-copy"><strong>Special Deals</strong><em>Bundles and offers</em></span>
-          <span class="category-card-image"><img src="special.png" alt="" loading="lazy" /></span>
-          <span class="category-card-arrow" aria-hidden="true">›</span>
+          <span class="category-card-copy"><strong>Special Deals</strong><em>Bundles & offers</em></span>
+          <span class="category-card-image"><img src="special.png" alt="Special deals" /></span>
+          <span class="category-card-arrow">›</span>
         </button>
-
         <button class="category-card" type="button" data-category="disposable" aria-label="Open disposable vapes">
-          <span class="category-card-copy"><strong>Disposable Vapes</strong><em>Ready-to-use devices</em></span>
-          <span class="category-card-image"><img src="disposable.png" alt="" loading="lazy" /></span>
-          <span class="category-card-arrow" aria-hidden="true">›</span>
+          <span class="category-card-copy"><strong>Disposable Vapes</strong><em>Big brands & flavours</em></span>
+          <span class="category-card-image"><img src="disposable.png" alt="Disposable vapes" /></span>
+          <span class="category-card-arrow">›</span>
         </button>
-
         <button class="category-card" type="button" data-category="podkits" aria-label="Open pod kits">
-          <span class="category-card-copy"><strong>Pod Kits</strong><em>XROS kits and devices</em></span>
-          <span class="category-card-image"><img src="podkits.png" alt="" loading="lazy" /></span>
-          <span class="category-card-arrow" aria-hidden="true">›</span>
+          <span class="category-card-copy"><strong>Pod Kits</strong><em>Starter kits</em></span>
+          <span class="category-card-image"><img src="podkits.png" alt="Pod kits" /></span>
+          <span class="category-card-arrow">›</span>
         </button>
-
         <button class="category-card" type="button" data-category="salts" aria-label="Open nic salts">
           <span class="category-card-copy"><strong>Nic Salts</strong><em>20mg liquids</em></span>
-          <span class="category-card-image"><img src="salts.png" alt="" loading="lazy" /></span>
-          <span class="category-card-arrow" aria-hidden="true">›</span>
+          <span class="category-card-image"><img src="salts.png" alt="Nic salts" /></span>
+          <span class="category-card-arrow">›</span>
         </button>
-
         <button class="category-card" type="button" data-category="pods" aria-label="Open replacement pods">
           <span class="category-card-copy"><strong>Replacement Pods</strong><em>XROS Corex pods</em></span>
-          <span class="category-card-image"><img src="pods.png" alt="" loading="lazy" /></span>
-          <span class="category-card-arrow" aria-hidden="true">›</span>
+          <span class="category-card-image"><img src="pods.png" alt="Replacement pods" /></span>
+          <span class="category-card-arrow">›</span>
         </button>
-
         <button class="category-card" type="button" data-category="pouches" aria-label="Open nicotine pouches">
-          <span class="category-card-copy"><strong>Nicotine Pouches</strong><em>VELO and Pablo</em></span>
-          <span class="category-card-image"><img src="pouches.png" alt="" loading="lazy" /></span>
-          <span class="category-card-arrow" aria-hidden="true">›</span>
+          <span class="category-card-copy"><strong>Nicotine Pouches</strong><em>VELO & Pablo</em></span>
+          <span class="category-card-image"><img src="pouches.png" alt="Nicotine pouches" /></span>
+          <span class="category-card-arrow">›</span>
         </button>
-
         <button class="category-card" type="button" data-category="tobacco" aria-label="Open tobacco">
-          <span class="category-card-copy"><strong>Tobacco</strong><em>Amber Leaf Original</em></span>
-          <span class="category-card-image"><img src="tobacco.png" alt="" loading="lazy" /></span>
-          <span class="category-card-arrow" aria-hidden="true">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="bulk" aria-label="Open HV Bulk">
-          <span class="category-card-copy"><strong>HV Bulk</strong><em>£100+ pre-orders</em></span>
-          <span class="category-card-image category-card-hv"><span>HV</span></span>
-          <span class="category-card-arrow" aria-hidden="true">›</span>
+          <span class="category-card-copy"><strong>Tobacco</strong><em>Amber Leaf</em></span>
+          <span class="category-card-image"><img src="tobacco.png" alt="Tobacco" /></span>
+          <span class="category-card-arrow">›</span>
         </button>
       </div>
+    </section>
+
+    <section class="hv-bulk-category" aria-label="HV Bulk category">
+      <button class="hv-bulk-category-button" type="button" data-category="bulk" aria-label="Open HV Bulk">
+        <span class="hv-bulk-icon">HV</span>
+        <span class="hv-bulk-text">
+          <strong>HV BULK</strong>
+          <em>£100+ pre-orders</em>
+        </span>
+        <span class="hv-bulk-arrow">›</span>
+      </button>
     </section>
 
     <section class="inventory-panel" id="inventoryPanel" aria-live="polite">
