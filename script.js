@@ -100,6 +100,13 @@ const inventory = {
     ]
   },
 
+  tobacco: {
+    title: "Tobacco",
+    items: [
+      { name: "Amber Leaf", price: "£30", meta: "50g", details: ["50g"] }
+    ]
+  },
+
   bulk: {
     title: "HV Bulk",
     type: "bulk",
