@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="site-shell" data-version="final-public-shopnow-clean">
+  <main class="site-shell" data-version="v4-inventory-master">
     <section class="hero final-hero" id="top" aria-label="Herts Vapes hero">
       <img src="hero.jpg" alt="Herts Vapes - Fast. Reliable. Local." class="hero-art" />
       <div class="hero-ambient" aria-hidden="true"></div>
@@ -44,8 +44,13 @@
         <strong>Live Menu</strong>
         <span></span>
       </div>
-      <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art menu-art-reference" />
-      <div class="category-list" id="categoryList" aria-label="Shop product categories"></div>
+      <div class="menu-art category-menu-art">
+        <div class="category-copy">
+          <h2>Shop Our <span>Range</span></h2>
+          <p>Tap a category to view products</p>
+        </div>
+        <div class="category-list" id="categoryList"></div>
+      </div>
     </section>
 
     <section class="hv-bulk-category" aria-label="HV Bulk category">
@@ -117,6 +122,7 @@
     <div class="toast" id="toast" role="status" aria-live="polite">Added to cart</div>
   </main>
 
+  <script src="inventory.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
