@@ -93,7 +93,7 @@ function renderCategoryCards() {
     if (!safeCategories.length) return false;
     categoryGrid.innerHTML = safeCategories.map(renderCategoryCard).join("");
     categoryGrid.hidden = false;
-    menu.classList.add("inventory-ready");
+    /* Keep original menu.jpg visible as confirmed fallback. */
     return true;
   } catch (error) {
     console.error("Herts Vapes inventory menu failed. Original menu fallback remains visible.", error);
@@ -541,4 +541,4 @@ cartSnapchat.addEventListener("click", async () => {
 });
 
 // Final public clean build marker. Functionality above is unchanged.
-window.HERTS_VAPES_BUILD = "v4-inventory-driven-fallback-fixed";
+window.HERTS_VAPES_BUILD = "v4-menu-visible-fallback-locked";

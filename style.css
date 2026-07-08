@@ -3760,3 +3760,35 @@ button:disabled {
 .menu-visual.inventory-ready .category-grid {
   display: grid !important;
 }
+
+/* V4 menu visibility emergency fix: original menu artwork must always be visible.
+   This is intentionally only a visibility fix, not a redesign. */
+.menu-visual,
+.menu-visual:not(.reveal) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  min-height: 1px !important;
+  transform: none !important;
+  filter: none !important;
+  pointer-events: auto !important;
+  z-index: 2 !important;
+}
+.original-menu-fallback {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+.menu-art {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: auto !important;
+}
+.menu-visual.inventory-ready .original-menu-fallback {
+  display: block !important;
+}
