@@ -100,6 +100,7 @@ const inventory = {
     ]
   },
 
+
   tobacco: {
     title: "Tobacco",
     items: [
