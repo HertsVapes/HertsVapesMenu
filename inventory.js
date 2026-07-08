@@ -1,19 +1,18 @@
 /*
   HERTS VAPES PRODUCT DATA
-  Future updates: edit categories, category images, products, flavours, prices, bundles, deals, stock and bulk copy in this inventory object only.
-  Category images must live in assets/categories/ and be referenced by each category image property.
+  Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
   The rendering/cart/order logic below should not need changing for normal stock updates.
 */
 window.HERTS_VAPES_INVENTORY = {
-  menuCategories: [
-    { id: "special", key: "special", name: "Special Deals", title: "Special Deals", icon: "tag", image: "assets/categories/special.png" },
-    { id: "disposable", key: "disposable", name: "Disposable Vapes", title: "Disposable Vapes", icon: "bottle", image: "assets/categories/disposable.png" },
-    { id: "podkits", key: "podkits", name: "Pod Kits", title: "Pod Kits", icon: "kit", image: "assets/categories/podkits.png" },
-    { id: "salts", key: "salts", name: "Nic Salts", title: "Nic Salts", icon: "drop", image: "assets/categories/salts.png" },
-    { id: "pods", key: "pods", name: "Replacement Pods", title: "Replacement Pods", icon: "pod", image: "assets/categories/pods.png" },
-    { id: "pouches", key: "pouches", name: "Nicotine Pouches", title: "Nicotine Pouches", icon: "pouch", image: "assets/categories/pouches.png" },
-    { id: "tobacco", key: "tobacco", name: "Tobacco", title: "Tobacco", icon: "tobacco", image: "assets/categories/tobacco.png" },
-    { id: "bulk", key: "bulk", name: "HV Bulk", title: "HV Bulk", icon: "bulk", image: "" }
+  categories: [
+    { id: "special", name: "Special Deals", subtitle: "Best value bundles", image: "assets/categories/special.png" },
+    { id: "disposable", name: "Disposable Vapes", subtitle: "Ready-to-use devices", image: "assets/categories/disposable.png" },
+    { id: "podkits", name: "Pod Kits", subtitle: "Reusable vape kits", image: "assets/categories/podkits.png" },
+    { id: "salts", name: "Nic Salts", subtitle: "20mg liquids", image: "assets/categories/salts.png" },
+    { id: "pods", name: "Replacement Pods", subtitle: "XROS Corex pods", image: "assets/categories/pods.png" },
+    { id: "pouches", name: "Nicotine Pouches", subtitle: "Boxes and multi-packs", image: "assets/categories/pouches.png" },
+    { id: "tobacco", name: "Tobacco", subtitle: "Rolling tobacco", image: "assets/categories/tobacco.png" },
+    { id: "bulk", name: "HV Bulk", subtitle: "£100+ pre-orders" }
   ],
 
   special: {
@@ -114,9 +113,7 @@ window.HERTS_VAPES_INVENTORY = {
 
   tobacco: {
     title: "Tobacco",
-    items: [
-      { name: "Amber Leaf 50g Pack", meta: "Amber Leaf Original", pricing: [{ label: "1 Pack", price: "£30" }, { label: "2 Packs", price: "£55" }], saving: "Save £5" }
-    ]
+    items: []
   },
 
   bulk: {
@@ -135,7 +132,7 @@ window.HERTS_VAPES_INVENTORY = {
 
 /*
   Normal stock update guide:
-  - Add/edit categories, category image paths, products, flavours, prices, deals and stock here.
+  - Add/edit categories, products, flavours, prices, deals and stock here.
   - Use stock: true for available items, stock: false for out of stock items.
   - For individual flavours, either keep simple text entries or use:
     { name: "Flavour name", stock: false }

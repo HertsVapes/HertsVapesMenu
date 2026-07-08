@@ -1,13 +1,12 @@
 /*
-  HERTS VAPES V4
-  Products, categories, flavours, prices, deals and stock now come from inventory.js.
-  For normal future updates, edit inventory.js only.
+  HERTS VAPES PRODUCT DATA
+  Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
+  The rendering/cart/order logic below should not need changing for normal stock updates.
 */
 const inventory = window.HERTS_VAPES_INVENTORY || {};
-const hvContact = window.HERTS_VAPES_CONTACT || {};
+const contact = window.HERTS_VAPES_CONTACT || {};
 
 const menu = document.querySelector(".menu-visual");
-const categoryList = document.getElementById("categoryList");
 const readyCard = document.querySelector(".ready-card");
 const bulkCard = document.querySelector(".bulk-card");
 const panel = document.getElementById("inventoryPanel");
@@ -24,7 +23,7 @@ const cartWhatsapp = document.getElementById("cartWhatsapp");
 const cartSnapchat = document.getElementById("cartSnapchat");
 const cartClear = document.getElementById("cartClear");
 const toast = document.getElementById("toast");
-const WHATSAPP_NUMBER = hvContact.whatsappNumber || "447885752823";
+const WHATSAPP_NUMBER = contact.whatsappNumber || "447885752823";
 const CART_KEY = "hertsVapesCart";
 let cart = loadCart();
 let toastTimer;
@@ -55,43 +54,6 @@ function saveCart() {
   renderCart();
 }
 
-
-function renderMenuCategories() {
-  if (!categoryList) return;
-  const categories = inventory.menuCategories || [];
-  categoryList.innerHTML = categories.map((category) => {
-    const key = category.key || category.id;
-    const title = category.title || category.name;
-    const image = category.image || "";
-    return `
-      <button class="category-card" type="button" data-category="${escapeHtml(key)}" aria-label="Open ${escapeHtml(title)}">
-        <span class="category-icon" aria-hidden="true">${categoryIcon(category.icon)}</span>
-        <span class="category-name">${escapeHtml(title)}</span>
-        <span class="category-image-slot" aria-hidden="true">
-          ${image ? `<img class="category-image" src="${escapeHtml(image)}" alt="" loading="lazy" onerror="this.hidden=true" />` : ""}
-        </span>
-        <span class="category-arrow" aria-hidden="true">›</span>
-      </button>
-    `;
-  }).join("");
-}
-
-function categoryIcon(icon) {
-  const icons = {
-    tag: '<svg viewBox="0 0 48 48"><path d="M6 22V8h14l21 21-14 14L6 22Z"></path><path d="M15 15h.2"></path><path d="M17 33 31 19"></path><path d="M17 21c0 2 3 2 3 0s-3-2-3 0Z"></path><path d="M28 31c0 2 3 2 3 0s-3-2-3 0Z"></path></svg>',
-    bottle: '<svg viewBox="0 0 48 48"><path d="M20 5h8v8l4 5v23a3 3 0 0 1-3 3H19a3 3 0 0 1-3-3V18l4-5V5Z"></path><path d="M20 13h8"></path><path d="M19 25h10v11H19z"></path></svg>',
-    kit: '<svg viewBox="0 0 48 48"><path d="M17 7h14v34a4 4 0 0 1-4 4h-6a4 4 0 0 1-4-4V7Z"></path><path d="M20 13h8"></path><path d="M24 27h.2"></path></svg>',
-    drop: '<svg viewBox="0 0 48 48"><path d="M24 5S12 20 12 30a12 12 0 0 0 24 0C36 20 24 5 24 5Z"></path></svg>',
-    pod: '<svg viewBox="0 0 48 48"><path d="M15 6h18v13H15z"></path><path d="M13 19h22v23H13z"></path><path d="M18 28h12"></path></svg>',
-    pouch: '<svg viewBox="0 0 48 48"><ellipse cx="24" cy="17" rx="17" ry="8"></ellipse><path d="M7 17v14c0 4.4 7.6 8 17 8s17-3.6 17-8V17"></path></svg>',
-    tobacco: '<svg viewBox="0 0 48 48"><path d="M10 32c8-12 20-15 29-16"></path><path d="M14 37c7-8 15-11 24-11"></path><path d="M17 14h14l4 7H13l4-7Z"></path><path d="M13 21h22v13H13z"></path></svg>',
-    bulk: '<svg viewBox="0 0 48 48"><path d="M8 17 24 9l16 8-16 8-16-8Z"></path><path d="M8 17v17l16 8V25L8 17Z"></path><path d="M40 17v17l-16 8V25l16-8Z"></path><path d="M17 12l16 8"></path></svg>'
-  };
-  return icons[icon] || icons.bottle;
-}
-
-renderMenuCategories();
-
 function revealMenu() {
   if (!menu) return;
   menu.classList.add("reveal");
@@ -117,15 +79,42 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll, { passive: true });
 window.addEventListener("load", () => {
   document.body.classList.add("hero-loaded");
+  renderCategoryCards();
+  bindCategoryButtons();
   renderCart();
 });
 
-document.querySelectorAll("[data-category]").forEach((button) => {
-  button.addEventListener("click", () => {
-    softTap();
-    openCategory(button.dataset.category);
+function bindCategoryButtons() {
+  document.querySelectorAll("[data-category]").forEach((button) => {
+    if (button.dataset.boundCategory === "true") return;
+    button.dataset.boundCategory = "true";
+    button.addEventListener("click", () => {
+      softTap();
+      openCategory(button.dataset.category);
+    });
   });
-});
+}
+
+function renderCategoryCards() {
+  const categoryGrid = document.getElementById("categoryGrid");
+  if (!categoryGrid || !Array.isArray(inventory.categories)) return;
+
+  categoryGrid.innerHTML = inventory.categories.map((category) => {
+    const image = category.image ? `<img src="${escapeHtml(category.image)}" alt="" class="category-card-image" loading="lazy" />` : "";
+    return `
+      <button class="category-card" type="button" data-category="${escapeHtml(category.id)}" aria-label="Open ${escapeHtml(category.name)}">
+        <span class="category-card-copy">
+          <strong>${escapeHtml(category.name)}</strong>
+          <em>${escapeHtml(category.subtitle || "Tap to view")}</em>
+        </span>
+        <span class="category-card-media">${image}</span>
+        <span class="category-card-arrow">›</span>
+      </button>
+    `;
+  }).join("");
+
+  bindCategoryButtons();
+}
 
 closePanel.addEventListener("click", () => {
   softTap();
@@ -146,25 +135,9 @@ function openCategory(key) {
   setupProductCards();
 }
 
-
-function isInStock(item) {
-  return !item || item.stock !== false;
-}
-
-function choiceLabel(choice) {
-  return typeof choice === "string" ? choice : (choice.name || choice.label || "");
-}
-
-function choiceStock(choice) {
-  return typeof choice === "string" ? true : choice.stock !== false;
-}
-
-function stockText(item) {
-  return isInStock(item) ? "" : "OUT OF STOCK";
-}
-
 function renderCategory(category) {
   if (category.type === "bulk") return renderBulkCategory(category);
+  if (!category.items || category.items.length === 0) return `<div class="empty-category">Stock will be added here soon. Message Herts Vapes to ask what is available.</div>`;
   if (category.type === "deals") return category.items.map(renderDeal).join("");
   return category.items.map(renderProduct).join("");
 }
@@ -172,9 +145,8 @@ function renderCategory(category) {
 function renderDeal(deal) {
   const promptData = deal.prompts ? escapeHtml(deal.prompts.join("||")) : "";
   const displayName = deal.subline ? `${deal.name} ${deal.subline}` : deal.name;
-  const available = isInStock(deal);
   return `
-    <article class="deal-card offer-card ${available ? "" : "is-out-of-stock"}">
+    <article class="deal-card offer-card">
       ${renderDealVisuals(deal)}
       <div class="deal-main">
         <div>
@@ -183,12 +155,11 @@ function renderDeal(deal) {
           ${deal.subline ? `<div class="deal-plus-line">${escapeHtml(deal.subline)}</div>` : ""}
           <div class="deal-meta">${escapeHtml(deal.meta)}</div>
           ${deal.confirm ? `<div class="confirm-note">${escapeHtml(deal.confirm)}</div>` : ""}
-          ${!available ? `<div class="stock-badge">${stockText(deal)}</div>` : ""}
         </div>
         <div class="price-pill">${escapeHtml(deal.price)}</div>
       </div>
       <div class="card-actions">
-        <button class="add-cart-button" type="button" data-add="${escapeHtml(displayName)}" data-price="${escapeHtml(deal.price)}" data-prompts="${promptData}" ${available ? "" : "disabled"}>${available ? "ADD" : "OUT"}</button>
+        <button class="add-cart-button" type="button" data-add="${escapeHtml(displayName)}" data-price="${escapeHtml(deal.price)}" data-prompts="${promptData}">ADD</button>
       </div>
     </article>
   `;
@@ -241,49 +212,44 @@ function renderProduct(product) {
   const choices = product.flavours || product.details || [];
   const hasExpandable = choices.length > 1 && !product.pricing;
   const hasSingleChoice = choices.length === 1 && !product.pricing;
-  const available = isInStock(product);
 
   return `
-    <article class="product-card ${hasExpandable ? "can-open" : ""} ${available ? "" : "is-out-of-stock"}">
-      <button class="product-main" type="button" ${hasExpandable && available ? "" : "disabled"}>
+    <article class="product-card ${hasExpandable ? "can-open" : ""}">
+      <button class="product-main" type="button" ${hasExpandable ? "" : "disabled"}>
         <div>
           <div class="product-name">${escapeHtml(product.name)}${product.popular ? ` <span class="popular-badge">MOST POPULAR</span>` : ""}</div>
-          <div class="product-meta">${escapeHtml(product.meta)}${hasExpandable && available ? "  ▾" : ""}</div>
-          ${!available ? `<div class="stock-badge">${stockText(product)}</div>` : ""}
+          <div class="product-meta">${escapeHtml(product.meta)}${hasExpandable ? "  ▾" : ""}</div>
         </div>
         ${product.price ? `<div class="price-pill">${escapeHtml(product.price)}</div>` : ""}
       </button>
-      ${product.pricing ? renderPricing(product, available) : ""}
-      ${hasExpandable && available ? renderExpandable(product) : ""}
-      ${hasSingleChoice ? renderSingleOption(product, choices[0], available) : ""}
-      ${!product.pricing && choices.length === 0 ? renderQuickAdd(product, "", available) : ""}
+      ${product.pricing ? renderPricing(product) : ""}
+      ${hasExpandable ? renderExpandable(product) : ""}
+      ${hasSingleChoice ? renderSingleOption(product, choices[0]) : ""}
+      ${!product.pricing && choices.length === 0 ? renderQuickAdd(product, "") : ""}
     </article>
   `;
 }
 
-function renderQuickAdd(product, option = "", parentAvailable = true) {
-  const available = parentAvailable && isInStock(product);
+function renderQuickAdd(product, option = "") {
   return `
     <div class="card-actions">
-      <button class="add-cart-button" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}" ${available ? "" : "disabled"}>${available ? "ADD" : "OUT"}</button>
+      <button class="add-cart-button" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">ADD</button>
     </div>
   `;
 }
 
-function renderSingleOption(product, option = "", parentAvailable = true) {
-  const label = choiceLabel(option) || product.name;
-  const available = parentAvailable && choiceStock(option);
+function renderSingleOption(product, option = "") {
   return `
     <div class="single-option-list">
-      <button class="option-add-row" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(label)}" data-price="${escapeHtml(product.price || "")}" ${available ? "" : "disabled"}>
-        <span>${escapeHtml(label)}</span>
-        <em>${available ? "ADD" : "OUT"}</em>
+      <button class="option-add-row" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(option)}" data-price="${escapeHtml(product.price || "")}">
+        <span>${escapeHtml(option || product.name)}</span>
+        <em>ADD</em>
       </button>
     </div>
   `;
 }
 
-function renderPricing(product, parentAvailable = true) {
+function renderPricing(product) {
   if (product.details && product.details.length) {
     return `
       <div class="price-pair priced-options">
@@ -291,7 +257,7 @@ function renderPricing(product, parentAvailable = true) {
           <div class="option-group">
             <div class="option-title">${escapeHtml(detail)}</div>
             <div class="option-prices">
-              ${product.pricing.map(row => { const available = parentAvailable && isInStock(row); return `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(detail + " - " + row.label)}" data-price="${escapeHtml(row.price)}" ${available ? "" : "disabled"}><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>${available ? "ADD" : "OUT"}</em></button>`; }).join("")}
+              ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(detail + " - " + row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
             </div>
             ${product.saving ? `<div class="saving option-saving">${escapeHtml(product.saving)}</div>` : ""}
           </div>
@@ -302,7 +268,7 @@ function renderPricing(product, parentAvailable = true) {
 
   return `
     <div class="price-pair priced-options">
-      ${product.pricing.map(row => { const available = parentAvailable && isInStock(row); return `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(row.label)}" data-price="${escapeHtml(row.price)}" ${available ? "" : "disabled"}><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>${available ? "ADD" : "OUT"}</em></button>`; }).join("")}
+      ${product.pricing.map(row => `<button class="price-row add-price" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(row.label)}" data-price="${escapeHtml(row.price)}"><span>${escapeHtml(row.label)}</span><strong>${escapeHtml(row.price)}</strong><em>ADD</em></button>`).join("")}
       ${product.saving ? `<div class="saving">${escapeHtml(product.saving)}</div>` : ""}
     </div>
   `;
@@ -311,11 +277,7 @@ function renderPricing(product, parentAvailable = true) {
 function renderExpandable(product) {
   const list = product.flavours || product.details || [];
   const twoCol = list.length >= 6 ? " two-col" : "";
-  return `<div class="expand-content"><div class="flavour-list${twoCol}">${list.map(item => {
-    const label = choiceLabel(item);
-    const available = choiceStock(item);
-    return `<button class="flavour add-flavour" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(label)}" data-price="${escapeHtml(product.price || "")}" ${available ? "" : "disabled"}>${escapeHtml(label)}<span>${available ? "ADD" : "OUT"}</span></button>`;
-  }).join("")}</div></div>`;
+  return `<div class="expand-content"><div class="flavour-list${twoCol}">${list.map(item => `<button class="flavour add-flavour" type="button" data-add="${escapeHtml(product.name)}" data-option="${escapeHtml(item)}" data-price="${escapeHtml(product.price || "")}">${escapeHtml(item)}<span>ADD</span></button>`).join("")}</div></div>`;
 }
 
 function setupProductCards() {
@@ -508,8 +470,8 @@ cartSnapchat.addEventListener("click", async () => {
   softTap();
   await copyOrderMessage();
   showToast("✓ Order copied. Paste into Snapchat.");
-  setTimeout(() => window.open(hvContact.snapchatUrl || "https://www.snapchat.com/add/herts.vps", "_blank"), 350);
+  setTimeout(() => window.open("https://www.snapchat.com/add/herts.vps", "_blank"), 350);
 });
 
 // Final public clean build marker. Functionality above is unchanged.
-window.HERTS_VAPES_BUILD = "v4-inventory-master";
+window.HERTS_VAPES_BUILD = "final-public-clean";
