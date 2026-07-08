@@ -6,7 +6,6 @@
 const inventory = {
   special: {
     title: "Special Deals",
-    image: "assets/categories/special.png",
     type: "deals",
     items: [
       {
@@ -62,7 +61,6 @@ const inventory = {
 
   disposable: {
     title: "Disposable Vapes",
-    image: "assets/categories/disposable.png",
     items: [
       { name: "Lost Mary BM6000", price: "£10", meta: "13 flavours available", popular: true, flavours: ["Summer Grape", "Blue Razz Lemonade", "Pineapple Ice", "Cherry Cola", "Cherry Ice", "Strawberry Raspberry Cherry Ice", "Banana Ice", "Triple Mango", "Blueberry Sour Raspberry", "Double Apple", "Blueberry Cherry Cranberry", "Miami Mint", "Orange Bru"] },
       { name: "Hayati Dual Flavour 25000", price: "£15", meta: "5 flavour combinations", flavours: ["Strawberry Cranberry Cherry / Strawberry Raspberry Ice", "Blue Razz Cherry / Blue Razz Gummy Bear", "Blueberry Cotton Candy / Raspberry Cotton Candy", "Strawberry Cranberry Cherry / Cherry Ice", "Kiwi Banana / Strawberry Banana"] },
@@ -75,7 +73,6 @@ const inventory = {
 
   podkits: {
     title: "Pod Kits",
-    image: "assets/categories/podkits.png",
     items: [
       { name: "Vaporesso XROS Pro 2.0", price: "£25", meta: "Body kit • comes with 2 pods", details: ["Glittering Black", "Glittering Silver", "Gem Green"] }
     ]
@@ -83,7 +80,6 @@ const inventory = {
 
   salts: {
     title: "Nic Salts",
-    image: "assets/categories/salts.png",
     items: [
       { name: "Elux Legend Nic Salts", price: "£2.50", meta: "20mg • 25 flavours available", popular: true, flavours: ["Mr Blue", "Blueberry Cranberry Cherry", "Blue Razz Gummy", "Blackberry Ice", "Banana Ice", "Gummy Bear", "Fizzy Cherry", "Watermelon Ice", "Blueberry Sour Raspberry", "Cherry Ice", "Blue Razz Cherry", "Cherry Sour Raspberry", "Grape", "Lemon Lime", "Strawberry Raspberry Cherry", "Cola", "Juicy Peach", "Pineapple Ice", "Hubba Bubba", "Lemonade", "Raspberry Peach", "Triple Mango", "Raspberry Watermelon", "Black Cherry", "Triple Melon"] }
     ]
@@ -91,7 +87,6 @@ const inventory = {
 
   pods: {
     title: "Replacement Pods",
-    image: "assets/categories/pods.png",
     items: [
       { name: "XROS Corex Pods", meta: "0.6Ω", pricing: [{ label: "1 Pod", price: "£5" }, { label: "Pack of 4", price: "£15" }], saving: "Save £5" }
     ]
@@ -99,7 +94,6 @@ const inventory = {
 
   pouches: {
     title: "Nicotine Pouches",
-    image: "assets/categories/pouches.png",
     items: [
       { name: "VELO", meta: "Minty Lemon • 10mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" },
       { name: "Pablo", meta: "Frosted Mint • 50mg", pricing: [{ label: "1 Box", price: "£5" }, { label: "Pack of 5", price: "£20" }], saving: "Save £5" }
@@ -194,20 +188,7 @@ window.addEventListener("scroll", revealOnScroll, { passive: true });
 window.addEventListener("load", () => {
   document.body.classList.add("hero-loaded");
   renderCart();
-  renderCategoryImages();
 });
-
-function renderCategoryImages() {
-  const layer = document.querySelector(".category-image-layer");
-  if (!layer) return;
-
-  const keys = ["special", "disposable", "podkits", "salts", "pods", "pouches"];
-  layer.innerHTML = keys.map((key) => {
-    const category = inventory[key];
-    if (!category || !category.image) return "";
-    return `<img class="category-card-image ${key}" src="${escapeHtml(category.image)}" alt="" loading="eager" />`;
-  }).join("");
-}
 
 document.querySelectorAll("[data-category]").forEach((button) => {
   button.addEventListener("click", () => {
