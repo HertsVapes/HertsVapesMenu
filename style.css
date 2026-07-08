@@ -3645,178 +3645,132 @@ body { background: #020202; }
   }
 }
 
-/* =====================================================
-   FINAL V4 CATEGORY CARD POLISH ONLY
-   Replaces old menu artwork/hotspots with consistent cards.
-   ===================================================== */
-.menu-visual {
-  padding: calc(18px + env(safe-area-inset-top)) 16px 12px !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255,37,49,.11), transparent 34%),
-    linear-gradient(180deg, #020202 0%, #050000 22%, #020202 100%) !important;
+/* Inventory category image rendering connection only */
+.menu-visual .menu-art,
+.menu-visual .category-hit {
+  display: none !important;
 }
 
-.menu-art,
-.category-hit {
-  display: none !important;
+.menu-visual {
+  padding: calc(20px + env(safe-area-inset-top)) 14px 18px !important;
 }
 
 .menu-title-band {
   position: relative !important;
-  inset: auto !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
   height: auto !important;
-  min-height: 78px;
-  margin: 0 0 18px !important;
-  padding: 10px 0 14px;
-  background: transparent !important;
-  box-shadow: none !important;
+  min-height: 88px !important;
+  margin: 0 0 14px !important;
+  border-radius: 28px !important;
 }
 
 .menu-title-band::after {
   display: none !important;
 }
 
-.menu-title-band strong {
-  font-size: clamp(36px, 9.4vw, 58px) !important;
-  letter-spacing: .17em !important;
-  line-height: .95 !important;
-  text-shadow:
-    0 0 18px rgba(255,37,49,.24),
-    0 10px 26px rgba(0,0,0,.62) !important;
-}
-
-.menu-title-band span {
-  height: 3px !important;
-  width: min(74px, 18vw) !important;
-}
-
 .category-card-grid {
+  width: min(100%, 710px);
+  margin: 0 auto;
   display: grid;
-  gap: 14px;
-  padding: 0 6px 18px;
+  gap: 12px;
 }
 
-.category-card {
+.category-card-button {
+  position: relative;
   width: 100%;
-  min-height: 108px;
+  min-height: 106px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 132px 22px;
+  grid-template-columns: minmax(0, 1fr) minmax(116px, 38%) 24px;
   align-items: center;
-  gap: 12px;
-  border: 1px solid rgba(255,255,255,.12);
+  gap: 10px;
+  padding: 14px 16px 14px 18px;
+  border: 1px solid rgba(255, 37, 49, .55);
   border-radius: 24px;
-  padding: 14px 15px 14px 18px;
-  color: #fff;
-  text-align: left;
   background:
-    radial-gradient(circle at 88% 12%, rgba(255,37,49,.17), transparent 35%),
-    linear-gradient(180deg, rgba(255,255,255,.062), rgba(255,255,255,.018));
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.035),
-    0 16px 34px rgba(0,0,0,.38);
+    radial-gradient(circle at 78% 38%, rgba(255, 37, 49, .16), transparent 42%),
+    linear-gradient(180deg, rgba(24, 24, 24, .94), rgba(5, 5, 5, .96));
+  color: #fff;
+  font: inherit;
+  text-align: left;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 16px 34px rgba(0,0,0,.38);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
 
-.category-card:active {
-  transform: scale(.988);
-  border-color: rgba(255,37,49,.70);
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.05),
-    0 18px 38px rgba(0,0,0,.42),
-    0 0 24px rgba(255,37,49,.18);
+.category-card-button:active {
+  transform: scale(.985);
 }
 
-.category-copy {
+.category-card-copy {
   display: grid;
   gap: 7px;
   min-width: 0;
 }
 
-.category-copy strong {
-  font-size: clamp(20px, 5.45vw, 29px);
+.category-card-copy strong {
+  font-size: clamp(20px, 5.4vw, 32px);
   line-height: .98;
   font-weight: 950;
-  letter-spacing: -.02em;
+  letter-spacing: .035em;
+  text-transform: uppercase;
 }
 
-.category-copy em {
-  color: rgba(255,255,255,.62);
-  font-size: clamp(12px, 3.4vw, 15px);
-  line-height: 1.18;
+.category-card-copy em {
+  color: rgba(255,255,255,.58);
   font-style: normal;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 
-.category-image {
-  height: 78px;
-  width: 132px;
+.category-card-images {
+  min-width: 0;
+  height: 82px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 0;
   overflow: visible;
 }
 
-.category-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
+.category-card-images img {
+  max-height: 82px;
+  max-width: 72px;
   object-fit: contain;
-  object-position: center;
-  filter: drop-shadow(0 12px 16px rgba(0,0,0,.40));
+  filter: drop-shadow(0 12px 15px rgba(0,0,0,.45));
 }
 
-.category-composition img {
-  width: 46%;
-  height: 100%;
-  margin-left: -8%;
+.category-card-images img + img {
+  margin-left: -18px;
 }
 
-.category-composition img:first-child {
-  margin-left: 0;
-}
-
-.category-composition.three img:nth-child(2) {
-  transform: translateY(-2px) scale(1.04);
-  z-index: 2;
-}
-
-.category-composition.three img:nth-child(3) {
-  transform: translateY(2px);
-}
-
-.category-image-empty {
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255,37,49,.12), transparent 52%),
-    rgba(255,255,255,.025);
-  border: 1px solid rgba(255,255,255,.07);
-}
-
-.category-arrow {
-  color: var(--launch-red, #ff2531);
-  font-size: 42px;
-  line-height: 1;
-  font-weight: 300;
+.category-card-arrow {
   justify-self: end;
-  text-shadow: 0 0 16px rgba(255,37,49,.30);
-}
-
-.hv-bulk-category {
-  padding-top: 4px !important;
+  color: rgba(255,255,255,.82);
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 600;
 }
 
 @media (max-width: 390px) {
-  .menu-visual { padding-left: 12px !important; padding-right: 12px !important; }
-  .category-card-grid { gap: 12px; padding-left: 2px; padding-right: 2px; }
-  .category-card {
-    min-height: 102px;
-    grid-template-columns: minmax(0, 1fr) 112px 18px;
-    gap: 9px;
-    padding: 13px 12px 13px 15px;
-    border-radius: 22px;
+  .category-card-button {
+    grid-template-columns: minmax(0, 1fr) minmax(102px, 35%) 20px;
+    min-height: 98px;
+    padding-left: 15px;
+    padding-right: 12px;
   }
-  .category-image { width: 112px; height: 72px; }
-  .category-arrow { font-size: 38px; }
+  .category-card-images,
+  .category-card-images img {
+    max-height: 74px;
+    height: 74px;
+  }
+  .category-card-images img {
+    max-width: 64px;
+  }
+  .category-card-images img + img {
+    margin-left: -20px;
+  }
 }
