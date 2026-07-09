@@ -3875,6 +3875,88 @@ body { background: #020202; }
   }
 }
 
+
+
+/* Final release category product artwork integration */
+.category-card-combo {
+  position: relative !important;
+}
+
+.category-card-combo img {
+  position: absolute !important;
+  inset: auto !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.category-card-combo-special img:nth-child(1) {
+  left: 8px !important;
+  bottom: 0 !important;
+  max-width: 42px !important;
+  max-height: 76px !important;
+  z-index: 2 !important;
+}
+
+.category-card-combo-special img:nth-child(2) {
+  left: 36px !important;
+  bottom: 5px !important;
+  max-width: 46px !important;
+  max-height: 66px !important;
+  z-index: 4 !important;
+}
+
+.category-card-combo-special img:nth-child(3) {
+  right: 15px !important;
+  bottom: 1px !important;
+  max-width: 42px !important;
+  max-height: 72px !important;
+  z-index: 3 !important;
+}
+
+.category-card-combo-special img:nth-child(4) {
+  right: 0 !important;
+  bottom: 9px !important;
+  max-width: 40px !important;
+  max-height: 48px !important;
+  z-index: 5 !important;
+}
+
+.category-card-combo-disposable img:nth-child(1) {
+  left: 6px !important;
+  bottom: 0 !important;
+  max-width: 46px !important;
+  max-height: 78px !important;
+  z-index: 3 !important;
+}
+
+.category-card-combo-disposable img:nth-child(2) {
+  left: 35px !important;
+  bottom: 0 !important;
+  max-width: 52px !important;
+  max-height: 82px !important;
+  z-index: 4 !important;
+}
+
+.category-card-combo-disposable img:nth-child(3) {
+  right: 4px !important;
+  bottom: 1px !important;
+  max-width: 44px !important;
+  max-height: 76px !important;
+  z-index: 2 !important;
+}
+
+@media (max-width: 380px) {
+  .category-card-combo-special img:nth-child(1) { max-width: 38px !important; max-height: 70px !important; left: 4px !important; }
+  .category-card-combo-special img:nth-child(2) { max-width: 42px !important; max-height: 60px !important; left: 30px !important; }
+  .category-card-combo-special img:nth-child(3) { max-width: 38px !important; max-height: 66px !important; right: 12px !important; }
+  .category-card-combo-special img:nth-child(4) { max-width: 36px !important; max-height: 44px !important; right: -2px !important; }
+  .category-card-combo-disposable img:nth-child(1) { max-width: 42px !important; max-height: 72px !important; left: 2px !important; }
+  .category-card-combo-disposable img:nth-child(2) { max-width: 48px !important; max-height: 76px !important; left: 28px !important; }
+  .category-card-combo-disposable img:nth-child(3) { max-width: 40px !important; max-height: 70px !important; right: 2px !important; }
+}
+
 /* Final safety override: category card menu must be tappable. */
 .menu-visual,
 .category-card-grid,
