@@ -7,7 +7,6 @@
   <meta name="description" content="Herts Vapes live menu. Browse products, flavours and deals, then order through WhatsApp or Snapchat." />
   <title>Herts Vapes Menu</title>
   <link rel="preload" href="hero.jpg" as="image" />
-  <link rel="preload" href="menu.jpg" as="image" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -38,75 +37,13 @@
 
     <div class="section-blend" aria-hidden="true"></div>
 
-    <section class="menu-visual" id="menu" aria-label="Herts Vapes menu categories">
+    <section class="category-menu" id="menu" aria-label="Herts Vapes menu categories">
       <div class="menu-title-band" aria-hidden="true">
         <span></span>
         <strong>Live Menu</strong>
         <span></span>
       </div>
-
-      <div class="category-card-grid">
-        <button class="category-card" type="button" data-category="special" aria-label="Open special deals">
-          <span class="category-copy"><strong>Special Deals</strong><em>Bundles and savings</em></span>
-          <span class="category-image category-composition three">
-            <img src="lostmary.png" alt="" onerror="this.hidden=true" />
-            <img src="podkit.png" alt="" onerror="this.hidden=true" />
-            <img src="eluxnicsalt.png" alt="" onerror="this.hidden=true" />
-          </span>
-          <span class="category-arrow">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="disposable" aria-label="Open disposable vapes">
-          <span class="category-copy"><strong>Disposable Vapes</strong><em>Lost Mary, Hayati, Elux</em></span>
-          <span class="category-image category-composition three">
-            <img src="lostmary.png" alt="" onerror="this.hidden=true" />
-            <img src="hayati25k.png" alt="" onerror="this.hidden=true" />
-            <img src="elux3500.png" alt="" onerror="this.hidden=true" />
-          </span>
-          <span class="category-arrow">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="podkits" aria-label="Open pod kits">
-          <span class="category-copy"><strong>Pod Kits</strong><em>Vaporesso XROS Pro 2.0</em></span>
-          <span class="category-image"><img src="podkit.png" alt="" onerror="this.hidden=true" /></span>
-          <span class="category-arrow">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="salts" aria-label="Open nic salts">
-          <span class="category-copy"><strong>Nic Salts</strong><em>Elux Legend 20mg</em></span>
-          <span class="category-image"><img src="eluxnicsalt.png" alt="" onerror="this.hidden=true" /></span>
-          <span class="category-arrow">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="pods" aria-label="Open replacement pods">
-          <span class="category-copy"><strong>Replacement Pods</strong><em>XROS Corex 0.6Ω</em></span>
-          <span class="category-image category-image-empty" aria-hidden="true"></span>
-          <span class="category-arrow">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="pouches" aria-label="Open nicotine pouches">
-          <span class="category-copy"><strong>Nicotine Pouches</strong><em>Pablo Frosted Mint</em></span>
-          <span class="category-image"><img src="pablopouch.png" alt="" onerror="this.hidden=true" /></span>
-          <span class="category-arrow">›</span>
-        </button>
-
-        <button class="category-card" type="button" data-category="tobacco" aria-label="Open tobacco">
-          <span class="category-copy"><strong>Tobacco</strong><em>Amber Leaf Original</em></span>
-          <span class="category-image"><img src="amberleaf.png" alt="" onerror="this.hidden=true" /></span>
-          <span class="category-arrow">›</span>
-        </button>
-      </div>
-    </section>
-
-    <section class="hv-bulk-category" aria-label="HV Bulk category">
-      <button class="hv-bulk-category-button" type="button" data-category="bulk" aria-label="Open HV Bulk">
-        <span class="hv-bulk-icon">HV</span>
-        <span class="hv-bulk-text">
-          <strong>HV BULK</strong>
-          <em>£100+ pre-orders</em>
-        </span>
-        <span class="hv-bulk-arrow">›</span>
-      </button>
+      <div class="category-card-grid" id="categoryCardGrid"></div>
     </section>
 
     <section class="inventory-panel" id="inventoryPanel" aria-live="polite">
