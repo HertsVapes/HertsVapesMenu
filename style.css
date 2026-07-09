@@ -3881,3 +3881,58 @@ body { background: #020202; }
 .category-card {
   pointer-events: auto !important;
 }
+
+/* =====================================================
+   MASTER RESET MICRO-POLISH ONLY
+   LIVE MENU heading + subtle hero-to-menu transition.
+   No JavaScript, inventory, cart, category or image changes.
+   ===================================================== */
+.menu-visual {
+  padding-top: clamp(16px, 4.4vw, 24px) !important;
+  background:
+    radial-gradient(circle at 50% -4%, rgba(255,37,49,.18), transparent 30%),
+    linear-gradient(180deg, #020202 0%, #040000 16%, #050505 46%, #020202 100%) !important;
+  transition: opacity 720ms cubic-bezier(.18,.82,.22,1), transform 720ms cubic-bezier(.18,.82,.22,1) !important;
+}
+
+.menu-title-band {
+  gap: clamp(10px, 3.2vw, 16px) !important;
+  margin: 0 0 clamp(20px, 5vw, 26px) !important;
+  padding: 2px 0 4px !important;
+}
+
+.menu-title-band span {
+  height: 2px !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(255,255,255,.28) 30%, rgba(255,37,49,.78) 50%, rgba(255,255,255,.28) 70%, transparent 100%) !important;
+  box-shadow: 0 0 14px rgba(255,37,49,.18) !important;
+}
+
+.menu-title-band strong {
+  color: #fff !important;
+  font-size: clamp(19px, 5.4vw, 26px) !important;
+  line-height: 1 !important;
+  font-weight: 950 !important;
+  letter-spacing: .145em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  text-shadow:
+    0 0 18px rgba(255,37,49,.30),
+    0 10px 24px rgba(0,0,0,.52) !important;
+}
+
+.category-card-grid {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 390px) {
+  .menu-title-band {
+    gap: 10px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .menu-title-band strong {
+    letter-spacing: .13em !important;
+  }
+}
