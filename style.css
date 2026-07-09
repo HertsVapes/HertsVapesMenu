@@ -3882,101 +3882,169 @@ body { background: #020202; }
   pointer-events: auto !important;
 }
 
-/* Final category image polish only */
+/* =========================================================
+   FINAL VISUAL POLISH ONLY
+   Premium category image sizing/composition + subtle Live Menu polish.
+   No JavaScript, inventory, cart or ordering functionality changed.
+   ========================================================= */
+.menu-title-band {
+  gap: 14px !important;
+  margin: 2px 0 22px !important;
+}
+
+.menu-title-band strong {
+  font-size: clamp(20px, 5.7vw, 27px) !important;
+  font-weight: 950 !important;
+  letter-spacing: .135em !important;
+  text-shadow: 0 0 20px rgba(226,21,33,.28), 0 10px 22px rgba(0,0,0,.46) !important;
+}
+
+.menu-title-band span {
+  height: 2px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), rgba(255,37,49,.48), rgba(255,255,255,.18), transparent) !important;
+  box-shadow: 0 0 14px rgba(255,37,49,.18) !important;
+}
+
+.category-card {
+  grid-template-columns: minmax(0, 1fr) 146px 20px !important;
+  gap: 10px !important;
+}
+
 .category-card-image {
   position: relative !important;
-  width: 118px !important;
-  height: 82px !important;
-  align-self: center !important;
-  justify-self: center !important;
-}
-
-.category-card-image > img {
-  object-fit: contain !important;
-  object-position: center center !important;
-  image-rendering: auto !important;
-  backface-visibility: hidden !important;
-  filter: drop-shadow(0 11px 15px rgba(0,0,0,.42)) !important;
-}
-
-.category-combo {
+  width: 146px !important;
+  height: 84px !important;
   display: block !important;
   overflow: visible !important;
+  justify-self: end !important;
+  align-self: center !important;
   isolation: isolate !important;
 }
 
-.category-combo > img {
-  position: absolute !important;
-  width: auto !important;
-  height: auto !important;
+.category-card-image::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 4%;
+  bottom: 1px;
+  height: 20px;
+  border-radius: 999px;
+  background: radial-gradient(ellipse at center, rgba(255,37,49,.18), rgba(0,0,0,.26) 52%, transparent 76%);
+  filter: blur(8px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.category-card-image img,
+.category-card-image .cat-img,
+.category-card-image .cat-single {
+  display: block !important;
   object-fit: contain !important;
   object-position: center center !important;
   max-width: none !important;
   max-height: none !important;
+  filter: drop-shadow(0 12px 14px rgba(0,0,0,.46)) !important;
+  backface-visibility: hidden !important;
+}
+
+.category-card-image > .cat-single {
+  position: absolute !important;
   left: 50% !important;
   top: 50% !important;
-  transform-origin: center center !important;
+  width: 112px !important;
+  height: 90px !important;
+  transform: translate(-50%, -50%) scale(1.08) !important;
 }
 
-.category-combo-special > img:nth-child(1) {
-  height: 78px !important;
-  z-index: 4 !important;
-  transform: translate(-88%, -47%) rotate(-5deg) !important;
+.category-card-image > .cat-vaporesso { width: 122px !important; height: 94px !important; transform: translate(-49%, -50%) scale(1.08) !important; }
+.category-card-image > .cat-nicsalt { width: 118px !important; height: 94px !important; transform: translate(-50%, -50%) scale(1.10) !important; }
+.category-card-image > .cat-pods { width: 116px !important; height: 92px !important; transform: translate(-50%, -50%) scale(1.18) !important; }
+.category-card-image > .cat-pouches { width: 106px !important; height: 86px !important; transform: translate(-50%, -50%) scale(1.18) !important; }
+.category-card-image > .cat-tobacco { width: 122px !important; height: 96px !important; transform: translate(-50%, -50%) scale(1.08) !important; }
+
+.category-composition .cat-img {
+  position: absolute !important;
+  top: 50% !important;
+  height: auto !important;
 }
 
-.category-combo-special > img:nth-child(2) {
-  height: 76px !important;
+.special-composition .cat-lostmary {
+  width: 62px !important;
+  left: 0px !important;
+  transform: translateY(-48%) rotate(-4deg) !important;
   z-index: 2 !important;
-  transform: translate(-44%, -54%) rotate(4deg) !important;
 }
 
-.category-combo-special > img:nth-child(3) {
-  height: 73px !important;
-  z-index: 5 !important;
-  transform: translate(4%, -43%) rotate(3deg) !important;
+.special-composition .cat-podkit {
+  width: 58px !important;
+  left: 41px !important;
+  transform: translateY(-47%) rotate(3deg) !important;
+  z-index: 4 !important;
 }
 
-.category-combo-special > img:nth-child(4) {
-  height: 60px !important;
+.special-composition .cat-salt {
+  width: 66px !important;
+  left: 75px !important;
+  transform: translateY(-50%) rotate(-2deg) !important;
   z-index: 3 !important;
-  transform: translate(38%, -57%) rotate(7deg) !important;
 }
 
-.category-combo-disposable > img:nth-child(1) {
-  height: 82px !important;
-  z-index: 4 !important;
-  transform: translate(-78%, -50%) rotate(-5deg) !important;
-}
-
-.category-combo-disposable > img:nth-child(2) {
-  height: 88px !important;
-  z-index: 2 !important;
-  transform: translate(-34%, -52%) rotate(2deg) !important;
-}
-
-.category-combo-disposable > img:nth-child(3) {
-  height: 80px !important;
+.special-composition .cat-pouch {
+  width: 48px !important;
+  right: -2px !important;
+  transform: translateY(-45%) rotate(6deg) !important;
   z-index: 5 !important;
-  transform: translate(24%, -49%) rotate(5deg) !important;
 }
 
-.category-card:not([data-category="special"]):not([data-category="disposable"]) .category-card-image:not(.category-card-hv) > img {
-  width: 108% !important;
-  height: 108% !important;
+.disposable-composition .cat-lostmary {
+  width: 66px !important;
+  left: 7px !important;
+  transform: translateY(-48%) rotate(-4deg) !important;
+  z-index: 2 !important;
+}
+
+.disposable-composition .cat-hayati {
+  width: 78px !important;
+  left: 47px !important;
+  transform: translateY(-51%) scale(1.06) !important;
+  z-index: 4 !important;
+}
+
+.disposable-composition .cat-elux3500 {
+  width: 64px !important;
+  right: -1px !important;
+  transform: translateY(-47%) rotate(4deg) !important;
+  z-index: 3 !important;
 }
 
 @media (max-width: 380px) {
-  .category-card-image {
-    width: 102px !important;
-    height: 74px !important;
+  .menu-title-band { margin-bottom: 19px !important; gap: 10px !important; }
+  .menu-title-band strong { font-size: 19px !important; letter-spacing: .12em !important; }
+
+  .category-card {
+    grid-template-columns: minmax(0, 1fr) 124px 18px !important;
+    gap: 7px !important;
   }
 
-  .category-combo-special > img:nth-child(1) { height: 70px !important; }
-  .category-combo-special > img:nth-child(2) { height: 68px !important; }
-  .category-combo-special > img:nth-child(3) { height: 66px !important; }
-  .category-combo-special > img:nth-child(4) { height: 54px !important; }
+  .category-card-image {
+    width: 124px !important;
+    height: 76px !important;
+  }
 
-  .category-combo-disposable > img:nth-child(1) { height: 74px !important; }
-  .category-combo-disposable > img:nth-child(2) { height: 80px !important; }
-  .category-combo-disposable > img:nth-child(3) { height: 72px !important; }
+  .category-card-image > .cat-single { width: 100px !important; height: 82px !important; }
+  .category-card-image > .cat-vaporesso { width: 108px !important; height: 86px !important; }
+  .category-card-image > .cat-nicsalt { width: 104px !important; height: 86px !important; }
+  .category-card-image > .cat-pods { width: 102px !important; height: 84px !important; }
+  .category-card-image > .cat-pouches { width: 94px !important; height: 78px !important; }
+  .category-card-image > .cat-tobacco { width: 108px !important; height: 86px !important; }
+
+  .special-composition .cat-lostmary { width: 54px !important; left: 0 !important; }
+  .special-composition .cat-podkit { width: 50px !important; left: 35px !important; }
+  .special-composition .cat-salt { width: 56px !important; left: 64px !important; }
+  .special-composition .cat-pouch { width: 42px !important; right: -2px !important; }
+
+  .disposable-composition .cat-lostmary { width: 56px !important; left: 4px !important; }
+  .disposable-composition .cat-hayati { width: 66px !important; left: 39px !important; }
+  .disposable-composition .cat-elux3500 { width: 55px !important; right: -2px !important; }
 }
