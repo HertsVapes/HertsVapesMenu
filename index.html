@@ -47,58 +47,58 @@
       <div class="category-card-grid" aria-label="Browse categories">
         <button class="category-card" type="button" data-category="special" aria-label="Open special deals">
           <span class="category-card-copy"><strong>Special Deals</strong><em>Bundles and offers</em></span>
-          <span class="category-card-image category-art category-art-special" aria-hidden="true">
-            <img class="art-item art-podkit" src="podkit.png.png" alt="" loading="lazy" />
-            <img class="art-item art-lostmary" src="lostmary.png.png" alt="" loading="lazy" />
-            <img class="art-item art-salt" src="eluxnicsalt.png.png" alt="" loading="lazy" />
-            <img class="art-item art-pouch" src="pablopouch.png.png" alt="" loading="lazy" />
+          <span class="category-card-image category-card-bundle special-bundle" aria-hidden="true">
+            <img class="bundle-img bundle-lostmary" src="lostmary.png.png" alt="" loading="lazy" />
+            <img class="bundle-img bundle-podkit" src="podkit.png.png" alt="" loading="lazy" />
+            <img class="bundle-img bundle-salt" src="eluxnicsalt.png.png" alt="" loading="lazy" />
+            <img class="bundle-img bundle-pouch" src="pablopouch.png.png" alt="" loading="lazy" />
           </span>
           <span class="category-card-arrow" aria-hidden="true">›</span>
         </button>
 
         <button class="category-card" type="button" data-category="disposable" aria-label="Open disposable vapes">
           <span class="category-card-copy"><strong>Disposable Vapes</strong><em>Ready-to-use devices</em></span>
-          <span class="category-card-image category-art category-art-disposable" aria-hidden="true">
-            <img class="art-item art-hayati" src="hayati25k.png.png" alt="" loading="lazy" />
-            <img class="art-item art-lostmary" src="lostmary.png.png" alt="" loading="lazy" />
-            <img class="art-item art-elux3500" src="elux3500.png.png" alt="" loading="lazy" />
+          <span class="category-card-image category-card-bundle disposable-bundle" aria-hidden="true">
+            <img class="bundle-img bundle-lostmary" src="lostmary.png.png" alt="" loading="lazy" />
+            <img class="bundle-img bundle-hayati" src="hayati25k.png.png" alt="" loading="lazy" />
+            <img class="bundle-img bundle-elux3500" src="elux3500.png.png" alt="" loading="lazy" />
           </span>
           <span class="category-card-arrow" aria-hidden="true">›</span>
         </button>
 
         <button class="category-card" type="button" data-category="podkits" aria-label="Open pod kits">
           <span class="category-card-copy"><strong>Pod Kits</strong><em>XROS kits and devices</em></span>
-          <span class="category-card-image category-art category-art-single category-art-kit" aria-hidden="true"><img class="art-item" src="podkit.png.png" alt="" loading="lazy" /></span>
+          <span class="category-card-image single-art podkit-art" aria-hidden="true"><img src="podkit.png.png" alt="" loading="lazy" /></span>
           <span class="category-card-arrow" aria-hidden="true">›</span>
         </button>
 
         <button class="category-card" type="button" data-category="salts" aria-label="Open nic salts">
           <span class="category-card-copy"><strong>Nic Salts</strong><em>20mg liquids</em></span>
-          <span class="category-card-image category-art category-art-single category-art-salt" aria-hidden="true"><img class="art-item" src="eluxnicsalt.png.png" alt="" loading="lazy" /></span>
+          <span class="category-card-image single-art salt-art" aria-hidden="true"><img src="eluxnicsalt.png.png" alt="" loading="lazy" /></span>
           <span class="category-card-arrow" aria-hidden="true">›</span>
         </button>
 
         <button class="category-card" type="button" data-category="pods" aria-label="Open replacement pods">
           <span class="category-card-copy"><strong>Replacement Pods</strong><em>XROS Corex pods</em></span>
-          <span class="category-card-image category-art category-art-single category-art-pods" aria-hidden="true"><img class="art-item" src="vaporessopod.png.png" alt="" loading="lazy" /></span>
+          <span class="category-card-image single-art pods-art" aria-hidden="true"><img src="vaporessopod.png.png" alt="" loading="lazy" /></span>
           <span class="category-card-arrow" aria-hidden="true">›</span>
         </button>
 
         <button class="category-card" type="button" data-category="pouches" aria-label="Open nicotine pouches">
           <span class="category-card-copy"><strong>Nicotine Pouches</strong><em>VELO and Pablo</em></span>
-          <span class="category-card-image category-art category-art-single category-art-pouches" aria-hidden="true"><img class="art-item" src="pablopouch.png.png" alt="" loading="lazy" /></span>
+          <span class="category-card-image single-art pouch-art" aria-hidden="true"><img src="pablopouch.png.png" alt="" loading="lazy" /></span>
           <span class="category-card-arrow" aria-hidden="true">›</span>
         </button>
 
         <button class="category-card" type="button" data-category="tobacco" aria-label="Open tobacco">
           <span class="category-card-copy"><strong>Tobacco</strong><em>Amber Leaf Original</em></span>
-          <span class="category-card-image category-art category-art-single category-art-tobacco" aria-hidden="true"><img class="art-item" src="amberleaf.png.png" alt="" loading="lazy" /></span>
+          <span class="category-card-image single-art tobacco-art" aria-hidden="true"><img src="amberleaf.png.png" alt="" loading="lazy" /></span>
           <span class="category-card-arrow" aria-hidden="true">›</span>
         </button>
 
         <button class="category-card" type="button" data-category="bulk" aria-label="Open HV Bulk">
           <span class="category-card-copy"><strong>HV Bulk</strong><em>£100+ pre-orders</em></span>
-          <span class="category-card-image category-card-hv"><span>HV</span></span>
+          <span class="category-card-image category-card-hv premium-hv-card" aria-hidden="true"><span>HV</span></span>
           <span class="category-card-arrow" aria-hidden="true">›</span>
         </button>
       </div>
@@ -162,8 +162,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite">Added to cart</div>
   </main>
 
-  <script src="settings.js"></script>
-  <script src="inventory.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
