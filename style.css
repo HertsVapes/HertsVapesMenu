@@ -3882,27 +3882,101 @@ body { background: #020202; }
   pointer-events: auto !important;
 }
 
-/* Final category product image integration only */
-.category-card-image--multi {
+/* Final category image polish only */
+.category-card-image {
   position: relative !important;
-  display: block !important;
+  width: 118px !important;
+  height: 82px !important;
+  align-self: center !important;
+  justify-self: center !important;
 }
 
-.category-card-image--multi img {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  width: 58% !important;
-  height: 84% !important;
+.category-card-image > img {
   object-fit: contain !important;
+  object-position: center center !important;
+  image-rendering: auto !important;
+  backface-visibility: hidden !important;
+  filter: drop-shadow(0 11px 15px rgba(0,0,0,.42)) !important;
+}
+
+.category-combo {
+  display: block !important;
+  overflow: visible !important;
+  isolation: isolate !important;
+}
+
+.category-combo > img {
+  position: absolute !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  max-width: none !important;
+  max-height: none !important;
+  left: 50% !important;
+  top: 50% !important;
   transform-origin: center center !important;
 }
 
-.category-card-image--special img:nth-child(1) { transform: translate(-86%, -48%) rotate(-5deg) !important; z-index: 3 !important; }
-.category-card-image--special img:nth-child(2) { transform: translate(-50%, -52%) scale(1.04) !important; z-index: 4 !important; }
-.category-card-image--special img:nth-child(3) { transform: translate(-16%, -48%) rotate(5deg) !important; z-index: 2 !important; }
-.category-card-image--special img:nth-child(4) { transform: translate(-38%, -35%) scale(.72) !important; z-index: 5 !important; }
+.category-combo-special > img:nth-child(1) {
+  height: 78px !important;
+  z-index: 4 !important;
+  transform: translate(-88%, -47%) rotate(-5deg) !important;
+}
 
-.category-card-image--disposable img:nth-child(1) { transform: translate(-78%, -49%) rotate(-5deg) !important; z-index: 3 !important; }
-.category-card-image--disposable img:nth-child(2) { transform: translate(-50%, -52%) scale(1.08) !important; z-index: 4 !important; }
-.category-card-image--disposable img:nth-child(3) { transform: translate(-20%, -48%) rotate(5deg) !important; z-index: 2 !important; }
+.category-combo-special > img:nth-child(2) {
+  height: 76px !important;
+  z-index: 2 !important;
+  transform: translate(-44%, -54%) rotate(4deg) !important;
+}
+
+.category-combo-special > img:nth-child(3) {
+  height: 73px !important;
+  z-index: 5 !important;
+  transform: translate(4%, -43%) rotate(3deg) !important;
+}
+
+.category-combo-special > img:nth-child(4) {
+  height: 60px !important;
+  z-index: 3 !important;
+  transform: translate(38%, -57%) rotate(7deg) !important;
+}
+
+.category-combo-disposable > img:nth-child(1) {
+  height: 82px !important;
+  z-index: 4 !important;
+  transform: translate(-78%, -50%) rotate(-5deg) !important;
+}
+
+.category-combo-disposable > img:nth-child(2) {
+  height: 88px !important;
+  z-index: 2 !important;
+  transform: translate(-34%, -52%) rotate(2deg) !important;
+}
+
+.category-combo-disposable > img:nth-child(3) {
+  height: 80px !important;
+  z-index: 5 !important;
+  transform: translate(24%, -49%) rotate(5deg) !important;
+}
+
+.category-card:not([data-category="special"]):not([data-category="disposable"]) .category-card-image:not(.category-card-hv) > img {
+  width: 108% !important;
+  height: 108% !important;
+}
+
+@media (max-width: 380px) {
+  .category-card-image {
+    width: 102px !important;
+    height: 74px !important;
+  }
+
+  .category-combo-special > img:nth-child(1) { height: 70px !important; }
+  .category-combo-special > img:nth-child(2) { height: 68px !important; }
+  .category-combo-special > img:nth-child(3) { height: 66px !important; }
+  .category-combo-special > img:nth-child(4) { height: 54px !important; }
+
+  .category-combo-disposable > img:nth-child(1) { height: 74px !important; }
+  .category-combo-disposable > img:nth-child(2) { height: 80px !important; }
+  .category-combo-disposable > img:nth-child(3) { height: 72px !important; }
+}
