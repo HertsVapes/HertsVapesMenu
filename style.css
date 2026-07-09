@@ -3882,139 +3882,197 @@ body { background: #020202; }
   pointer-events: auto !important;
 }
 
-/* Final category product image polish */
+/* =========================================================
+   FINAL CATEGORY IMAGE POLISH ONLY
+   CSS-only product artwork layout. Existing functionality unchanged.
+   ========================================================= */
+.menu-title-band {
+  gap: 14px !important;
+  margin-bottom: 20px !important;
+}
+
+.menu-title-band span {
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), rgba(255,37,49,.58), rgba(255,255,255,.16), transparent) !important;
+  box-shadow: 0 0 14px rgba(255,37,49,.16) !important;
+}
+
+.menu-title-band strong {
+  letter-spacing: .145em !important;
+  text-shadow: 0 0 20px rgba(255,37,49,.24), 0 10px 22px rgba(0,0,0,.42) !important;
+}
+
 .category-card {
-  grid-template-columns: minmax(0, 1fr) clamp(128px, 34vw, 184px) 20px !important;
-  min-height: 118px !important;
-  height: 118px !important;
-  padding: 13px 13px 13px 18px !important;
+  height: 112px !important;
+  min-height: 112px !important;
+  grid-template-columns: minmax(0, 1fr) clamp(138px, 36vw, 190px) 24px !important;
+  gap: 10px !important;
+  padding: 13px 14px 13px 18px !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 78% 50%, rgba(255,37,49,.18), transparent 38%),
+    radial-gradient(ellipse at 80% 106%, rgba(255,255,255,.07), transparent 40%),
+    linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.016)) !important;
+}
+
+.category-card-copy {
+  position: relative !important;
+  z-index: 4 !important;
+  overflow: hidden !important;
+}
+
+.category-card-copy strong {
+  white-space: nowrap !important;
+  font-size: clamp(18px, 4.6vw, 23px) !important;
+  letter-spacing: -.035em !important;
+}
+
+.category-card-copy em {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .category-card-image {
   position: relative !important;
-  width: clamp(128px, 34vw, 184px) !important;
-  height: 96px !important;
-}
-
-.category-card-image > img:not(.cat-product) {
   width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  transform: scale(1.14) !important;
-  transform-origin: center !important;
-}
-
-.category-card-stack {
-  display: block !important;
-  isolation: isolate !important;
-}
-
-.category-card-stack .cat-product {
-  position: absolute !important;
-  left: 50% !important;
-  bottom: 3px !important;
-  width: auto !important;
-  max-width: none !important;
-  max-height: none !important;
-  height: 88px !important;
-  object-fit: contain !important;
-  filter: drop-shadow(0 11px 14px rgba(0,0,0,.42)) !important;
-  transform-origin: bottom center !important;
-}
-
-.category-card-stack-special .cat-lostmary {
-  height: 86px !important;
-  transform: translateX(-72px) rotate(-5deg) !important;
-  z-index: 2 !important;
-}
-
-.category-card-stack-special .cat-podkit {
-  height: 91px !important;
-  transform: translateX(-32px) rotate(2deg) !important;
-  z-index: 4 !important;
-}
-
-.category-card-stack-special .cat-eluxnicsalt {
-  height: 82px !important;
-  transform: translateX(13px) rotate(-2deg) !important;
-  z-index: 3 !important;
-}
-
-.category-card-stack-special .cat-pablopouch {
-  height: 72px !important;
-  transform: translateX(52px) rotate(6deg) !important;
-  z-index: 1 !important;
-}
-
-.category-card-stack-disposable .cat-lostmary {
-  height: 92px !important;
-  transform: translateX(-63px) rotate(-4deg) !important;
-  z-index: 2 !important;
-}
-
-.category-card-stack-disposable .cat-hayati25k {
-  height: 101px !important;
-  transform: translateX(-15px) rotate(2deg) !important;
-  z-index: 4 !important;
-}
-
-.category-card-stack-disposable .cat-elux3500 {
   height: 90px !important;
-  transform: translateX(46px) rotate(5deg) !important;
-  z-index: 3 !important;
+  display: block !important;
+  justify-self: stretch !important;
+  align-self: center !important;
+  overflow: visible !important;
+  z-index: 2 !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: contain !important;
+  filter: drop-shadow(0 13px 16px rgba(0,0,0,.46)) !important;
+}
+
+.category-card-image > img {
+  opacity: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  pointer-events: none !important;
+}
+
+.category-card-arrow {
+  position: relative !important;
+  z-index: 5 !important;
+  width: 24px !important;
+  text-shadow: 0 0 16px rgba(255,37,49,.30) !important;
+}
+
+/* Special Deals: lostmary, podkit, eluxnicsalt, pablopouch */
+.category-card[data-category="special"] .category-card-image {
+  height: 94px !important;
+  background-image:
+    url("pablopouch.png.png"),
+    url("eluxnicsalt.png.png"),
+    url("lostmary.png.png"),
+    url("podkit.png.png") !important;
+  background-size:
+    31% auto,
+    27% auto,
+    44% auto,
+    39% auto !important;
+  background-position:
+    93% 58%,
+    66% 59%,
+    39% 55%,
+    11% 50% !important;
+}
+
+/* Disposable Vapes: lostmary, hayati25k, elux3500 */
+.category-card[data-category="disposable"] .category-card-image {
+  height: 94px !important;
+  background-image:
+    url("elux3500.png.png"),
+    url("hayati25k.png.png"),
+    url("lostmary.png.png") !important;
+  background-size:
+    29% auto,
+    48% auto,
+    36% auto !important;
+  background-position:
+    90% 55%,
+    51% 50%,
+    13% 56% !important;
+}
+
+.category-card[data-category="podkits"] .category-card-image {
+  height: 94px !important;
+  background-image: url("podkit.png.png") !important;
+  background-size: auto 94% !important;
+  background-position: 50% 50% !important;
+}
+
+.category-card[data-category="salts"] .category-card-image {
+  height: 92px !important;
+  background-image: url("eluxnicsalt.png.png") !important;
+  background-size: auto 88% !important;
+  background-position: 50% 52% !important;
+}
+
+.category-card[data-category="pods"] .category-card-image {
+  height: 92px !important;
+  background-image: url("vaporessopod.png.png") !important;
+  background-size: auto 91% !important;
+  background-position: 50% 50% !important;
+}
+
+.category-card[data-category="pouches"] .category-card-image {
+  height: 92px !important;
+  background-image: url("pablopouch.png.png") !important;
+  background-size: auto 86% !important;
+  background-position: 50% 52% !important;
+}
+
+.category-card[data-category="tobacco"] .category-card-image {
+  height: 92px !important;
+  background-image: url("amberleaf.png.png") !important;
+  background-size: auto 91% !important;
+  background-position: 50% 50% !important;
 }
 
 .category-card-hv {
+  display: grid !important;
+  place-items: center !important;
   width: 82px !important;
   height: 82px !important;
+  justify-self: center !important;
+  filter: none !important;
+  background: radial-gradient(circle, rgba(226,21,33,.18), rgba(0,0,0,.16)) !important;
 }
 
 @media (max-width: 430px) {
   .category-card {
-    grid-template-columns: minmax(0, 1fr) 142px 18px !important;
-    min-height: 112px !important;
-    height: 112px !important;
+    grid-template-columns: minmax(0, 1fr) 138px 22px !important;
+    height: 108px !important;
+    min-height: 108px !important;
     gap: 8px !important;
-    padding-right: 11px !important;
+    padding-left: 16px !important;
+    padding-right: 12px !important;
   }
 
-  .category-card-image {
-    width: 142px !important;
-    height: 90px !important;
+  .category-card-image,
+  .category-card[data-category="special"] .category-card-image,
+  .category-card[data-category="disposable"] .category-card-image {
+    height: 88px !important;
   }
 
-  .category-card-image > img:not(.cat-product) {
-    transform: scale(1.1) !important;
+  .category-card-copy strong {
+    font-size: clamp(17px, 4.55vw, 19px) !important;
   }
-
-  .category-card-stack-special .cat-lostmary { height: 78px !important; transform: translateX(-58px) rotate(-5deg) !important; }
-  .category-card-stack-special .cat-podkit { height: 84px !important; transform: translateX(-24px) rotate(2deg) !important; }
-  .category-card-stack-special .cat-eluxnicsalt { height: 75px !important; transform: translateX(14px) rotate(-2deg) !important; }
-  .category-card-stack-special .cat-pablopouch { height: 65px !important; transform: translateX(48px) rotate(6deg) !important; }
-
-  .category-card-stack-disposable .cat-lostmary { height: 82px !important; transform: translateX(-53px) rotate(-4deg) !important; }
-  .category-card-stack-disposable .cat-hayati25k { height: 92px !important; transform: translateX(-10px) rotate(2deg) !important; }
-  .category-card-stack-disposable .cat-elux3500 { height: 82px !important; transform: translateX(43px) rotate(5deg) !important; }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 370px) {
   .category-card {
-    grid-template-columns: minmax(0, 1fr) 126px 16px !important;
-    min-height: 104px !important;
+    grid-template-columns: minmax(0, 1fr) 124px 20px !important;
     height: 104px !important;
+    min-height: 104px !important;
+    padding-left: 14px !important;
   }
 
-  .category-card-image {
-    width: 126px !important;
-    height: 84px !important;
-  }
-
-  .category-card-stack-special .cat-lostmary { height: 72px !important; transform: translateX(-51px) rotate(-5deg) !important; }
-  .category-card-stack-special .cat-podkit { height: 78px !important; transform: translateX(-20px) rotate(2deg) !important; }
-  .category-card-stack-special .cat-eluxnicsalt { height: 69px !important; transform: translateX(13px) rotate(-2deg) !important; }
-  .category-card-stack-special .cat-pablopouch { height: 60px !important; transform: translateX(42px) rotate(6deg) !important; }
-
-  .category-card-stack-disposable .cat-lostmary { height: 76px !important; transform: translateX(-47px) rotate(-4deg) !important; }
-  .category-card-stack-disposable .cat-hayati25k { height: 84px !important; transform: translateX(-8px) rotate(2deg) !important; }
-  .category-card-stack-disposable .cat-elux3500 { height: 75px !important; transform: translateX(38px) rotate(5deg) !important; }
+  .category-card-copy strong { font-size: 16.4px !important; }
+  .category-card-copy em { font-size: 11.5px !important; }
 }
