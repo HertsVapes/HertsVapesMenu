@@ -3882,68 +3882,27 @@ body { background: #020202; }
   pointer-events: auto !important;
 }
 
-/* Final image integration only: use uploaded transparent PNGs in existing category cards. */
-.category-card-stack {
+/* Final category product image integration only */
+.category-card-image--multi {
   position: relative !important;
   display: block !important;
 }
 
-.category-card-stack img {
+.category-card-image--multi img {
   position: absolute !important;
-  left: 50% !important;
   top: 50% !important;
-  width: auto !important;
-  height: auto !important;
+  left: 50% !important;
+  width: 58% !important;
+  height: 84% !important;
   object-fit: contain !important;
-  object-position: center center !important;
   transform-origin: center center !important;
 }
 
-.category-card-stack-special img:nth-child(1) {
-  max-width: 50% !important;
-  max-height: 92% !important;
-  transform: translate(-86%, -47%) rotate(-8deg) !important;
-  z-index: 2 !important;
-}
+.category-card-image--special img:nth-child(1) { transform: translate(-86%, -48%) rotate(-5deg) !important; z-index: 3 !important; }
+.category-card-image--special img:nth-child(2) { transform: translate(-50%, -52%) scale(1.04) !important; z-index: 4 !important; }
+.category-card-image--special img:nth-child(3) { transform: translate(-16%, -48%) rotate(5deg) !important; z-index: 2 !important; }
+.category-card-image--special img:nth-child(4) { transform: translate(-38%, -35%) scale(.72) !important; z-index: 5 !important; }
 
-.category-card-stack-special img:nth-child(2) {
-  max-width: 40% !important;
-  max-height: 86% !important;
-  transform: translate(-32%, -52%) rotate(5deg) !important;
-  z-index: 4 !important;
-}
-
-.category-card-stack-special img:nth-child(3) {
-  max-width: 34% !important;
-  max-height: 72% !important;
-  transform: translate(18%, -50%) rotate(-4deg) !important;
-  z-index: 3 !important;
-}
-
-.category-card-stack-special img:nth-child(4) {
-  max-width: 38% !important;
-  max-height: 70% !important;
-  transform: translate(52%, -43%) rotate(7deg) !important;
-  z-index: 1 !important;
-}
-
-.category-card-stack-disposable img:nth-child(1) {
-  max-width: 48% !important;
-  max-height: 94% !important;
-  transform: translate(-80%, -49%) rotate(-7deg) !important;
-  z-index: 2 !important;
-}
-
-.category-card-stack-disposable img:nth-child(2) {
-  max-width: 52% !important;
-  max-height: 98% !important;
-  transform: translate(-32%, -51%) rotate(4deg) !important;
-  z-index: 4 !important;
-}
-
-.category-card-stack-disposable img:nth-child(3) {
-  max-width: 46% !important;
-  max-height: 90% !important;
-  transform: translate(30%, -47%) rotate(7deg) !important;
-  z-index: 1 !important;
-}
+.category-card-image--disposable img:nth-child(1) { transform: translate(-78%, -49%) rotate(-5deg) !important; z-index: 3 !important; }
+.category-card-image--disposable img:nth-child(2) { transform: translate(-50%, -52%) scale(1.08) !important; z-index: 4 !important; }
+.category-card-image--disposable img:nth-child(3) { transform: translate(-20%, -48%) rotate(5deg) !important; z-index: 2 !important; }
