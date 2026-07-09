@@ -101,7 +101,7 @@ window.HV_INVENTORY = {
     menuEntry: true,
     menuLabel: "TOBACCO",
     menuSubline: "Amber Leaf Original",
-    menuImage: "assets/categories/tobacco.png",
+    menuImage: "amberleaf.png.png",
     items: [
       { name: "Amber Leaf Original", meta: "50g", pricing: [{ label: "50g", price: "£30" }, { label: "2 Packs", price: "£55" }], saving: "Save £5" }
     ]
