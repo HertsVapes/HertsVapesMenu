@@ -3,6 +3,18 @@
   Future updates: edit products, flavours, prices, bundles and bulk copy in this inventory object only.
   The rendering/cart/order logic below should not need changing for normal stock updates.
 */
+
+const categoryCards = [
+  { key: "special", title: "Special Deals", subtitle: "Best value bundles", image: "special.png" },
+  { key: "disposable", title: "Disposable Vapes", subtitle: "Ready-to-use devices", image: "disposable.png" },
+  { key: "podkits", title: "Pod Kits", subtitle: "XROS kits", image: "podkits.png" },
+  { key: "salts", title: "Nic Salts", subtitle: "20mg liquids", image: "salts.png" },
+  { key: "pods", title: "Replacement Pods", subtitle: "XROS Corex pods", image: "pods.png" },
+  { key: "pouches", title: "Nicotine Pouches", subtitle: "VELO and Pablo", image: "pouches.png" },
+  { key: "tobacco", title: "Tobacco", subtitle: "Amber Leaf", image: "tobacco.png" },
+  { key: "bulk", title: "HV Bulk", subtitle: "£100+ pre-orders", image: "" }
+];
+
 const inventory = {
   special: {
     title: "Special Deals",
@@ -100,6 +112,21 @@ const inventory = {
     ]
   },
 
+  tobacco: {
+    title: "Tobacco",
+    items: [
+      {
+        name: "Amber Leaf Original",
+        meta: "50g rolling tobacco",
+        pricing: [
+          { label: "50g", price: "£30" },
+          { label: "2 packs", price: "£55" }
+        ],
+        saving: "Save £5"
+      }
+    ]
+  },
+
   bulk: {
     title: "HV Bulk",
     type: "bulk",
@@ -114,7 +141,8 @@ const inventory = {
   }
 };
 
-const menu = document.querySelector(".menu-visual");
+const menu = document.querySelector(".category-menu");
+const categoryCardGrid = document.getElementById("categoryCardGrid");
 const readyCard = document.querySelector(".ready-card");
 const bulkCard = document.querySelector(".bulk-card");
 const panel = document.getElementById("inventoryPanel");
@@ -187,15 +215,38 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll, { passive: true });
 window.addEventListener("load", () => {
   document.body.classList.add("hero-loaded");
+  renderCategoryCards();
   renderCart();
 });
 
-document.querySelectorAll("[data-category]").forEach((button) => {
-  button.addEventListener("click", () => {
+function renderCategoryCards() {
+  if (!categoryCardGrid) return;
+  categoryCardGrid.innerHTML = categoryCards.map(card => {
+    const imageMarkup = card.image
+      ? `<img src="${escapeHtml(card.image)}" alt="${escapeHtml(card.title)}" loading="eager" />`
+      : `<span class="category-card-monogram">HV</span>`;
+
+    return `
+      <button class="category-card" type="button" data-category="${escapeHtml(card.key)}" aria-label="Open ${escapeHtml(card.title)}">
+        <span class="category-card-copy">
+          <strong>${escapeHtml(card.title)}</strong>
+          <em>${escapeHtml(card.subtitle)}</em>
+        </span>
+        <span class="category-card-image" aria-hidden="true">${imageMarkup}</span>
+        <span class="category-card-arrow" aria-hidden="true">›</span>
+      </button>
+    `;
+  }).join("");
+}
+
+if (categoryCardGrid) {
+  categoryCardGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-category]");
+    if (!button) return;
     softTap();
     openCategory(button.dataset.category);
   });
-});
+}
 
 closePanel.addEventListener("click", () => {
   softTap();
@@ -553,5 +604,7 @@ cartSnapchat.addEventListener("click", async () => {
   setTimeout(() => window.open("https://www.snapchat.com/add/herts.vps", "_blank"), 350);
 });
 
-// Final public clean build marker. Functionality above is unchanged.
+renderCategoryCards();
+
+// Final public clean build marker. Category cards now replace the old image-map menu; cart/order logic is unchanged.
 window.HERTS_VAPES_BUILD = "final-public-clean";

@@ -7,7 +7,6 @@
   <meta name="description" content="Herts Vapes live menu. Browse products, flavours and deals, then order through WhatsApp or Snapchat." />
   <title>Herts Vapes Menu</title>
   <link rel="preload" href="hero.jpg" as="image" />
-  <link rel="preload" href="menu.jpg" as="image" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -38,54 +37,13 @@
 
     <div class="section-blend" aria-hidden="true"></div>
 
-    <section class="menu-visual" id="menu" aria-label="Herts Vapes menu categories">
+    <section class="category-menu" id="menu" aria-label="Herts Vapes menu categories">
       <div class="menu-title-band" aria-hidden="true">
         <span></span>
         <strong>Live Menu</strong>
         <span></span>
       </div>
-      <img src="menu.jpg" alt="Herts Vapes live menu categories" class="menu-art" />
-      <div class="category-image-layer" aria-hidden="true">
-        <div class="category-image-stage category-special">
-          <img src="assets/categories/podkit-cutout.png" alt="" class="product-cutout product-podkit" />
-          <img src="assets/categories/lostmary-cutout.png" alt="" class="product-cutout product-lostmary" />
-          <img src="assets/categories/eluxnicsalt-cutout.png" alt="" class="product-cutout product-salt" />
-        </div>
-        <div class="category-image-stage category-disposable">
-          <img src="assets/categories/lostmary-cutout.png" alt="" class="product-cutout product-lostmary" />
-          <img src="assets/categories/hayati25k-cutout.png" alt="" class="product-cutout product-hayati" />
-          <img src="assets/categories/elux3500-cutout.png" alt="" class="product-cutout product-elux3500" />
-        </div>
-        <div class="category-image-stage category-podkits">
-          <img src="assets/categories/podkit-cutout.png" alt="" class="product-cutout product-podkit solo" />
-        </div>
-        <div class="category-image-stage category-salts">
-          <img src="assets/categories/eluxnicsalt-cutout.png" alt="" class="product-cutout product-salt solo" />
-        </div>
-        <div class="category-image-stage category-pods">
-          <img src="assets/categories/vaporessopod-cutout.png" alt="" class="product-cutout product-pods solo" />
-        </div>
-        <div class="category-image-stage category-pouches">
-          <img src="assets/categories/pablopouch-cutout.png" alt="" class="product-cutout product-pouch solo" />
-        </div>
-      </div>
-      <button class="hotspot category-hit special" data-category="special" aria-label="Open special deals"></button>
-      <button class="hotspot category-hit disposable" data-category="disposable" aria-label="Open disposable vapes"></button>
-      <button class="hotspot category-hit podkits" data-category="podkits" aria-label="Open pod kits"></button>
-      <button class="hotspot category-hit salts" data-category="salts" aria-label="Open nic salts"></button>
-      <button class="hotspot category-hit pods" data-category="pods" aria-label="Open replacement pods"></button>
-      <button class="hotspot category-hit pouches" data-category="pouches" aria-label="Open nicotine pouches"></button>
-    </section>
-
-    <section class="hv-bulk-category" aria-label="HV Bulk category">
-      <button class="hv-bulk-category-button" type="button" data-category="bulk" aria-label="Open HV Bulk">
-        <span class="hv-bulk-icon">HV</span>
-        <span class="hv-bulk-text">
-          <strong>HV BULK</strong>
-          <em>£100+ pre-orders</em>
-        </span>
-        <span class="hv-bulk-arrow">›</span>
-      </button>
+      <div class="category-card-grid" id="categoryCardGrid"></div>
     </section>
 
     <section class="inventory-panel" id="inventoryPanel" aria-live="polite">
