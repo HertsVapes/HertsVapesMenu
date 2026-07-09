@@ -3882,197 +3882,217 @@ body { background: #020202; }
   pointer-events: auto !important;
 }
 
-/* =========================================================
-   FINAL CATEGORY IMAGE POLISH ONLY
-   CSS-only product artwork layout. Existing functionality unchanged.
-   ========================================================= */
-.menu-title-band {
-  gap: 14px !important;
-  margin-bottom: 20px !important;
-}
-
-.menu-title-band span {
-  height: 2px !important;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), rgba(255,37,49,.58), rgba(255,255,255,.16), transparent) !important;
-  box-shadow: 0 0 14px rgba(255,37,49,.16) !important;
-}
-
-.menu-title-band strong {
-  letter-spacing: .145em !important;
-  text-shadow: 0 0 20px rgba(255,37,49,.24), 0 10px 22px rgba(0,0,0,.42) !important;
-}
-
+/* =====================================================
+   FINAL CATEGORY CARD IMAGE POLISH
+   Product PNG placement only. Ordering/cart logic untouched.
+   ===================================================== */
 .category-card {
-  height: 112px !important;
   min-height: 112px !important;
-  grid-template-columns: minmax(0, 1fr) clamp(138px, 36vw, 190px) 24px !important;
+  height: 112px !important;
+  grid-template-columns: minmax(0, 1fr) clamp(132px, 38vw, 178px) 24px !important;
   gap: 10px !important;
-  padding: 13px 14px 13px 18px !important;
-  overflow: hidden !important;
+  padding: 13px 13px 13px 18px !important;
+  border-radius: 25px !important;
   background:
-    radial-gradient(circle at 78% 50%, rgba(255,37,49,.18), transparent 38%),
-    radial-gradient(ellipse at 80% 106%, rgba(255,255,255,.07), transparent 40%),
-    linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.016)) !important;
+    radial-gradient(circle at 82% 50%, rgba(255,37,49,.18), transparent 44%),
+    radial-gradient(circle at 100% 12%, rgba(255,255,255,.08), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,.060), rgba(255,255,255,.017)) !important;
+  box-shadow:
+    0 18px 38px rgba(0,0,0,.38),
+    inset 0 0 0 1px rgba(255,255,255,.04) !important;
+}
+
+.category-card::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  right: 42px;
+  width: clamp(116px, 34vw, 164px);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255,37,49,.15), transparent 62%),
+    linear-gradient(90deg, rgba(255,255,255,.035), rgba(255,255,255,0));
+  pointer-events: none;
+  z-index: 0;
 }
 
 .category-card-copy {
   position: relative !important;
   z-index: 4 !important;
-  overflow: hidden !important;
+  padding-right: 2px !important;
 }
 
 .category-card-copy strong {
-  white-space: nowrap !important;
-  font-size: clamp(18px, 4.6vw, 23px) !important;
-  letter-spacing: -.035em !important;
-}
-
-.category-card-copy em {
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
+  font-size: clamp(19px, 5vw, 25px) !important;
 }
 
 .category-card-image {
   position: relative !important;
-  width: 100% !important;
+  width: clamp(132px, 38vw, 178px) !important;
   height: 90px !important;
   display: block !important;
-  justify-self: stretch !important;
-  align-self: center !important;
   overflow: visible !important;
-  z-index: 2 !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-size: contain !important;
-  filter: drop-shadow(0 13px 16px rgba(0,0,0,.46)) !important;
+  justify-self: end !important;
+  align-self: center !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
 }
 
-.category-card-image > img {
-  opacity: 0 !important;
-  width: 1px !important;
-  height: 1px !important;
-  pointer-events: none !important;
+.category-card-image img {
+  position: absolute !important;
+  display: block !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  filter: drop-shadow(0 13px 14px rgba(0,0,0,.48)) !important;
+  will-change: transform !important;
+}
+
+.single-image img {
+  left: 50% !important;
+  top: 50% !important;
+  width: 94% !important;
+  height: 104% !important;
+  max-width: none !important;
+  max-height: none !important;
+  transform: translate(-50%, -50%) scale(1.12) !important;
+}
+
+.bundle-image .bundle-item {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.special-bundle .lostmary {
+  left: 0% !important;
+  top: 15% !important;
+  width: 36% !important;
+  height: 76% !important;
+  z-index: 2 !important;
+  transform: rotate(-7deg) !important;
+}
+.special-bundle .podkit {
+  left: 22% !important;
+  top: 13% !important;
+  width: 31% !important;
+  height: 72% !important;
+  z-index: 4 !important;
+  transform: rotate(-2deg) scale(1.08) !important;
+}
+.special-bundle .salt {
+  left: 47% !important;
+  top: 10% !important;
+  width: 30% !important;
+  height: 76% !important;
+  z-index: 3 !important;
+  transform: rotate(4deg) scale(1.08) !important;
+}
+.special-bundle .pouch {
+  right: -2% !important;
+  bottom: 8% !important;
+  width: 31% !important;
+  height: 50% !important;
+  z-index: 5 !important;
+  transform: rotate(7deg) scale(1.06) !important;
+}
+
+.disposable-bundle .lostmary {
+  left: 3% !important;
+  top: 13% !important;
+  width: 37% !important;
+  height: 80% !important;
+  z-index: 3 !important;
+  transform: rotate(-7deg) scale(1.05) !important;
+}
+.disposable-bundle .hayati {
+  left: 34% !important;
+  top: 3% !important;
+  width: 39% !important;
+  height: 94% !important;
+  z-index: 4 !important;
+  transform: scale(1.08) !important;
+}
+.disposable-bundle .elux {
+  right: -2% !important;
+  top: 18% !important;
+  width: 35% !important;
+  height: 76% !important;
+  z-index: 2 !important;
+  transform: rotate(7deg) scale(1.03) !important;
+}
+
+.category-card-hv {
+  width: clamp(118px, 33vw, 154px) !important;
+  height: 84px !important;
+  display: grid !important;
+  place-items: center !important;
+  justify-self: end !important;
+  border: 1px solid rgba(255,37,49,.62) !important;
+  border-radius: 22px !important;
+  background:
+    radial-gradient(circle at 70% 18%, rgba(255,37,49,.34), transparent 45%),
+    linear-gradient(135deg, rgba(255,255,255,.09), rgba(0,0,0,.24)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.055),
+    0 0 22px rgba(255,37,49,.16),
+    0 14px 24px rgba(0,0,0,.34) !important;
+}
+.category-card-hv::before {
+  content: "BULK";
+  position: absolute;
+  right: 12px;
+  bottom: 9px;
+  color: rgba(255,255,255,.52);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: .18em;
+}
+.category-card-hv span {
+  color: #fff !important;
+  font-size: 34px !important;
+  line-height: .9 !important;
+  font-weight: 950 !important;
+  letter-spacing: -.08em !important;
+  transform: skew(-9deg) !important;
+  text-shadow: 0 0 20px rgba(255,37,49,.34), 0 10px 20px rgba(0,0,0,.42) !important;
+}
+.category-card-hv span::first-letter {
+  color: #fff;
+}
+
+.category-card[data-category="bulk"] {
+  border-color: rgba(255,37,49,.34) !important;
+  background:
+    radial-gradient(circle at 84% 48%, rgba(255,37,49,.24), transparent 43%),
+    linear-gradient(180deg, rgba(255,255,255,.066), rgba(255,255,255,.018)) !important;
 }
 
 .category-card-arrow {
   position: relative !important;
   z-index: 5 !important;
-  width: 24px !important;
-  text-shadow: 0 0 16px rgba(255,37,49,.30) !important;
 }
 
-/* Special Deals: lostmary, podkit, eluxnicsalt, pablopouch */
-.category-card[data-category="special"] .category-card-image {
-  height: 94px !important;
-  background-image:
-    url("pablopouch.png.png"),
-    url("eluxnicsalt.png.png"),
-    url("lostmary.png.png"),
-    url("podkit.png.png") !important;
-  background-size:
-    31% auto,
-    27% auto,
-    44% auto,
-    39% auto !important;
-  background-position:
-    93% 58%,
-    66% 59%,
-    39% 55%,
-    11% 50% !important;
-}
-
-/* Disposable Vapes: lostmary, hayati25k, elux3500 */
-.category-card[data-category="disposable"] .category-card-image {
-  height: 94px !important;
-  background-image:
-    url("elux3500.png.png"),
-    url("hayati25k.png.png"),
-    url("lostmary.png.png") !important;
-  background-size:
-    29% auto,
-    48% auto,
-    36% auto !important;
-  background-position:
-    90% 55%,
-    51% 50%,
-    13% 56% !important;
-}
-
-.category-card[data-category="podkits"] .category-card-image {
-  height: 94px !important;
-  background-image: url("podkit.png.png") !important;
-  background-size: auto 94% !important;
-  background-position: 50% 50% !important;
-}
-
-.category-card[data-category="salts"] .category-card-image {
-  height: 92px !important;
-  background-image: url("eluxnicsalt.png.png") !important;
-  background-size: auto 88% !important;
-  background-position: 50% 52% !important;
-}
-
-.category-card[data-category="pods"] .category-card-image {
-  height: 92px !important;
-  background-image: url("vaporessopod.png.png") !important;
-  background-size: auto 91% !important;
-  background-position: 50% 50% !important;
-}
-
-.category-card[data-category="pouches"] .category-card-image {
-  height: 92px !important;
-  background-image: url("pablopouch.png.png") !important;
-  background-size: auto 86% !important;
-  background-position: 50% 52% !important;
-}
-
-.category-card[data-category="tobacco"] .category-card-image {
-  height: 92px !important;
-  background-image: url("amberleaf.png.png") !important;
-  background-size: auto 91% !important;
-  background-position: 50% 50% !important;
-}
-
-.category-card-hv {
-  display: grid !important;
-  place-items: center !important;
-  width: 82px !important;
-  height: 82px !important;
-  justify-self: center !important;
-  filter: none !important;
-  background: radial-gradient(circle, rgba(226,21,33,.18), rgba(0,0,0,.16)) !important;
-}
-
-@media (max-width: 430px) {
+@media (max-width: 380px) {
   .category-card {
-    grid-template-columns: minmax(0, 1fr) 138px 22px !important;
-    height: 108px !important;
-    min-height: 108px !important;
+    min-height: 106px !important;
+    height: 106px !important;
+    grid-template-columns: minmax(0, 1fr) 122px 18px !important;
     gap: 8px !important;
-    padding-left: 16px !important;
-    padding-right: 12px !important;
+    padding: 12px 11px 12px 15px !important;
   }
-
-  .category-card-image,
-  .category-card[data-category="special"] .category-card-image,
-  .category-card[data-category="disposable"] .category-card-image {
-    height: 88px !important;
+  .category-card::before {
+    right: 35px;
+    width: 116px;
   }
-
-  .category-card-copy strong {
-    font-size: clamp(17px, 4.55vw, 19px) !important;
+  .category-card-image {
+    width: 122px !important;
+    height: 86px !important;
   }
-}
-
-@media (max-width: 370px) {
-  .category-card {
-    grid-template-columns: minmax(0, 1fr) 124px 20px !important;
-    height: 104px !important;
-    min-height: 104px !important;
-    padding-left: 14px !important;
+  .category-card-hv {
+    width: 112px !important;
+    height: 78px !important;
   }
-
-  .category-card-copy strong { font-size: 16.4px !important; }
-  .category-card-copy em { font-size: 11.5px !important; }
+  .category-card-hv span {
+    font-size: 30px !important;
+  }
 }
